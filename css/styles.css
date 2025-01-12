@@ -209,7 +209,7 @@ sup {
 }
 
 a {
-  color: #bd5d38;
+  color: black;
   text-decoration: underline;
 }
 a:hover {
@@ -7336,7 +7336,7 @@ textarea.form-control-lg {
 
 /* rtl:end:remove */
 .text-primary {
-  color: #bd5d38 !important;
+  color: black !important;
 }
 
 .text-secondary {
@@ -7392,7 +7392,7 @@ textarea.form-control-lg {
 }
 
 .bg-primary {
-  background-color: #bd5d38 !important;
+  background-color: black !important;
 }
 
 .bg-secondary {
