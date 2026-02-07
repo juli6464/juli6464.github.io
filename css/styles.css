@@ -11,10 +11,30 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
-    --primary: #2563eb; /* Azul Eléctrico 2026 */
-    --dark-bg: #0f172a; /* Slate Dark */
-    --text-main: #1e293b;
-    --glass: rgba(255, 255, 255, 0.05);
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #bd5d38;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-primary: #bd5d38;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
 }
 
 *,
@@ -29,8 +49,18 @@
   }
 }
 
-body { font-family: 'Inter', sans-serif; color: var(--text-main); }
-        h1, h2, h3 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+body {
+  margin: 0;
+  font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 hr {
   margin: 1rem 0;
   color: inherit;
@@ -10972,101 +11002,3 @@ section.resume-section .resume-section-content {
     padding-bottom: 5rem;
   }
 }
-
-/* Sidebar Moderno */
-#sideNav {
-    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%) !important;
-    border-right: 1px solid rgba(255,255,255,0.1);
-}
-
-.text-primary { color: var(--primary) !important; }
-.bg-primary { background-color: var(--primary) !important; }
-
-/* Cuadrícula de Proyectos Mejorada */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.project-item {
-    background: #ffffff;
-    border-radius: 16px;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid #e2e8f0;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.project-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    border-color: var(--primary);
-}
-
-.project-item img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-bottom: 1px solid #f1f5f9;
-}
-
-.project-item a {
-    padding: 1rem;
-    text-decoration: none;
-    color: var(--text-main);
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-align: center;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Timeline de Experiencia */
-.experience-item {
-    border-left: 3px solid #e2e8f0;
-    padding-left: 20px;
-    margin-bottom: 3rem;
-    position: relative;
-}
-
-.experience-item::before {
-    content: "";
-    position: absolute;
-    left: -10px;
-    top: 0;
-    width: 17px;
-    height: 17px;
-    background: var(--primary);
-    border-radius: 50%;
-}
-
-.btn-cv-premium {
-    background: var(--primary);
-    color: white !important;
-    padding: 12px 25px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    transition: 0.3s;
-    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
-}
-
-.btn-cv-premium:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
-}
-
-.img-profile {
-    border: 6px solid rgba(255,255,255,0.1) !important;
-    transition: 0.5s;
-}
-
-.img-profile:hover { transform: rotate(3deg); }
