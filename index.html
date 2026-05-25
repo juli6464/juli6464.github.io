@@ -9,13 +9,11 @@
     <meta name="keywords" content="Julian Alzate, Fullstack Developer, Backend Developer, Laravel Developer, Node.js Developer, PHP Developer, React Developer, Vue.js Developer, NestJS, Docker, MySQL, TypeScript, Telematic Engineer, Software Developer, Remote Developer, Colombia, Spain" />
     <meta name="author" content="Julian David Alzate Cuervo" />
     <meta name="robots" content="index, follow" />
-
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Julian David Alzate Cuervo | Fullstack Developer" />
     <meta property="og:description" content="5+ years fullstack development. PHP/Laravel, Node.js, React, Vue.js, NestJS, Docker." />
     <meta property="og:image" content="images/julian_alzate.jpg" />
 
-    <!-- ATS: Structured Data for search engines and recruiters -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -25,197 +23,537 @@
       "email": "julianalzate046@gmail.com",
       "url": "https://juli6464.github.io/",
       "image": "https://juli6464.github.io/images/julian_alzate.jpg",
-      "sameAs": [
-        "https://www.linkedin.com/in/julian-david-alzate-cuervo-backend/",
-        "https://github.com/juli6464/"
-      ],
-      "knowsAbout": [
-        "PHP", "Laravel", "JavaScript", "TypeScript", "Node.js", "NestJS",
-        "React", "Vue.js", "Docker", "MySQL", "PostgreSQL", "MongoDB",
-        "REST API", "Git", "Moodle", "Scrum", "Bootstrap", "Tailwind CSS",
-        "Socket.IO", "JWT", "Swagger", "Nginx", "WordPress", "Make"
-      ],
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Global Snopek",
-        "addressCountry": "ES"
-      },
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "Universidad Católica de Manizales",
-        "addressCountry": "CO"
-      },
-      "hasCredential": [
-        { "@type": "EducationalOccupationalCredential", "name": "EFSET English Certificate B2 Upper Intermediate" },
-        { "@type": "EducationalOccupationalCredential", "name": "Fullstack Developer Javascript - Platzi" },
-        { "@type": "EducationalOccupationalCredential", "name": "NestJS Backend Developer - DevTalles" },
-        { "@type": "EducationalOccupationalCredential", "name": "Scrum Fundamentals Certified - SCRUMstudy" }
-      ]
+      "sameAs": ["https://www.linkedin.com/in/julian-david-alzate-cuervo-backend/","https://github.com/juli6464/"],
+      "knowsAbout": ["PHP","Laravel","JavaScript","TypeScript","Node.js","NestJS","React","Vue.js","Docker","MySQL","PostgreSQL","MongoDB","REST API","Git","Moodle","Scrum","Bootstrap","Tailwind CSS","Socket.IO","JWT","Swagger","Nginx","WordPress","Make"],
+      "worksFor": {"@type": "Organization","name": "Global Snopek","addressCountry": "ES"},
+      "alumniOf": {"@type": "CollegeOrUniversity","name": "Universidad Católica de Manizales","addressCountry": "CO"}
     }
     </script>
 
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@700;800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
     <link href="css/styles.css" rel="stylesheet" />
 
     <style>
+        /* ── Design System ───────────────────────────────────── */
         :root {
-            --primary: #2563eb;
-            --dark-bg: #0f172a;
-            --text-main: #1e293b;
-            --glass: rgba(255, 255, 255, 0.05);
+            --bg-base:       #060910;
+            --bg-surface:    #0d1117;
+            --bg-elevated:   #161b27;
+            --bg-border:     #1e2d40;
+            --accent:        #00d9f5;
+            --accent-glow:   rgba(0,217,245,0.12);
+            --accent-subtle: rgba(0,217,245,0.06);
+            --accent-2:      #39d353;
+            --accent-2-glow: rgba(57,211,83,0.10);
+            --text-primary:  #e2e8f0;
+            --text-secondary:#7d8da1;
+            --text-muted:    #3d4f63;
+            --radius-card:   16px;
+            --radius-sm:     10px;
         }
 
-        body { font-family: 'Inter', sans-serif; color: var(--text-main); }
-        h1, h2, h3 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+        /* ── Base ────────────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; }
 
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg-base);
+            color: var(--text-primary);
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2 { font-family: 'Sora', sans-serif; font-weight: 800; letter-spacing: -0.03em; margin: 0; }
+        h3      { font-family: 'Inter', sans-serif; font-weight: 600; margin: 0; }
+        .mono   { font-family: 'JetBrains Mono', monospace; }
+        .label  { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+
+        a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+        a:hover { opacity: 0.8; }
+
+        /* ── Sidebar nav ─────────────────────────────────────── */
         #sideNav {
-            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%) !important;
-            border-right: 1px solid rgba(255,255,255,0.1);
+            background: linear-gradient(180deg, #0d1117 0%, #060910 100%) !important;
+            border-right: 1px solid var(--bg-border) !important;
+        }
+        #sideNav .navbar-brand { padding: 1.5rem 1rem; }
+        .img-profile {
+            border: 3px solid var(--bg-border) !important;
+            transition: border-color 0.4s, transform 0.4s;
+            max-width: 10rem;
+        }
+        .img-profile:hover { border-color: var(--accent) !important; transform: rotate(3deg); }
+
+        #sideNav .nav-link {
+            color: var(--text-secondary) !important;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.6rem 1.5rem;
+            transition: color 0.2s, padding-left 0.2s;
+        }
+        #sideNav .nav-link:hover { color: var(--accent) !important; padding-left: 2rem; }
+
+        /* ── Language toggle ─────────────────────────────────── */
+        #lang-toggle {
+            position: fixed; top: 1rem; right: 1rem; z-index: 9999;
+            background: var(--bg-elevated);
+            color: var(--accent);
+            border: 1px solid var(--bg-border);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-weight: 700; font-size: 0.75rem;
+            cursor: pointer; transition: 0.25s;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 1.5px;
+        }
+        #lang-toggle:hover { background: var(--accent-subtle); border-color: var(--accent); }
+
+        /* ── Section container ───────────────────────────────── */
+        .resume-section {
+            padding: 5rem 3rem 5rem 3rem;
+            border-bottom: 1px solid var(--bg-border);
+            min-height: unset !important;
+        }
+        @media (max-width: 991px) { .resume-section { padding: 3rem 1.5rem; } }
+
+        .section-header {
+            display: flex; align-items: center; gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        .section-header h2 { font-size: clamp(1.4rem, 2.5vw, 1.8rem); color: var(--text-primary); }
+        .section-header::after {
+            content: ''; flex: 1; height: 1px; background: var(--bg-border);
+        }
+        .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem; color: var(--accent);
+            background: var(--accent-subtle);
+            border: 1px solid rgba(0,217,245,0.2);
+            border-radius: 6px; padding: 2px 8px;
         }
 
-        .text-primary { color: var(--primary) !important; }
-        .bg-primary { background-color: var(--primary) !important; }
-
-        .projects-grid {
+        /* ── BENTO GRID — base ───────────────────────────────── */
+        .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .project-item {
-            background: #ffffff;
-            border-radius: 16px;
+            gap: 1px;
+            background: var(--bg-border);
+            border: 1px solid var(--bg-border);
+            border-radius: 20px;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #e2e8f0;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        .project-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary);
+        .bento-card {
+            background: var(--bg-surface);
+            padding: 1.75rem;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s ease;
+        }
+        .bento-card:hover { background: var(--bg-elevated); }
+
+        /* Cursor glow */
+        .card-glow {
+            position: absolute; inset: 0;
+            background: radial-gradient(300px circle at var(--mouse-x,50%) var(--mouse-y,50%), var(--accent-glow), transparent 70%);
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
+            border-radius: inherit;
+        }
+        .bento-card:hover .card-glow { opacity: 1; }
+
+        /* Shimmer on hover */
+        .bento-card::after {
+            content: '';
+            position: absolute; top: -50%; left: -75%;
+            width: 50%; height: 200%;
+            background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.03) 50%, transparent 60%);
+            transform: skewX(-15deg); pointer-events: none;
+        }
+        .bento-card:hover::after { animation: shimmer-pass 0.65s ease forwards; }
+
+        @keyframes shimmer-pass {
+            from { left: -75%; }
+            to   { left: 125%; }
         }
 
-        .project-item img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-bottom: 1px solid #f1f5f9;
+        /* Border scan (CSS @property) */
+        @property --angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+        .bento-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            padding: 1px;
+            background: conic-gradient(from var(--angle), transparent 0%, var(--accent) 10%, transparent 20%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .bento-card:hover::before {
+            opacity: 1;
+            animation: border-scan 2.5s linear infinite;
+        }
+        @keyframes border-scan { to { --angle: 360deg; } }
+
+        /* ── ABOUT — bento layout ────────────────────────────── */
+        .about-bento {
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: auto;
+        }
+        .about-bento .card-hero     { grid-column: span 4; grid-row: span 2; }
+        .about-bento .card-status   { grid-column: span 2; }
+        .about-bento .card-stats    { grid-column: span 2; }
+        .about-bento .card-contact  { grid-column: span 6; }
+
+        @media (max-width: 900px) {
+            .about-bento { grid-template-columns: 1fr 1fr; background: transparent; gap: 0.75rem; border: none; }
+            .about-bento .card-hero     { grid-column: span 2; border-radius: var(--radius-card); border: 1px solid var(--bg-border); }
+            .about-bento .card-status,
+            .about-bento .card-stats    { grid-column: span 1; border-radius: var(--radius-card); border: 1px solid var(--bg-border); }
+            .about-bento .card-contact  { grid-column: span 2; border-radius: var(--radius-card); border: 1px solid var(--bg-border); }
+        }
+        @media (max-width: 540px) {
+            .about-bento { grid-template-columns: 1fr; }
+            .about-bento .card-hero,
+            .about-bento .card-status,
+            .about-bento .card-stats,
+            .about-bento .card-contact { grid-column: span 1; }
         }
 
-        .project-item a {
-            padding: 1rem;
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-align: center;
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Hero card */
+        .card-hero .terminal-line {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem; color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .terminal-dot { color: var(--accent-2); }
+
+        .hero-name {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.1; color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        .hero-name .accent { color: var(--accent); }
+
+        .hero-role {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem; color: var(--text-secondary);
+            margin-bottom: 1.25rem;
         }
 
-        .experience-item {
-            border-left: 3px solid #e2e8f0;
-            padding-left: 20px;
-            margin-bottom: 3rem;
+        .hero-bio { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.75; max-width: 480px; margin-bottom: 1.75rem; }
+
+        .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+
+        .btn-primary-neo {
+            background: var(--accent);
+            color: #060910 !important;
+            padding: 10px 22px;
+            border-radius: var(--radius-sm);
+            font-weight: 700; font-size: 0.85rem;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: 0.25s; box-shadow: 0 0 20px rgba(0,217,245,0.25);
+        }
+        .btn-primary-neo:hover { box-shadow: 0 0 30px rgba(0,217,245,0.45); transform: translateY(-2px); opacity: 1; }
+
+        .btn-ghost-neo {
+            background: transparent;
+            color: var(--text-secondary) !important;
+            padding: 10px 22px;
+            border-radius: var(--radius-sm);
+            font-weight: 600; font-size: 0.85rem;
+            border: 1px solid var(--bg-border);
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: 0.25s;
+        }
+        .btn-ghost-neo:hover { color: var(--accent) !important; border-color: var(--accent); opacity: 1; }
+
+        /* Status card */
+        .status-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--accent-2);
+            animation: pulse-dot 2s ease-in-out infinite;
+            display: inline-block; margin-right: 0.4rem;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(57,211,83,0.4); }
+            50%       { box-shadow: 0 0 0 6px rgba(57,211,83,0); }
+        }
+        .status-title   { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .status-value   { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); line-height: 1.4; }
+        .status-company { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); margin-top: 0.25rem; }
+
+        /* Stats card */
+        .stat-number { font-family: 'Sora', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1; }
+        .stat-label  { font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.25rem; }
+
+        /* Contact card */
+        .contact-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+        .social-link-neo {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--bg-elevated); border: 1px solid var(--bg-border);
+            border-radius: var(--radius-sm); padding: 8px 16px;
+            color: var(--text-secondary) !important;
+            font-size: 0.82rem; font-weight: 500;
+            transition: 0.25s;
+        }
+        .social-link-neo:hover { color: var(--accent) !important; border-color: var(--accent); opacity: 1; }
+        .social-link-neo i { font-size: 0.9rem; }
+
+        /* ── EXPERIENCE — timeline ───────────────────────────── */
+        .exp-timeline { display: flex; flex-direction: column; gap: 0; }
+
+        .exp-item {
+            display: grid;
+            grid-template-columns: 1fr;
+            border-left: 1px solid var(--bg-border);
+            padding-left: 1.75rem;
+            padding-bottom: 2.5rem;
             position: relative;
         }
+        .exp-item:last-child { padding-bottom: 0; border-left-color: transparent; }
 
-        .experience-item::before {
-            content: "";
-            position: absolute;
-            left: -10px;
-            top: 0;
-            width: 17px;
-            height: 17px;
-            background: var(--primary);
+        .exp-item::before {
+            content: '';
+            position: absolute; left: -5px; top: 4px;
+            width: 9px; height: 9px;
             border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 3px var(--bg-base), 0 0 0 4px var(--bg-border);
         }
 
-        .btn-cv-premium {
-            background: var(--primary);
-            color: white !important;
-            padding: 12px 25px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            transition: 0.3s;
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        .exp-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.35rem; }
+        .exp-role   { font-size: 1rem; font-weight: 600; color: var(--text-primary); }
+        .exp-badge  {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+            background: var(--accent-subtle); color: var(--accent);
+            border: 1px solid rgba(0,217,245,0.2); border-radius: 6px;
+            padding: 2px 10px; white-space: nowrap;
+        }
+        .exp-badge.current {
+            background: var(--accent-2-glow); color: var(--accent-2);
+            border-color: rgba(57,211,83,0.25);
+        }
+        .exp-company { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.85rem; }
+
+        .exp-item ul { margin: 0; padding-left: 1.1rem; }
+        .exp-item li {
+            font-size: 0.875rem; color: var(--text-secondary);
+            line-height: 1.7; margin-bottom: 0.35rem;
+        }
+        .exp-item li::marker { color: var(--accent); }
+
+        /* ── SKILLS — bento ──────────────────────────────────── */
+        .skills-bento {
+            grid-template-columns: repeat(3, 1fr);
+            margin-bottom: 2.5rem;
         }
 
-        .btn-cv-premium:hover {
-            transform: scale(1.05);
-            filter: brightness(1.1);
+        @media (max-width: 900px) {
+            .skills-bento { grid-template-columns: repeat(2, 1fr); background: transparent; gap: 0.75rem; border: none; }
+            .skills-bento .bento-card { border-radius: var(--radius-card); border: 1px solid var(--bg-border); }
+        }
+        @media (max-width: 540px) {
+            .skills-bento { grid-template-columns: 1fr; }
         }
 
-        .img-profile {
-            border: 6px solid rgba(255,255,255,0.1) !important;
-            transition: 0.5s;
+        .skill-cat-icon {
+            width: 36px; height: 36px;
+            background: var(--accent-subtle); border: 1px solid rgba(0,217,245,0.2);
+            border-radius: 10px; display: grid; place-items: center;
+            color: var(--accent); font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .skill-cat-title { font-size: 0.82rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.85rem; }
+
+        .skill-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .skill-pill {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+            color: var(--text-secondary); background: var(--bg-elevated);
+            border: 1px solid var(--bg-border); border-radius: 6px;
+            padding: 3px 9px; transition: color 0.2s, border-color 0.2s;
+        }
+        .bento-card:hover .skill-pill { color: var(--accent); border-color: rgba(0,217,245,0.25); }
+
+        /* Old badges - keep for ATS but visually subdued */
+        .badges-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; opacity: 0.55; }
+        .badges-row:hover { opacity: 0.85; transition: opacity 0.3s; }
+
+        /* ── PROJECT CARDS ───────────────────────────────────── */
+        .projects-bento {
+            grid-template-columns: repeat(2, 1fr);
+            margin-bottom: 2.5rem;
+        }
+        @media (max-width: 768px) {
+            .projects-bento { grid-template-columns: 1fr; background: transparent; gap: 0.75rem; border: none; }
+            .projects-bento .bento-card { border-radius: var(--radius-card); border: 1px solid var(--bg-border); }
         }
 
-        .img-profile:hover { transform: rotate(3deg); }
-
-        /* Language toggle button */
-        #lang-toggle {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 9999;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 7px 16px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 1.5px;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        .project-card-header { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1.25rem; }
+        .project-card-icon {
+            width: 38px; height: 38px; flex-shrink: 0;
+            background: var(--accent-subtle); border: 1px solid rgba(0,217,245,0.2);
+            border-radius: 10px; display: grid; place-items: center;
+            color: var(--accent); font-size: 0.9rem;
         }
-        #lang-toggle:hover { filter: brightness(1.15); transform: scale(1.06); }
-
-        /* ATS-friendly text skills */
-        .skills-summary {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
+        .project-card-title   { font-size: 0.92rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.15rem; }
+        .project-card-company { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-secondary); }
+        .project-card-badge {
+            margin-left: auto; flex-shrink: 0;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+            background: var(--accent-2-glow); color: var(--accent-2);
+            border: 1px solid rgba(57,211,83,0.25); border-radius: 20px;
+            padding: 2px 9px; white-space: nowrap;
         }
-        .skill-tag {
-            background: #eff6ff;
-            color: var(--primary);
-            border: 1px solid #bfdbfe;
-            border-radius: 20px;
-            padding: 4px 14px;
-            font-size: 0.85rem;
-            font-weight: 600;
+
+        .project-metrics {
+            display: flex; gap: 0.75rem; margin-bottom: 1.25rem;
+            padding: 0.85rem; background: var(--bg-base); border-radius: 10px;
+        }
+        .p-metric { text-align: center; flex: 1; }
+        .p-metric__val  { display: block; font-family: 'Sora', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--text-primary); }
+        .p-metric__val.c  { color: var(--accent); }
+        .p-metric__val.g  { color: var(--accent-2); }
+        .p-metric__label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+
+        .project-chart { display: flex; align-items: flex-end; gap: 3px; height: 36px; margin-bottom: 1.1rem; }
+        .p-bar {
+            flex: 1; height: var(--h, 50%);
+            background: var(--accent-subtle);
+            border-radius: 3px 3px 0 0;
+            border-top: 1px solid rgba(0,217,245,0.25);
+            transition: background 0.3s;
+        }
+        .bento-card:hover .p-bar { background: rgba(0,217,245,0.12); }
+        .bento-card:hover .p-bar:last-child { background: var(--accent); opacity: 0.7; }
+
+        .project-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1rem; }
+        .p-tech {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+            color: var(--text-secondary); background: var(--bg-elevated);
+            border: 1px solid var(--bg-border); border-radius: 5px; padding: 2px 7px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .bento-card:hover .p-tech { color: var(--accent); border-color: rgba(0,217,245,0.25); }
+
+        .project-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.65; }
+        .project-link {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            font-size: 0.78rem; color: var(--accent); font-weight: 600;
+            margin-top: 0.75rem; transition: gap 0.2s;
+        }
+        .project-link:hover { gap: 0.6rem; opacity: 1; }
+
+        /* Simpler project grid (rest of projects) */
+        .projects-simple-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .project-simple-card {
+            background: var(--bg-surface); border: 1px solid var(--bg-border);
+            border-radius: var(--radius-card); overflow: hidden;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .project-simple-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+        .project-simple-card img { width: 100%; height: 130px; object-fit: cover; display: block; filter: grayscale(30%); transition: filter 0.3s; }
+        .project-simple-card:hover img { filter: grayscale(0%); }
+        .project-simple-card a {
+            display: block; padding: 0.85rem;
+            font-size: 0.8rem; font-weight: 500; color: var(--text-secondary) !important;
+            line-height: 1.45; transition: color 0.2s;
+        }
+        .project-simple-card:hover a { color: var(--text-primary) !important; }
+
+        /* ── EDUCATION ───────────────────────────────────────── */
+        .edu-card {
+            background: var(--bg-surface); border: 1px solid var(--bg-border);
+            border-radius: var(--radius-card); padding: 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 1rem;
+            transition: border-color 0.3s;
+        }
+        .edu-card:hover { border-color: var(--accent); }
+        .edu-card h3     { font-size: 1rem; color: var(--text-primary); margin-bottom: 0.25rem; }
+        .edu-degree      { font-size: 0.82rem; color: var(--text-secondary); }
+        .edu-years       { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent); white-space: nowrap; }
+
+        /* ── CERTIFICATIONS ──────────────────────────────────── */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 0.75rem;
+        }
+        .cert-item {
+            display: flex; align-items: center; gap: 0.85rem;
+            background: var(--bg-surface); border: 1px solid var(--bg-border);
+            border-radius: var(--radius-sm); padding: 0.9rem 1.1rem;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .cert-item:hover { border-color: var(--accent); background: var(--bg-elevated); }
+        .cert-icon { color: #fbbf24; flex-shrink: 0; font-size: 0.85rem; }
+        .cert-item a, .cert-item span {
+            font-size: 0.82rem; color: var(--text-secondary) !important;
+            font-weight: 500; line-height: 1.4;
+        }
+        .cert-item:hover a, .cert-item:hover span { color: var(--text-primary) !important; }
+
+        /* ── Scrollbar ───────────────────────────────────────── */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-border); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        /* ── Bootstrap overrides ─────────────────────────────── */
+        .bg-primary { background-color: var(--bg-surface) !important; }
+        .text-primary { color: var(--accent) !important; }
+        hr { border-color: var(--bg-border); margin: 0; }
+
+        /* Section headings */
+        .section-title-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem; color: var(--accent);
+            letter-spacing: 0.1em; text-transform: uppercase;
+            display: block; margin-bottom: 0.5rem;
+        }
+        .section-h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+            color: var(--text-primary);
+            margin-bottom: 2.5rem;
         }
     </style>
 </head>
 <body id="page-top">
 
-    <!-- Language Toggle: EN / ES -->
     <button id="lang-toggle" onclick="toggleLang()" aria-label="Switch language">ES</button>
 
+    <!-- ── Sidebar Nav ───────────────────────────────────────── -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
-            <span class="d-block d-lg-none">Julian David Alzate Cuervo</span>
-            <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="images/julian_alzate.jpg" alt="Julian Alzate - Fullstack Developer" /></span>
+            <span class="d-block d-lg-none" style="color: var(--text-primary); font-family: 'Sora', sans-serif;">Julian Alzate</span>
+            <span class="d-none d-lg-block">
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="images/julian_alzate.jpg" alt="Julian Alzate - Fullstack Developer" />
+            </span>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about"      data-i18n="nav.about">About</a></li>
@@ -230,543 +568,794 @@
 
     <div class="container-fluid p-0">
 
-        <!-- ABOUT -->
+        <!-- ════ ABOUT ══════════════════════════════════════════ -->
         <section class="resume-section" id="about">
-            <div class="resume-section-content" data-aos="fade-up">
-                <h1 class="mb-0">Julian <span class="text-primary">David</span> Alzate <span class="text-primary">Cuervo</span></h1>
-                <div class="subheading mb-5">
-                    <span data-i18n="about.subtitle">Fullstack Developer</span> · <a href="mailto:julianalzate046@gmail.com" class="text-primary">julianalzate046@gmail.com</a>
-                </div>
-                <p class="lead mb-5" data-i18n="about.bio">
-                    Telematic Engineer with 5+ years of fullstack development experience, specialized in building robust and scalable architectures for technology, banking, healthcare, and education sectors. Expert in the PHP (Laravel) and JavaScript (Node.js, React, Vue.js) ecosystems, with advanced capability to integrate AI solutions and automation into the development workflow. I excel at transforming complex product requirements into high-performance functional solutions, managing the complete cycle from technical estimation to production deployment.
-                </p>
-                <div class="social-icons mb-4">
-                    <div class="subheading mb-3" data-i18n="about.download_cv">Download my CV</div>
-                    <a class="btn-cv-premium" href="https://drive.google.com/file/d/1HLvBs8hxQcA48hq_s7PahQQhZ7liMWLF/view?usp=sharing" target="_blank">
-                        <i class="fas fa-file-download me-2"></i> <span data-i18n="about.view_cv">View Curriculum Vitae</span>
-                    </a>
-                </div>
-                <div class="social-icons">
-                    <div class="subheading mb-3" data-i18n="about.links">Links of interest</div>
-                    <a class="social-icon" href="https://www.linkedin.com/in/julian-david-alzate-cuervo-backend/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="social-icon" href="https://github.com/juli6464/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <div data-aos="fade-up">
+                <div class="bento-grid about-bento">
+
+                    <!-- Hero -->
+                    <div class="bento-card card-hero">
+                        <div class="card-glow"></div>
+                        <div class="terminal-line">
+                            <span class="terminal-dot">●</span>
+                            <span class="mono" style="color: var(--text-muted); font-size:0.7rem;">julian_alzate.config.ts</span>
+                        </div>
+                        <h1 class="hero-name">Julian <span class="accent" data-i18n="hero.last">Alzate</span></h1>
+                        <p class="hero-role">
+                            <span data-i18n="about.subtitle">Fullstack Developer</span>
+                            <span style="color: var(--text-muted)"> · </span>
+                            <span style="color: var(--accent)">Backend Specialist</span>
+                        </p>
+                        <p class="hero-bio" data-i18n="about.bio">
+                            Telematic Engineer with 5+ years of fullstack development experience, specialized in building robust and scalable architectures for technology, banking, healthcare, and education sectors. Expert in PHP (Laravel) and JavaScript (Node.js, React, Vue.js), with advanced capability to integrate AI solutions and automation into the development workflow.
+                        </p>
+                        <div class="hero-actions">
+                            <a class="btn-primary-neo" href="https://drive.google.com/file/d/1HLvBs8hxQcA48hq_s7PahQQhZ7liMWLF/view?usp=sharing" target="_blank">
+                                <i class="fas fa-file-download"></i> <span data-i18n="about.view_cv">View CV</span>
+                            </a>
+                            <a class="btn-ghost-neo" href="mailto:julianalzate046@gmail.com">
+                                <i class="fas fa-envelope"></i> Contact
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="bento-card card-status">
+                        <div class="card-glow"></div>
+                        <p class="status-title label" data-i18n="status.label">Current Status</p>
+                        <p style="margin: 0 0 0.75rem;">
+                            <span class="status-dot"></span>
+                            <span class="status-value" data-i18n="status.value">Available for new projects</span>
+                        </p>
+                        <p class="status-company">@ Global Snopek · Spain</p>
+                        <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--bg-border);">
+                            <p class="status-title label" style="margin-bottom:0.4rem" data-i18n="status.focus">Focus</p>
+                            <div class="skill-pills">
+                                <span class="skill-pill">Backend</span>
+                                <span class="skill-pill">API</span>
+                                <span class="skill-pill">Laravel</span>
+                                <span class="skill-pill">NestJS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="bento-card card-stats">
+                        <div class="card-glow"></div>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <div class="stat-number">5+</div>
+                                <div class="stat-label" data-i18n="stat.years">Years exp.</div>
+                            </div>
+                            <div>
+                                <div class="stat-number" style="color: var(--accent-2)">19+</div>
+                                <div class="stat-label" data-i18n="stat.projects">Projects</div>
+                            </div>
+                            <div>
+                                <div class="stat-number">3</div>
+                                <div class="stat-label" data-i18n="stat.countries">Countries</div>
+                            </div>
+                            <div>
+                                <div class="stat-number" style="color: var(--accent-2)">B2</div>
+                                <div class="stat-label">English</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact / Links -->
+                    <div class="bento-card card-contact">
+                        <div class="card-glow"></div>
+                        <div class="contact-grid">
+                            <span class="label" style="color: var(--text-muted)" data-i18n="about.links">Links</span>
+                            <a class="social-link-neo" href="https://www.linkedin.com/in/julian-david-alzate-cuervo-backend/" target="_blank">
+                                <i class="fab fa-linkedin-in"></i> LinkedIn
+                            </a>
+                            <a class="social-link-neo" href="https://github.com/juli6464/" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a class="social-link-neo" href="mailto:julianalzate046@gmail.com">
+                                <i class="fas fa-envelope"></i> julianalzate046@gmail.com
+                            </a>
+                            <span class="social-link-neo" style="cursor:default;">
+                                <i class="fas fa-map-marker-alt" style="color: var(--accent)"></i> Manizales, Colombia
+                            </span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <hr class="m-0" />
+        <hr />
 
-        <!-- EXPERIENCE -->
+        <!-- ════ EXPERIENCE ══════════════════════════════════════ -->
         <section class="resume-section" id="experience">
-            <div class="resume-section-content" data-aos="fade-up">
-                <h2 class="mb-5" data-i18n="experience.title">Experience</h2>
+            <div data-aos="fade-up">
+                <span class="section-title-tag mono" data-i18n="tag.experience">// experience</span>
+                <h2 class="section-h2" data-i18n="experience.title">Experience</h2>
 
-                <div class="experience-item">
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
-                        <h3 class="mb-0" data-i18n="exp1.role">Software Developer</h3>
-                        <div class="flex-shrink-0"><span class="badge bg-primary" data-i18n="exp1.date">June 2025 - Present</span></div>
-                    </div>
-                    <div class="subheading mb-3">Global Snopek <span data-i18n="exp1.location">(Spain)</span></div>
-                    <ul>
-                        <li data-i18n="exp1.bullet1">Lead the full lifecycle of custom software development, managing from technical budget estimation to optimization and maintenance of high-performance applications.</li>
-                        <li data-i18n="exp1.bullet2">Design and deploy custom Moodle plugins, integrating dynamic data visualizations (rankings and charts) and configuring infrastructures from scratch according to complex technical requirements.</li>
-                        <li data-i18n="exp1.bullet3">Implement hybrid automation solutions combining custom code with tools like Make to optimize ERP system processes, reducing operational times by 25%.</li>
-                    </ul>
-                </div>
+                <div class="exp-timeline">
 
-                <div class="experience-item">
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
-                        <h3 class="mb-0" data-i18n="exp2.role">Backend Developer</h3>
-                        <div class="flex-shrink-0"><span class="text-primary" data-i18n="exp2.date">August 2023 - February 2025</span></div>
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <span class="exp-role" data-i18n="exp1.role">Software Developer</span>
+                            <span class="exp-badge current" data-i18n="exp1.date">June 2025 – Present</span>
+                        </div>
+                        <div class="exp-company">Global Snopek <span data-i18n="exp1.location">(Spain)</span></div>
+                        <ul>
+                            <li data-i18n="exp1.bullet1">Lead the full lifecycle of custom software development, managing from technical budget estimation to optimization and maintenance of high-performance applications.</li>
+                            <li data-i18n="exp1.bullet2">Design and deploy custom Moodle plugins, integrating dynamic data visualizations (rankings and charts) and configuring infrastructures from scratch according to complex technical requirements.</li>
+                            <li data-i18n="exp1.bullet3">Implement hybrid automation solutions combining custom code with tools like Make to optimize ERP system processes, reducing operational times by 25%.</li>
+                        </ul>
                     </div>
-                    <div class="subheading mb-3">Ingenes <span data-i18n="exp2.location">(Mexico)</span></div>
-                    <ul>
-                        <li data-i18n="exp2.bullet1">Developed and documented new applications and comprehensive improvements (Frontend/Backend), ensuring compliance with acceptance criteria and proper deployment in production environments.</li>
-                        <li data-i18n="exp2.bullet2">Built a strategic webhook for the Donor Portal, automating the transfer of personal and membership data to streamline user management and tracking.</li>
-                        <li data-i18n="exp2.bullet3">Led the technical expansion of the medical treatments application for the United States market, improving UX and broadening the company's operational reach.</li>
-                    </ul>
-                </div>
 
-                <div class="experience-item">
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
-                        <h3 class="mb-0" data-i18n="exp3.role">Software Developer</h3>
-                        <div class="flex-shrink-0"><span class="text-primary" data-i18n="exp3.date">November 2021 - June 2023</span></div>
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <span class="exp-role" data-i18n="exp2.role">Backend Developer</span>
+                            <span class="exp-badge" data-i18n="exp2.date">August 2023 – February 2025</span>
+                        </div>
+                        <div class="exp-company">Ingenes <span data-i18n="exp2.location">(Mexico)</span></div>
+                        <ul>
+                            <li data-i18n="exp2.bullet1">Developed and documented new applications and comprehensive improvements (Frontend/Backend), ensuring compliance with acceptance criteria and proper deployment in production environments.</li>
+                            <li data-i18n="exp2.bullet2">Built a strategic webhook for the Donor Portal, automating the transfer of personal and membership data to streamline user management and tracking.</li>
+                            <li data-i18n="exp2.bullet3">Led the technical expansion of the medical treatments application for the United States market, improving UX and broadening the company's operational reach.</li>
+                        </ul>
                     </div>
-                    <div class="subheading mb-3">Soaint <span data-i18n="exp3.location">(Panama)</span></div>
-                    <ul>
-                        <li data-i18n="exp3.bullet1">Designed and built comprehensive endpoints and dashboards using Laravel, Bootstrap, and MySQL, optimizing database management for donation and medication systems.</li>
-                        <li data-i18n="exp3.bullet2">Developed "Reloj Colmena", a data analytics solution with dynamic diagrams and advanced geographic filtering for real-time statistics visualization.</li>
-                        <li data-i18n="exp3.bullet3">Created a medication search tool with Google APIs integration for automated product image retrieval.</li>
-                    </ul>
-                </div>
 
-                <div class="experience-item">
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
-                        <h3 class="mb-0" data-i18n="exp4.role">Other Relevant Experience</h3>
-                        <div class="flex-shrink-0"><span class="text-primary">(2020 - 2021)</span></div>
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <span class="exp-role" data-i18n="exp3.role">Software Developer</span>
+                            <span class="exp-badge" data-i18n="exp3.date">November 2021 – June 2023</span>
+                        </div>
+                        <div class="exp-company">Soaint <span data-i18n="exp3.location">(Panama)</span></div>
+                        <ul>
+                            <li data-i18n="exp3.bullet1">Designed and built comprehensive endpoints and dashboards using Laravel, Bootstrap, and MySQL, optimizing database management for donation and medication systems.</li>
+                            <li data-i18n="exp3.bullet2">Developed "Reloj Colmena", a data analytics solution with dynamic diagrams and advanced geographic filtering for real-time statistics visualization.</li>
+                            <li data-i18n="exp3.bullet3">Created a medication search tool with Google APIs integration for automated product image retrieval.</li>
+                        </ul>
                     </div>
-                    <ul>
-                        <li data-i18n="exp4.bullet1">Webmaster at Shammah, Telematic Engineer at Universidad Nacional de Colombia, Multimedia Developer at Universidad Católica de Manizales, and Web Developer at Pulzo.</li>
-                    </ul>
+
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <span class="exp-role" data-i18n="exp4.role">Other Relevant Experience</span>
+                            <span class="exp-badge">(2020 – 2021)</span>
+                        </div>
+                        <ul>
+                            <li data-i18n="exp4.bullet1">Webmaster at Shammah, Telematic Engineer at Universidad Nacional de Colombia, Multimedia Developer at Universidad Católica de Manizales, and Web Developer at Pulzo.</li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <hr class="m-0" />
+        <hr />
 
-        <!-- EDUCATION -->
+        <!-- ════ EDUCATION ══════════════════════════════════════ -->
         <section class="resume-section" id="education">
-            <div class="resume-section-content" data-aos="fade-up">
-                <h2 class="mb-5" data-i18n="education.title">Education</h2>
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="flex-grow-1">
-                        <h3 class="mb-0">Universidad Católica de Manizales</h3>
-                        <div class="subheading mb-3" data-i18n="education.degree">Telematic Engineer</div>
+            <div data-aos="fade-up">
+                <span class="section-title-tag mono" data-i18n="tag.education">// education</span>
+                <h2 class="section-h2" data-i18n="education.title">Education</h2>
+                <div class="edu-card">
+                    <div>
+                        <h3>Universidad Católica de Manizales</h3>
+                        <div class="edu-degree" data-i18n="education.degree">Telematic Engineer · B.Sc.</div>
                     </div>
-                    <div class="flex-shrink-0"><span class="text-primary">2010 - 2015</span></div>
+                    <div class="edu-years">2010 – 2015</div>
                 </div>
             </div>
         </section>
 
-        <hr class="m-0" />
+        <hr />
 
-        <!-- SKILLS -->
+        <!-- ════ SKILLS ══════════════════════════════════════════ -->
         <section class="resume-section" id="skills">
-            <div class="resume-section-content" data-aos="fade-up">
-                <h2 class="mb-5" data-i18n="skills.title">Skills</h2>
+            <div data-aos="fade-up">
+                <span class="section-title-tag mono" data-i18n="tag.skills">// skills</span>
+                <h2 class="section-h2" data-i18n="skills.title">Skills</h2>
 
-                <!-- ATS-friendly: text-based skill tags readable by scrapers and recruiters -->
-                <div class="subheading mb-2" data-i18n="skills.main_stack">Core Technologies</div>
-                <div class="skills-summary mb-4" aria-label="Technical skills">
-                    <span class="skill-tag">PHP</span>
-                    <span class="skill-tag">Laravel</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">TypeScript</span>
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">NestJS</span>
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Vue.js</span>
-                    <span class="skill-tag">Docker</span>
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">PostgreSQL</span>
-                    <span class="skill-tag">MongoDB</span>
-                    <span class="skill-tag">REST API</span>
-                    <span class="skill-tag">Git / GitHub</span>
-                    <span class="skill-tag">Moodle</span>
-                    <span class="skill-tag">Tailwind CSS</span>
-                    <span class="skill-tag">Bootstrap</span>
-                    <span class="skill-tag">Livewire</span>
-                    <span class="skill-tag">Socket.IO</span>
-                    <span class="skill-tag">JWT</span>
-                    <span class="skill-tag">Swagger</span>
-                    <span class="skill-tag">Nginx</span>
-                    <span class="skill-tag">Make</span>
-                    <span class="skill-tag">WordPress</span>
-                    <span class="skill-tag">Scrum</span>
-                    <span class="skill-tag">SEO</span>
+                <!-- Bento de categorías -->
+                <div class="bento-grid skills-bento">
+
+                    <div class="bento-card">
+                        <div class="card-glow"></div>
+                        <div class="skill-cat-icon"><i class="fas fa-server"></i></div>
+                        <div class="skill-cat-title" data-i18n="skill.cat.backend">Backend</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">PHP</span>
+                            <span class="skill-pill">Laravel</span>
+                            <span class="skill-pill">Livewire</span>
+                            <span class="skill-pill">Node.js</span>
+                            <span class="skill-pill">NestJS</span>
+                            <span class="skill-pill">Express.js</span>
+                            <span class="skill-pill">REST API</span>
+                            <span class="skill-pill">JWT</span>
+                            <span class="skill-pill">WebSockets</span>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="card-glow"></div>
+                        <div class="skill-cat-icon" style="color: var(--accent-2); background: var(--accent-2-glow); border-color: rgba(57,211,83,0.2)"><i class="fas fa-palette"></i></div>
+                        <div class="skill-cat-title" data-i18n="skill.cat.frontend">Frontend</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">Vue.js</span>
+                            <span class="skill-pill">Vuetify</span>
+                            <span class="skill-pill">React</span>
+                            <span class="skill-pill">TypeScript</span>
+                            <span class="skill-pill">JavaScript</span>
+                            <span class="skill-pill">Tailwind CSS</span>
+                            <span class="skill-pill">Bootstrap</span>
+                            <span class="skill-pill">Alpine.js</span>
+                            <span class="skill-pill">Vite</span>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="card-glow"></div>
+                        <div class="skill-cat-icon" style="color: #a78bfa; background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.2)"><i class="fab fa-docker"></i></div>
+                        <div class="skill-cat-title" data-i18n="skill.cat.devops">DevOps &amp; Infra</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">Docker</span>
+                            <span class="skill-pill">Nginx</span>
+                            <span class="skill-pill">Git</span>
+                            <span class="skill-pill">GitHub</span>
+                            <span class="skill-pill">Vercel</span>
+                            <span class="skill-pill">Netlify</span>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="card-glow"></div>
+                        <div class="skill-cat-icon" style="color: #f59e0b; background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2)"><i class="fas fa-database"></i></div>
+                        <div class="skill-cat-title" data-i18n="skill.cat.db">Databases</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">MySQL</span>
+                            <span class="skill-pill">PostgreSQL</span>
+                            <span class="skill-pill">MongoDB</span>
+                            <span class="skill-pill">MariaDB</span>
+                            <span class="skill-pill">SQLite</span>
+                            <span class="skill-pill">SQL Server</span>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="card-glow"></div>
+                        <div class="skill-cat-icon" style="color: #fb923c; background: rgba(251,146,60,0.08); border-color: rgba(251,146,60,0.2)"><i class="fas fa-tools"></i></div>
+                        <div class="skill-cat-title" data-i18n="skill.cat.tools">Tools &amp; Platforms</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">Moodle</span>
+                            <span class="skill-pill">Make</span>
+                            <span class="skill-pill">Postman</span>
+                            <span class="skill-pill">Swagger</span>
+                            <span class="skill-pill">WordPress</span>
+                            <span class="skill-pill">Webpack</span>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="card-glow"></div>
+                        <div class="skill-cat-icon" style="color: #38bdf8; background: rgba(56,189,248,0.08); border-color: rgba(56,189,248,0.2)"><i class="fas fa-users-cog"></i></div>
+                        <div class="skill-cat-title" data-i18n="skill.cat.soft">Methodologies</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">Scrum</span>
+                            <span class="skill-pill">Agile</span>
+                            <span class="skill-pill">SEO</span>
+                            <span class="skill-pill">TDD</span>
+                            <span class="skill-pill">CI/CD</span>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="subheading mb-3">Tech Stack</div>
-                <ul class="list-inline dev-icons">
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/php-%23777BB4.svg?style=flat&logo=php&logoColor=white" alt="PHP"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat&logo=html5&logoColor=white" alt="HTML5"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/javascript-%23323330.svg?style=flat&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white" alt="TypeScript"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/JSON-000000?style=flat&logo=json&logoColor=white" alt="JSON"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/XML-FF6600?style=flat&logo=xml&logoColor=white" alt="XML"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/css3-%231572B6.svg?style=flat&logo=css3&logoColor=white" alt="CSS3"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/vercel-%23000000.svg?style=flat&logo=vercel&logoColor=white" alt="Vercel"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/netlify-%23000000.svg?style=flat&logo=netlify&logoColor=#00C7B7" alt="Netlify"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/alpinejs-white.svg?style=flat&logo=alpinedotjs&logoColor=%238BC0D0" alt="Alpine.js"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/bootstrap-%238511FA.svg?style=flat&logo=bootstrap&logoColor=white" alt="Bootstrap"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/express.js-%23404d59.svg?style=flat&logo=express&logoColor=%2361DAFB" alt="Express.js"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/jquery-%230769AD.svg?style=flat&logo=jquery&logoColor=white" alt="jQuery"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/JWT-black?style=flat&logo=JSON%20web%20tokens" alt="JWT Authentication"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/laravel-%23FF2D20.svg?style=flat&logo=laravel&logoColor=white" alt="Laravel"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/livewire-%234e56a6.svg?style=flat&logo=livewire&logoColor=white" alt="Laravel Livewire"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/NPM-%23CB3837.svg?style=flat&logo=npm&logoColor=white" alt="NPM"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=flat&logo=nestjs&logoColor=white" alt="NestJS"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/NODEMON-%23323330.svg?style=flat&logo=nodemon&logoColor=%BBDEAD" alt="Nodemon"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/node.js-6DA55F?style=flat&logo=node.js&logoColor=white" alt="Node.js"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/Socket.io-black?style=flat&logo=socket.io&badgeColor=010101" alt="Socket.IO"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat&logo=tailwind-css&logoColor=white" alt="Tailwind CSS"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/vite-%23646CFF.svg?style=flat&logo=vite&logoColor=white" alt="Vite"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/vue.js-%2335495e.svg?style=flat&logo=vuedotjs&logoColor=%234FC08D" alt="Vue.js"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/WordPress-%23117AC9.svg?style=flat&logo=WordPress&logoColor=white" alt="WordPress"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/webpack-%238DD6F9.svg?style=flat&logo=webpack&logoColor=black" alt="Webpack"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/Vuetify-1867C0?style=flat&logo=vuetify&logoColor=AEDDFF" alt="Vuetify"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/nginx-%23009639.svg?style=flat&logo=nginx&logoColor=white" alt="Nginx"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/mysql-4479A1.svg?style=flat&logo=mysql&logoColor=white" alt="MySQL"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=flat&logo=mongodb&logoColor=white" alt="MongoDB"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=flat&logo=microsoft%20sql%20server&logoColor=white" alt="Microsoft SQL Server"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/MariaDB-003545?style=flat&logo=mariadb&logoColor=white" alt="MariaDB"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/postgres-%23316192.svg?style=flat&logo=postgresql&logoColor=white" alt="PostgreSQL"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=flat&logo=sqlite&logoColor=white" alt="SQLite"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/git-%23F05033.svg?style=flat&logo=git&logoColor=white" alt="Git"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/github-%23121011.svg?style=flat&logo=github&logoColor=white" alt="GitHub"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white" alt="Docker"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=postman&logoColor=white" alt="Postman"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/-Swagger-%23Clojure?style=flat&logo=swagger&logoColor=white" alt="Swagger API"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/Moodle-F98012?style=flat&logo=moodle&logoColor=white" alt="Moodle"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/Make-6D00CC?style=flat&logo=gnu&logoColor=white" alt="Make"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/SCRUM-009FDA?style=flat&logo=scrumalliance&logoColor=white" alt="Scrum Methodology"></li>
-                    <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/SEO-47A248?style=flat&logo=google&logoColor=white" alt="SEO Optimization"></li>
-                </ul>
+                <!-- Badges originales — ATS friendly, visualmente contenidos -->
+                <details style="margin-top: 1rem;">
+                    <summary style="font-size: 0.78rem; color: var(--text-muted); cursor: pointer; font-family: 'JetBrains Mono', monospace; padding: 0.5rem 0;" data-i18n="skills.badges_toggle">Show all tech badges</summary>
+                    <div class="badges-row" aria-label="Full tech stack badges">
+                        <img height="32" src="https://img.shields.io/badge/php-%23777BB4.svg?style=flat&logo=php&logoColor=white" alt="PHP">
+                        <img height="32" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat&logo=html5&logoColor=white" alt="HTML5">
+                        <img height="32" src="https://img.shields.io/badge/javascript-%23323330.svg?style=flat&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript">
+                        <img height="32" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white" alt="TypeScript">
+                        <img height="32" src="https://img.shields.io/badge/css3-%231572B6.svg?style=flat&logo=css3&logoColor=white" alt="CSS3">
+                        <img height="32" src="https://img.shields.io/badge/laravel-%23FF2D20.svg?style=flat&logo=laravel&logoColor=white" alt="Laravel">
+                        <img height="32" src="https://img.shields.io/badge/livewire-%234e56a6.svg?style=flat&logo=livewire&logoColor=white" alt="Livewire">
+                        <img height="32" src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=flat&logo=nestjs&logoColor=white" alt="NestJS">
+                        <img height="32" src="https://img.shields.io/badge/node.js-6DA55F?style=flat&logo=node.js&logoColor=white" alt="Node.js">
+                        <img height="32" src="https://img.shields.io/badge/express.js-%23404d59.svg?style=flat&logo=express&logoColor=%2361DAFB" alt="Express.js">
+                        <img height="32" src="https://img.shields.io/badge/vue.js-%2335495e.svg?style=flat&logo=vuedotjs&logoColor=%234FC08D" alt="Vue.js">
+                        <img height="32" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
+                        <img height="32" src="https://img.shields.io/badge/bootstrap-%238511FA.svg?style=flat&logo=bootstrap&logoColor=white" alt="Bootstrap">
+                        <img height="32" src="https://img.shields.io/badge/vite-%23646CFF.svg?style=flat&logo=vite&logoColor=white" alt="Vite">
+                        <img height="32" src="https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white" alt="Docker">
+                        <img height="32" src="https://img.shields.io/badge/nginx-%23009639.svg?style=flat&logo=nginx&logoColor=white" alt="Nginx">
+                        <img height="32" src="https://img.shields.io/badge/mysql-4479A1.svg?style=flat&logo=mysql&logoColor=white" alt="MySQL">
+                        <img height="32" src="https://img.shields.io/badge/postgres-%23316192.svg?style=flat&logo=postgresql&logoColor=white" alt="PostgreSQL">
+                        <img height="32" src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=flat&logo=mongodb&logoColor=white" alt="MongoDB">
+                        <img height="32" src="https://img.shields.io/badge/git-%23F05033.svg?style=flat&logo=git&logoColor=white" alt="Git">
+                        <img height="32" src="https://img.shields.io/badge/Moodle-F98012?style=flat&logo=moodle&logoColor=white" alt="Moodle">
+                        <img height="32" src="https://img.shields.io/badge/Make-6D00CC?style=flat&logo=gnu&logoColor=white" alt="Make">
+                        <img height="32" src="https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=postman&logoColor=white" alt="Postman">
+                        <img height="32" src="https://img.shields.io/badge/-Swagger-%23Clojure?style=flat&logo=swagger&logoColor=white" alt="Swagger">
+                        <img height="32" src="https://img.shields.io/badge/SCRUM-009FDA?style=flat&logo=scrumalliance&logoColor=white" alt="Scrum">
+                        <img height="32" src="https://img.shields.io/badge/Socket.io-black?style=flat&logo=socket.io&badgeColor=010101" alt="Socket.IO">
+                        <img height="32" src="https://img.shields.io/badge/JWT-black?style=flat&logo=JSON%20web%20tokens" alt="JWT">
+                        <img height="32" src="https://img.shields.io/badge/WordPress-%23117AC9.svg?style=flat&logo=WordPress&logoColor=white" alt="WordPress">
+                    </div>
+                </details>
+
             </div>
         </section>
 
-        <hr class="m-0" />
+        <hr />
 
-        <!-- PROJECTS -->
+        <!-- ════ PROJECTS ════════════════════════════════════════ -->
         <section class="resume-section" id="projects">
-            <div class="resume-section-content" data-aos="fade-up">
-                <h2 class="mb-5" data-i18n="projects.title">Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-item">
-                        <img src="images/cedeno.PNG" alt="Client Management Software">
-                        <a href="#" data-i18n="project.cedeno">Client Management Software - Cedeño &amp; Méndez (Panama)</a>
+            <div data-aos="fade-up">
+                <span class="section-title-tag mono" data-i18n="tag.projects">// projects</span>
+                <h2 class="section-h2" data-i18n="projects.title">Projects</h2>
+
+                <!-- Featured project cards -->
+                <div class="bento-grid projects-bento">
+
+                    <!-- Card 1 -->
+                    <div class="bento-card">
+                        <div class="card-glow"></div>
+                        <div class="project-card-header">
+                            <div class="project-card-icon"><i class="fas fa-puzzle-piece"></i></div>
+                            <div>
+                                <div class="project-card-title" data-i18n="feat1.title">Moodle Custom Plugins</div>
+                                <div class="project-card-company">Global Snopek · 2025</div>
+                            </div>
+                            <span class="project-card-badge" data-i18n="badge.live">Live</span>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="p-metric">
+                                <span class="p-metric__val c">25%</span>
+                                <span class="p-metric__label" data-i18n="metric.timesaved">Time saved</span>
+                            </div>
+                            <div class="p-metric">
+                                <span class="p-metric__val">3</span>
+                                <span class="p-metric__label" data-i18n="metric.plugins">Plugins</span>
+                            </div>
+                            <div class="p-metric">
+                                <span class="p-metric__val g" data-i18n="metric.status_live">Active</span>
+                                <span class="p-metric__label">Status</span>
+                            </div>
+                        </div>
+                        <div class="project-chart" aria-hidden="true">
+                            <div class="p-bar" style="--h:40%"></div><div class="p-bar" style="--h:55%"></div>
+                            <div class="p-bar" style="--h:45%"></div><div class="p-bar" style="--h:70%"></div>
+                            <div class="p-bar" style="--h:65%"></div><div class="p-bar" style="--h:85%"></div>
+                            <div class="p-bar" style="--h:95%"></div>
+                        </div>
+                        <div class="project-stack">
+                            <span class="p-tech">PHP</span><span class="p-tech">Moodle</span>
+                            <span class="p-tech">Make</span><span class="p-tech">MySQL</span><span class="p-tech">ERP</span>
+                        </div>
+                        <p class="project-desc" data-i18n="feat1.desc">Custom ranking visualizations, dynamic charts and ERP automation integrated into Moodle's plugin architecture.</p>
                     </div>
-                    <div class="project-item">
-                        <img src="images/plei2034.jpg" alt="Plei 2034 - Universidad Nacional">
-                        <a href="http://plei2034.manizales.unal.edu.co/" data-i18n="project.plei">Plei - Universidad Nacional de Colombia Sede Manizales</a>
+
+                    <!-- Card 2 -->
+                    <div class="bento-card">
+                        <div class="card-glow"></div>
+                        <div class="project-card-header">
+                            <div class="project-card-icon" style="color: var(--accent-2); background: var(--accent-2-glow); border-color: rgba(57,211,83,0.2)"><i class="fas fa-webhook" style="font-size:0.8rem">⟳</i></div>
+                            <div>
+                                <div class="project-card-title" data-i18n="feat2.title">Donor Portal Webhook</div>
+                                <div class="project-card-company">Ingenes · 2024</div>
+                            </div>
+                            <span class="project-card-badge" data-i18n="badge.prod">Production</span>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="p-metric">
+                                <span class="p-metric__val c">100%</span>
+                                <span class="p-metric__label" data-i18n="metric.automated">Automated</span>
+                            </div>
+                            <div class="p-metric">
+                                <span class="p-metric__val">US</span>
+                                <span class="p-metric__label" data-i18n="metric.market">Market</span>
+                            </div>
+                            <div class="p-metric">
+                                <span class="p-metric__val g">REST</span>
+                                <span class="p-metric__label">API</span>
+                            </div>
+                        </div>
+                        <div class="project-chart" aria-hidden="true">
+                            <div class="p-bar" style="--h:30%"></div><div class="p-bar" style="--h:50%"></div>
+                            <div class="p-bar" style="--h:75%"></div><div class="p-bar" style="--h:60%"></div>
+                            <div class="p-bar" style="--h:80%"></div><div class="p-bar" style="--h:70%"></div>
+                            <div class="p-bar" style="--h:90%"></div>
+                        </div>
+                        <div class="project-stack">
+                            <span class="p-tech">Laravel</span><span class="p-tech">Node.js</span>
+                            <span class="p-tech">Webhooks</span><span class="p-tech">PostgreSQL</span>
+                        </div>
+                        <p class="project-desc" data-i18n="feat2.desc">Strategic webhook automating personal and membership data transfer, expanding the platform to the US market.</p>
                     </div>
-                    <div class="project-item">
-                        <img src="images/saberveritas.png" alt="Saber y Veritas">
-                        <a href="https://saberveritas.com/" data-i18n="project.saberveritas">Saber &amp; Veritas</a>
+
+                    <!-- Card 3 -->
+                    <div class="bento-card">
+                        <div class="card-glow"></div>
+                        <div class="project-card-header">
+                            <div class="project-card-icon" style="color: #a78bfa; background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.2)"><i class="fas fa-chart-bar"></i></div>
+                            <div>
+                                <div class="project-card-title" data-i18n="feat3.title">Reloj Colmena — Analytics</div>
+                                <div class="project-card-company">Soaint · 2022</div>
+                            </div>
+                            <span class="project-card-badge" data-i18n="badge.prod">Production</span>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="p-metric">
+                                <span class="p-metric__val c">Real-time</span>
+                                <span class="p-metric__label" data-i18n="metric.data">Data</span>
+                            </div>
+                            <div class="p-metric">
+                                <span class="p-metric__val">Geo</span>
+                                <span class="p-metric__label" data-i18n="metric.filters">Filters</span>
+                            </div>
+                            <div class="p-metric">
+                                <span class="p-metric__val g">SPA</span>
+                                <span class="p-metric__label">Type</span>
+                            </div>
+                        </div>
+                        <div class="project-chart" aria-hidden="true">
+                            <div class="p-bar" style="--h:60%"></div><div class="p-bar" style="--h:80%"></div>
+                            <div class="p-bar" style="--h:55%"></div><div class="p-bar" style="--h:90%"></div>
+                            <div class="p-bar" style="--h:70%"></div><div class="p-bar" style="--h:85%"></div>
+                            <div class="p-bar" style="--h:75%"></div>
+                        </div>
+                        <div class="project-stack">
+                            <span class="p-tech">Laravel</span><span class="p-tech">Vue.js</span>
+                            <span class="p-tech">MySQL</span><span class="p-tech">Bootstrap</span>
+                        </div>
+                        <p class="project-desc" data-i18n="feat3.desc">Data analytics dashboard with dynamic diagrams and advanced geographic filtering for real-time statistics visualization.</p>
                     </div>
-                    <div class="project-item">
-                        <img src="images/tumbura.png" alt="Tumbura Ecommerce">
-                        <a href="https://tumbura.co/" data-i18n="project.tumbura">Tumbura Ecommerce</a>
+
+                    <!-- Card 4 -->
+                    <div class="bento-card">
+                        <div class="card-glow"></div>
+                        <div class="project-card-header">
+                            <div class="project-card-icon" style="color: #f59e0b; background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2)"><i class="fas fa-users"></i></div>
+                            <div>
+                                <div class="project-card-title" data-i18n="feat4.title">Client Management System</div>
+                                <div class="project-card-company">Cedeño &amp; Méndez · Panama</div>
+                            </div>
+                            <span class="project-card-badge" data-i18n="badge.prod">Production</span>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="p-metric">
+                                <span class="p-metric__val c">Full</span>
+                                <span class="p-metric__label">Stack</span>
+                            </div>
+                            <div class="p-metric">
+                                <span class="p-metric__val">CRUD</span>
+                                <span class="p-metric__label">Modules</span>
+                            </div>
+                            <div class="p-metric">
+                                <span class="p-metric__val g">Web</span>
+                                <span class="p-metric__label">Platform</span>
+                            </div>
+                        </div>
+                        <div class="project-chart" aria-hidden="true">
+                            <div class="p-bar" style="--h:50%"></div><div class="p-bar" style="--h:65%"></div>
+                            <div class="p-bar" style="--h:80%"></div><div class="p-bar" style="--h:60%"></div>
+                            <div class="p-bar" style="--h:90%"></div><div class="p-bar" style="--h:75%"></div>
+                            <div class="p-bar" style="--h:85%"></div>
+                        </div>
+                        <div class="project-stack">
+                            <span class="p-tech">Laravel</span><span class="p-tech">Bootstrap</span>
+                            <span class="p-tech">MySQL</span><span class="p-tech">jQuery</span>
+                        </div>
+                        <p class="project-desc" data-i18n="feat4.desc">Custom CRM for managing clients, contracts and reporting for a Panamanian legal and financial firm.</p>
                     </div>
-                    <div class="project-item">
-                        <img src="images/gifexpertapp.PNG" alt="Gif Expert App - React Vite">
-                        <a href="https://juli6464.github.io/gif-expert-app/" data-i18n="project.gifexpert">GIF search app built with React and Vite</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/yardsale.jpg" alt="React Store - Scss Webpack">
-                        <a href="https://juli6464.github.io/my-react-store/" data-i18n="project.reactstore">E-commerce store using React, Scss and Webpack</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/ahorcado.PNG" alt="Hangman Game - React TypeScript">
-                        <a href="https://ahorcado-juego-6543.netlify.app/" data-i18n="project.hangman">Hangman game built with React and TypeScript</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/platziexchange.PNG" alt="Crypto App Vue.js">
-                        <a href="https://platzi-exchange-vuejs2.netlify.app/" data-i18n="project.crypto">Cryptocurrency tracker app with Vue.js</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/cashflow.PNG" alt="Cashflow Vue - Income Expenses">
-                        <a href="https://cashflow-vue-64.netlify.app/" data-i18n="project.cashflow">Income and expense manager with Vue.js</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/100tifi.jpg" alt="Rick and Morty Vanilla JS">
-                        <a href="https://juli6464.github.io/spa-js-ricknmorty/" data-i18n="project.ricknmortyjs">Rick &amp; Morty character search with vanilla JS</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/rick-morty-svelte.jpg" alt="Rick and Morty Svelte">
-                        <a href="https://svelte-rick-morty.netlify.app/" data-i18n="project.ricknmortysvelte">Rick &amp; Morty character search built with Svelte</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/batabit.PNG" alt="Batabit Landing Page">
-                        <a href="https://juli6464.github.io/Curso-mobile-first/" data-i18n="project.batabit">Batabit landing page (mobile-first)</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/blog.jpg" alt="Blog CSS Grid Flexbox">
-                        <a href="https://juli6464.github.io/blog-with-css/" data-i18n="project.blog">Blog layout using CSS Grid and Flexbox</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/platzifood.jpg" alt="Platzifood Tailwind CSS">
-                        <a href="https://juli6464.github.io/platzi-food/" data-i18n="project.platzifood">Platzifood built with Tailwind CSS</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/googleclon.PNG" alt="Google Clone HTML CSS">
-                        <a href="https://juli6464.github.io/google-clone/" data-i18n="project.googleclone">Google clone using HTML, CSS Flexbox and Grid</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/emergia.jpg" alt="Emergia Clone">
-                        <a href="https://juli6464.github.io/pagina-emergia/" data-i18n="project.emergia">Emergia website clone</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/platziconf.jpg" alt="Platzi Conf Bootstrap 5">
-                        <a href="https://juli6464.github.io/bootstrap-5-theme/" data-i18n="project.platziconf">Platzi Conf theme using Bootstrap 5</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/landing.PNG" alt="Liam Landing - YouTube API">
-                        <a href="https://juli6464.github.io/liam-landing/" data-i18n="project.liam">Landing page integrating the YouTube API</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/pokemon-adivina.png" alt="Pokemon Game Vue 3 Jest">
-                        <a href="https://vue-3-pokemon-game.netlify.app/" data-i18n="project.pokemon">Pokémon game with Vue 3, Jest and Axios</a>
-                    </div>
+
                 </div>
-                <h3 class="mt-5 mb-3">Blogs</h3>
-                <div class="projects-grid">
-                    <div class="project-item">
-                        <img src="images/desarrolloycreo.PNG" alt="Personal Developer Blog">
+
+                <!-- Other projects — simpler grid -->
+                <h3 style="font-size: 0.82rem; color: var(--text-muted); margin: 2.5rem 0 1rem; font-family: 'JetBrains Mono', monospace; letter-spacing:0.06em;" data-i18n="projects.other">Other projects</h3>
+                <div class="projects-simple-grid">
+
+                    <div class="project-simple-card">
+                        <img src="images/plei2034.jpg" alt="Plei 2034 - Universidad Nacional">
+                        <a href="http://plei2034.manizales.unal.edu.co/" target="_blank" data-i18n="project.plei">Plei · Universidad Nacional de Colombia</a>
+                    </div>
+                    <div class="project-simple-card">
+                        <img src="images/saberveritas.png" alt="Saber y Veritas">
+                        <a href="https://saberveritas.com/" target="_blank" data-i18n="project.saberveritas">Saber &amp; Veritas</a>
+                    </div>
+                    <div class="project-simple-card">
+                        <img src="images/tumbura.png" alt="Tumbura Ecommerce">
+                        <a href="https://tumbura.co/" target="_blank" data-i18n="project.tumbura">Tumbura Ecommerce</a>
+                    </div>
+                    <div class="project-simple-card">
+                        <img src="images/gifexpertapp.PNG" alt="Gif Expert App">
+                        <a href="https://juli6464.github.io/gif-expert-app/" target="_blank" data-i18n="project.gifexpert">GIF search app · React + Vite</a>
+                    </div>
+                    <div class="project-simple-card">
+                        <img src="images/yardsale.jpg" alt="React Store">
+                        <a href="https://juli6464.github.io/my-react-store/" target="_blank" data-i18n="project.reactstore">E-commerce · React + Webpack</a>
+                    </div>
+                    <div class="project-simple-card">
+                        <img src="images/ahorcado.PNG" alt="Hangman Game">
+                        <a href="https://ahorcado-juego-6543.netlify.app/" target="_blank" data-i18n="project.hangman">Hangman · React + TypeScript</a>
+                    </div>
+                    <div class="project-simple-card">
+                        <img src="images/platziexchange.PNG" alt="Crypto Vue">
+                        <a href="https://platzi-exchange-vuejs2.netlify.app/" target="_blank" data-i18n="project.crypto">Crypto tracker · Vue.js</a>
+                    </div>
+                    <div class="project-simple-card">
+                        <img src="images/cashflow.PNG" alt="Cashflow Vue">
+                        <a href="https://cashflow-vue-64.netlify.app/" target="_blank" data-i18n="project.cashflow">Cashflow app · Vue.js</a>
+                    </div>
+                    <div class="project-simple-card">
+                        <img src="images/100tifi.jpg" alt="Rick n Morty JS">
+                        <a href="https://juli6464.github.io/spa-js-ricknmorty/" target="_blank" data-i18n="project.ricknmortyjs">Rick &amp; Morty · Vanilla JS</a>
+                    </div>
+                    <div class="project-simple-card">
+                        <img src="images/rick-morty-svelte.jpg" alt="Rick n Morty Svelte">
+                        <a href="https://svelte-rick-morty.netlify.app/" target="_blank" data-i18n="project.ricknmortysvelte">Rick &amp; Morty · Svelte</a>
+                    </div>
+                    <div class="project-simple-card">
+                        <img src="images/batabit.PNG" alt="Batabit">
+                        <a href="https://juli6464.github.io/Curso-mobile-first/" target="_blank" data-i18n="project.batabit">Batabit · Mobile First</a>
+                    </div>
+                    <div class="project-simple-card">
+                        <img src="images/platzifood.jpg" alt="Platzifood">
+                        <a href="https://juli6464.github.io/platzi-food/" target="_blank" data-i18n="project.platzifood">Platzifood · Tailwind CSS</a>
+                    </div>
+                    <div class="project-simple-card">
+                        <img src="images/googleclon.PNG" alt="Google Clone">
+                        <a href="https://juli6464.github.io/google-clone/" target="_blank" data-i18n="project.googleclone">Google Clone · CSS Grid</a>
+                    </div>
+                    <div class="project-simple-card">
+                        <img src="images/platziconf.jpg" alt="Platzi Conf">
+                        <a href="https://juli6464.github.io/bootstrap-5-theme/" target="_blank" data-i18n="project.platziconf">Platzi Conf · Bootstrap 5</a>
+                    </div>
+                    <div class="project-simple-card">
+                        <img src="images/pokemon-adivina.png" alt="Pokemon Vue 3">
+                        <a href="https://vue-3-pokemon-game.netlify.app/" target="_blank" data-i18n="project.pokemon">Pokémon Game · Vue 3 + Jest</a>
+                    </div>
+
+                </div>
+
+                <!-- Blogs -->
+                <h3 style="font-size: 0.82rem; color: var(--text-muted); margin: 2rem 0 1rem; font-family: 'JetBrains Mono', monospace; letter-spacing:0.06em;">Blogs</h3>
+                <div class="projects-simple-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))">
+                    <div class="project-simple-card">
+                        <img src="images/desarrolloycreo.PNG" alt="Blog Personal">
                         <a href="https://desarrolloycreo.blogspot.com/" target="_blank" data-i18n="project.blogpersonal">Personal Blog</a>
                     </div>
-                    <div class="project-item">
-                        <img src="images/todalainfo.PNG" alt="Colombia Blog">
+                    <div class="project-simple-card">
+                        <img src="images/todalainfo.PNG" alt="Blog Colombia">
                         <a href="https://todalainfosobrecolombia.blogspot.com/" target="_blank" data-i18n="project.blogcolombia">Blog about Colombia</a>
                     </div>
                 </div>
+
             </div>
         </section>
 
-        <hr class="m-0" />
+        <hr />
 
-        <!-- CERTIFICATIONS -->
+        <!-- ════ CERTIFICATIONS ══════════════════════════════════ -->
         <section class="resume-section" id="awards">
-            <div class="resume-section-content" data-aos="fade-up">
-                <h2 class="mb-5" data-i18n="awards.title">Certifications</h2>
-                <ul class="fa-ul mb-0">
-                    <li class="mb-2">
-                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                        <a href="https://cert.efset.org/en/TriC3m" data-i18n="cert.efset">EFSET English Certificate 58/100 (B2 Upper Intermediate)</a>
-                    </li>
-                    <li class="mb-2">
-                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                        <a href="https://www.credly.com/users/julian-alzate-cuervo/badges#credly" data-i18n="cert.credly">Credly Certificates</a>
-                    </li>
-                    <li class="mb-2">
-                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                        <a href="https://platzi.com/p/julianalzate046/ruta/100-javascript-full-stack/diploma/detalle/" data-i18n="cert.fullstack">Fullstack Developer Javascript - Platzi</a>
-                    </li>
-                    <li class="mb-2">
-                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                        <a href="https://cursos.devtalles.com/certificates/zenhjs8vmr" data-i18n="cert.nestjs">NestJS: Scalable Backend Development with Node</a>
-                    </li>
-                    <li class="mb-2">
-                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                        <a href="https://platzi.com/p/julianalzate046/ruta/10-desarrollo-php/diploma/detalle/" data-i18n="cert.php">PHP Backend - Platzi</a>
-                    </li>
-                    <li class="mb-2">
-                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                        <span data-i18n="cert.hubspot">Inbound Certified - HubSpot</span>
-                    </li>
-                    <li class="mb-2">
-                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                        <span data-i18n="cert.cloudgoogle">Cloud Computing Course - Google Certification</span>
-                    </li>
-                    <li class="mb-2">
-                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                        <span data-i18n="cert.ecommercegoogle">E-commerce Course - Google Certification</span>
-                    </li>
-                    <li class="mb-2">
-                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                        <span data-i18n="cert.sena">Database Fundamentals and Management Systems - SENA</span>
-                    </li>
-                    <li class="mb-2">
-                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                        <span data-i18n="cert.scrum">Scrum Fundamentals Certified - SCRUMstudy</span>
-                    </li>
-                </ul>
+            <div data-aos="fade-up">
+                <span class="section-title-tag mono" data-i18n="tag.certs">// certifications</span>
+                <h2 class="section-h2" data-i18n="awards.title">Certifications</h2>
+                <div class="certs-grid">
+                    <div class="cert-item">
+                        <i class="fas fa-trophy cert-icon"></i>
+                        <a href="https://cert.efset.org/en/TriC3m" target="_blank" data-i18n="cert.efset">EFSET English Certificate 58/100 (B2 Upper Intermediate)</a>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-trophy cert-icon"></i>
+                        <a href="https://www.credly.com/users/julian-alzate-cuervo/badges#credly" target="_blank" data-i18n="cert.credly">Credly Certificates</a>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-trophy cert-icon"></i>
+                        <a href="https://platzi.com/p/julianalzate046/ruta/100-javascript-full-stack/diploma/detalle/" target="_blank" data-i18n="cert.fullstack">Fullstack Developer Javascript – Platzi</a>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-trophy cert-icon"></i>
+                        <a href="https://cursos.devtalles.com/certificates/zenhjs8vmr" target="_blank" data-i18n="cert.nestjs">NestJS: Scalable Backend Development with Node</a>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-trophy cert-icon"></i>
+                        <a href="https://platzi.com/p/julianalzate046/ruta/10-desarrollo-php/diploma/detalle/" target="_blank" data-i18n="cert.php">PHP Backend – Platzi</a>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-trophy cert-icon"></i>
+                        <span data-i18n="cert.hubspot">Inbound Certified – HubSpot</span>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-trophy cert-icon"></i>
+                        <span data-i18n="cert.cloudgoogle">Cloud Computing Course – Google Certification</span>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-trophy cert-icon"></i>
+                        <span data-i18n="cert.ecommercegoogle">E-commerce Course – Google Certification</span>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-trophy cert-icon"></i>
+                        <span data-i18n="cert.sena">Database Fundamentals and Management Systems – SENA</span>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-trophy cert-icon"></i>
+                        <span data-i18n="cert.scrum">Scrum Fundamentals Certified – SCRUMstudy</span>
+                    </div>
+                </div>
             </div>
         </section>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/scripts.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 800, once: true, offset: 60 });
 
-        // ─── i18n translations ────────────────────────────────────────────────
+        // ── Cursor glow tracker ───────────────────────────────
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', ((e.clientX - r.left) / r.width  * 100) + '%');
+                card.style.setProperty('--mouse-y', ((e.clientY - r.top)  / r.height * 100) + '%');
+            });
+        });
+
+        // ── i18n ──────────────────────────────────────────────
         const i18n = {
             en: {
-                // nav
-                'nav.about': 'About',
-                'nav.experience': 'Experience',
-                'nav.education': 'Education',
-                'nav.skills': 'Skills',
-                'nav.projects': 'Projects',
-                'nav.awards': 'Certifications',
-                // about
-                'about.subtitle': 'Fullstack Developer',
-                'about.bio': 'Telematic Engineer with 5+ years of fullstack development experience, specialized in building robust and scalable architectures for technology, banking, healthcare, and education sectors. Expert in the PHP (Laravel) and JavaScript (Node.js, React, Vue.js) ecosystems, with advanced capability to integrate AI solutions and automation into the development workflow. I excel at transforming complex product requirements into high-performance functional solutions, managing the complete cycle from technical estimation to production deployment.',
-                'about.download_cv': 'Download my CV',
-                'about.view_cv': 'View Curriculum Vitae',
-                'about.links': 'Links of interest',
-                // experience
-                'experience.title': 'Experience',
-                'exp1.role': 'Software Developer',
-                'exp1.date': 'June 2025 - Present',
-                'exp1.location': '(Spain)',
-                'exp1.bullet1': 'Lead the full lifecycle of custom software development, managing from technical budget estimation to optimization and maintenance of high-performance applications.',
-                'exp1.bullet2': 'Design and deploy custom Moodle plugins, integrating dynamic data visualizations (rankings and charts) and configuring infrastructures from scratch according to complex technical requirements.',
-                'exp1.bullet3': 'Implement hybrid automation solutions combining custom code with tools like Make to optimize ERP system processes, reducing operational times by 25%.',
-                'exp2.role': 'Backend Developer',
-                'exp2.date': 'August 2023 - February 2025',
-                'exp2.location': '(Mexico)',
-                'exp2.bullet1': 'Developed and documented new applications and comprehensive improvements (Frontend/Backend), ensuring compliance with acceptance criteria and proper deployment in production environments.',
-                'exp2.bullet2': 'Built a strategic webhook for the Donor Portal, automating the transfer of personal and membership data to streamline user management and tracking.',
-                'exp2.bullet3': 'Led the technical expansion of the medical treatments application for the United States market, improving UX and broadening the company\'s operational reach.',
-                'exp3.role': 'Software Developer',
-                'exp3.date': 'November 2021 - June 2023',
-                'exp3.location': '(Panama)',
-                'exp3.bullet1': 'Designed and built comprehensive endpoints and dashboards using Laravel, Bootstrap, and MySQL, optimizing database management for donation and medication systems.',
-                'exp3.bullet2': 'Developed "Reloj Colmena", a data analytics solution with dynamic diagrams and advanced geographic filtering for real-time statistics visualization.',
-                'exp3.bullet3': 'Created a medication search tool with Google APIs integration for automated product image retrieval.',
-                'exp4.role': 'Other Relevant Experience',
-                'exp4.bullet1': 'Webmaster at Shammah, Telematic Engineer at Universidad Nacional de Colombia, Multimedia Developer at Universidad Católica de Manizales, and Web Developer at Pulzo.',
-                // education
-                'education.title': 'Education',
-                'education.degree': 'Telematic Engineer',
-                // skills
-                'skills.title': 'Skills',
-                'skills.main_stack': 'Core Technologies',
-                // projects
-                'projects.title': 'Projects',
-                'project.cedeno': 'Client Management Software - Cedeño & Méndez (Panama)',
-                'project.plei': 'Plei - Universidad Nacional de Colombia Sede Manizales',
-                'project.saberveritas': 'Saber & Veritas',
-                'project.tumbura': 'Tumbura Ecommerce',
-                'project.gifexpert': 'GIF search app built with React and Vite',
-                'project.reactstore': 'E-commerce store using React, Scss and Webpack',
-                'project.hangman': 'Hangman game built with React and TypeScript',
-                'project.crypto': 'Cryptocurrency tracker app with Vue.js',
-                'project.cashflow': 'Income and expense manager with Vue.js',
-                'project.ricknmortyjs': 'Rick & Morty character search with vanilla JS',
-                'project.ricknmortysvelte': 'Rick & Morty character search built with Svelte',
-                'project.batabit': 'Batabit landing page (mobile-first)',
-                'project.blog': 'Blog layout using CSS Grid and Flexbox',
-                'project.platzifood': 'Platzifood built with Tailwind CSS',
-                'project.googleclone': 'Google clone using HTML, CSS Flexbox and Grid',
-                'project.emergia': 'Emergia website clone',
-                'project.platziconf': 'Platzi Conf theme using Bootstrap 5',
-                'project.liam': 'Landing page integrating the YouTube API',
-                'project.pokemon': 'Pokémon game with Vue 3, Jest and Axios',
-                'project.blogpersonal': 'Personal Blog',
-                'project.blogcolombia': 'Blog about Colombia',
-                // certifications
-                'awards.title': 'Certifications',
-                'cert.efset': 'EFSET English Certificate 58/100 (B2 Upper Intermediate)',
-                'cert.credly': 'Credly Certificates',
-                'cert.fullstack': 'Fullstack Developer Javascript - Platzi',
-                'cert.nestjs': 'NestJS: Scalable Backend Development with Node',
-                'cert.php': 'PHP Backend - Platzi',
-                'cert.hubspot': 'Inbound Certified - HubSpot',
-                'cert.cloudgoogle': 'Cloud Computing Course - Google Certification',
-                'cert.ecommercegoogle': 'E-commerce Course - Google Certification',
-                'cert.sena': 'Database Fundamentals and Management Systems - SENA',
-                'cert.scrum': 'Scrum Fundamentals Certified - SCRUMstudy',
+                'nav.about':'About','nav.experience':'Experience','nav.education':'Education',
+                'nav.skills':'Skills','nav.projects':'Projects','nav.awards':'Certifications',
+                'hero.last':'Alzate',
+                'about.subtitle':'Fullstack Developer',
+                'about.bio':'Telematic Engineer with 5+ years of fullstack development experience, specialized in building robust and scalable architectures for technology, banking, healthcare, and education sectors. Expert in PHP (Laravel) and JavaScript (Node.js, React, Vue.js), with advanced capability to integrate AI solutions and automation into the development workflow.',
+                'about.view_cv':'View CV','about.links':'Links',
+                'status.label':'Current Status','status.value':'Available for new projects','status.focus':'Focus',
+                'stat.years':'Years exp.','stat.projects':'Projects','stat.countries':'Countries',
+                'tag.experience':'// experience','tag.education':'// education','tag.skills':'// skills',
+                'tag.projects':'// projects','tag.certs':'// certifications',
+                'experience.title':'Experience',
+                'exp1.role':'Software Developer','exp1.date':'June 2025 – Present','exp1.location':'(Spain)',
+                'exp1.bullet1':'Lead the full lifecycle of custom software development, managing from technical budget estimation to optimization and maintenance of high-performance applications.',
+                'exp1.bullet2':'Design and deploy custom Moodle plugins, integrating dynamic data visualizations (rankings and charts) and configuring infrastructures from scratch according to complex technical requirements.',
+                'exp1.bullet3':'Implement hybrid automation solutions combining custom code with tools like Make to optimize ERP system processes, reducing operational times by 25%.',
+                'exp2.role':'Backend Developer','exp2.date':'August 2023 – February 2025','exp2.location':'(Mexico)',
+                'exp2.bullet1':'Developed and documented new applications and comprehensive improvements (Frontend/Backend), ensuring compliance with acceptance criteria and proper deployment in production environments.',
+                'exp2.bullet2':'Built a strategic webhook for the Donor Portal, automating the transfer of personal and membership data to streamline user management and tracking.',
+                'exp2.bullet3':'Led the technical expansion of the medical treatments application for the United States market, improving UX and broadening the company\'s operational reach.',
+                'exp3.role':'Software Developer','exp3.date':'November 2021 – June 2023','exp3.location':'(Panama)',
+                'exp3.bullet1':'Designed and built comprehensive endpoints and dashboards using Laravel, Bootstrap, and MySQL, optimizing database management for donation and medication systems.',
+                'exp3.bullet2':'Developed "Reloj Colmena", a data analytics solution with dynamic diagrams and advanced geographic filtering for real-time statistics visualization.',
+                'exp3.bullet3':'Created a medication search tool with Google APIs integration for automated product image retrieval.',
+                'exp4.role':'Other Relevant Experience',
+                'exp4.bullet1':'Webmaster at Shammah, Telematic Engineer at Universidad Nacional de Colombia, Multimedia Developer at Universidad Católica de Manizales, and Web Developer at Pulzo.',
+                'education.title':'Education','education.degree':'Telematic Engineer · B.Sc.',
+                'skills.title':'Skills','skills.badges_toggle':'Show all tech badges',
+                'skill.cat.backend':'Backend','skill.cat.frontend':'Frontend',
+                'skill.cat.devops':'DevOps & Infra','skill.cat.db':'Databases',
+                'skill.cat.tools':'Tools & Platforms','skill.cat.soft':'Methodologies',
+                'projects.title':'Projects','projects.other':'Other projects',
+                'feat1.title':'Moodle Custom Plugins','feat1.desc':'Custom ranking visualizations, dynamic charts and ERP automation integrated into Moodle\'s plugin architecture.',
+                'feat2.title':'Donor Portal Webhook','feat2.desc':'Strategic webhook automating personal and membership data transfer, expanding the platform to the US market.',
+                'feat3.title':'Reloj Colmena — Analytics','feat3.desc':'Data analytics dashboard with dynamic diagrams and advanced geographic filtering for real-time statistics visualization.',
+                'feat4.title':'Client Management System','feat4.desc':'Custom CRM for managing clients, contracts and reporting for a Panamanian legal and financial firm.',
+                'badge.live':'Live','badge.prod':'Production',
+                'metric.timesaved':'Time saved','metric.plugins':'Plugins','metric.status_live':'Active',
+                'metric.automated':'Automated','metric.market':'Market','metric.data':'Data',
+                'metric.filters':'Filters',
+                'project.plei':'Plei · Universidad Nacional de Colombia',
+                'project.saberveritas':'Saber & Veritas','project.tumbura':'Tumbura Ecommerce',
+                'project.gifexpert':'GIF search app · React + Vite',
+                'project.reactstore':'E-commerce · React + Webpack',
+                'project.hangman':'Hangman · React + TypeScript',
+                'project.crypto':'Crypto tracker · Vue.js','project.cashflow':'Cashflow app · Vue.js',
+                'project.ricknmortyjs':'Rick & Morty · Vanilla JS','project.ricknmortysvelte':'Rick & Morty · Svelte',
+                'project.batabit':'Batabit · Mobile First','project.platzifood':'Platzifood · Tailwind CSS',
+                'project.googleclone':'Google Clone · CSS Grid','project.platziconf':'Platzi Conf · Bootstrap 5',
+                'project.pokemon':'Pokémon Game · Vue 3 + Jest',
+                'project.blogpersonal':'Personal Blog','project.blogcolombia':'Blog about Colombia',
+                'awards.title':'Certifications',
+                'cert.efset':'EFSET English Certificate 58/100 (B2 Upper Intermediate)',
+                'cert.credly':'Credly Certificates','cert.fullstack':'Fullstack Developer Javascript – Platzi',
+                'cert.nestjs':'NestJS: Scalable Backend Development with Node','cert.php':'PHP Backend – Platzi',
+                'cert.hubspot':'Inbound Certified – HubSpot','cert.cloudgoogle':'Cloud Computing Course – Google Certification',
+                'cert.ecommercegoogle':'E-commerce Course – Google Certification',
+                'cert.sena':'Database Fundamentals and Management Systems – SENA',
+                'cert.scrum':'Scrum Fundamentals Certified – SCRUMstudy',
             },
             es: {
-                // nav
-                'nav.about': 'Acerca de',
-                'nav.experience': 'Experiencia',
-                'nav.education': 'Educación',
-                'nav.skills': 'Skills',
-                'nav.projects': 'Proyectos',
-                'nav.awards': 'Certificaciones',
-                // about
-                'about.subtitle': 'Desarrollador Fullstack',
-                'about.bio': 'Ingeniero Telemático con más de 5 años de experiencia en desarrollo, especializado en la creación de arquitecturas robustas y escalables para sectores de tecnología, banca, salud y educación. Experto en el ecosistema PHP (Laravel) y JavaScript (Node.js, React, Vue.js), con una capacidad avanzada para integrar soluciones de IA y automatización en el flujo de desarrollo. Me destaco por transformar requerimientos de producto complejos en soluciones funcionales de alto rendimiento, gestionando el ciclo completo desde la estimación técnica hasta el despliegue de software en entornos de producción.',
-                'about.download_cv': 'Descarga mi CV',
-                'about.view_cv': 'Ver Curriculum Vitae',
-                'about.links': 'Enlaces de interés',
-                // experience
-                'experience.title': 'Experiencia',
-                'exp1.role': 'Desarrollador de Software',
-                'exp1.date': 'Junio 2025 - Actualidad',
-                'exp1.location': '(España)',
-                'exp1.bullet1': 'Lidero el ciclo de vida completo de desarrollo de software a medida, gestionando desde la estimación técnica de presupuestos hasta la optimización y mantenimiento de aplicaciones de alto rendimiento.',
-                'exp1.bullet2': 'Diseño y despliego plugins personalizados para Moodle, integrando visualizaciones dinámicas de datos (rankings y gráficos) y configurando infraestructuras desde cero según requerimientos técnicos complejos.',
-                'exp1.bullet3': 'Implemento soluciones híbridas de automatización combinando el desarrollo de código personalizado con herramientas como Make para optimizar procesos en sistemas ERP, reduciendo tiempos operativos en un 25%.',
-                'exp2.role': 'Desarrollador Backend',
-                'exp2.date': 'Agosto 2023 - Febrero 2025',
-                'exp2.location': '(México)',
-                'exp2.bullet1': 'Desarrollé y documenté aplicaciones nuevas y mejoras integrales (Frontend/Backend), asegurando el cumplimiento de criterios de aceptación y la correcta implementación en entornos de producción.',
-                'exp2.bullet2': 'Desarrollé un webhook estratégico para el Portal de Donantes, automatizando el envío de datos personales y de membresía para optimizar la gestión y seguimiento de usuarios.',
-                'exp2.bullet3': 'Ejecuté la expansión técnica del aplicativo de tratamientos médicos para el mercado de Estados Unidos, mejorando la experiencia del usuario y ampliando el alcance operativo de la empresa.',
-                'exp3.role': 'Desarrollador de Software',
-                'exp3.date': 'Noviembre 2021 - Junio 2023',
-                'exp3.location': '(Panamá)',
-                'exp3.bullet1': 'Diseñé y construí endpoints y dashboards integrales utilizando Laravel, Bootstrap y MySQL, optimizando la gestión de bases de datos para sistemas de donaciones y medicamentos.',
-                'exp3.bullet2': 'Desarrollé el aplicativo "Reloj Colmena", una solución de análisis de datos con diagramas dinámicos y filtrado geográfico avanzado para la visualización de estadísticas en tiempo real.',
-                'exp3.bullet3': 'Creé una herramienta de búsqueda de medicamentos con integración de APIs de Google para la recuperación automatizada de imágenes de productos.',
-                'exp4.role': 'Otras Experiencias Relevantes',
-                'exp4.bullet1': 'Web master en Shammah, Ingeniero Telemático en Universidad Nacional de Colombia, Desarrollador Multimedia en Universidad Católica de Manizales y Desarrollador Web en Pulzo.',
-                // education
-                'education.title': 'Educación',
-                'education.degree': 'Ingeniero Telemático',
-                // skills
-                'skills.title': 'Skills',
-                'skills.main_stack': 'Tecnologías Principales',
-                // projects
-                'projects.title': 'Proyectos',
-                'project.cedeno': 'Software para Gestión de Clientes - Cedeño & Méndez (Panamá)',
-                'project.plei': 'Plei - Universidad Nacional de Colombia Sede Manizales',
-                'project.saberveritas': 'Saber & Veritas',
-                'project.tumbura': 'Tumbura Ecommerce',
-                'project.gifexpert': 'Aplicativo para buscar Gifs con React y Vite',
-                'project.reactstore': 'Tienda usando React, Scss y Webpack',
-                'project.hangman': 'Juego de ahorcado usando React y TypeScript',
-                'project.crypto': 'Aplicativo de criptomonedas con Vue.js',
-                'project.cashflow': 'Aplicativo para manejo de ingresos y gastos con Vue.js',
-                'project.ricknmortyjs': 'Búsqueda de personajes de Rick n Morty con vanilla JS',
-                'project.ricknmortysvelte': 'Búsqueda de personajes Rick n Morty usando Svelte',
-                'project.batabit': 'Página Batabit (mobile-first)',
-                'project.blog': 'Blog usando CSS, Grid y Flexbox',
-                'project.platzifood': 'Platzifood usando Tailwindcss',
-                'project.googleclone': 'Clon de Google usando Html, CSS Flexbox y Grid',
-                'project.emergia': 'Clon de página de Emergia',
-                'project.platziconf': 'Platzi conf usando Bootstrap 5',
-                'project.liam': 'Landing Page usando API de YouTube',
-                'project.pokemon': 'Pokemon Game con Vue 3, Jest y Axios',
-                'project.blogpersonal': 'Blog Personal',
-                'project.blogcolombia': 'Blog sobre Colombia',
-                // certifications
-                'awards.title': 'Certificaciones',
-                'cert.efset': 'EFSET English Certificate 58/100 (B2 Upper Intermediate)',
-                'cert.credly': 'Certificados en Credly',
-                'cert.fullstack': 'Fullstack Developer Javascript - Platzi',
-                'cert.nestjs': 'Nest: Desarrollo backend escalable con Node',
-                'cert.php': 'PHP Backend - Platzi',
-                'cert.hubspot': 'Inbound Certified - HubSpot',
-                'cert.cloudgoogle': 'Cloud Computing Course - Google Certification',
-                'cert.ecommercegoogle': 'Curso de E-commerce - Google Certification',
-                'cert.sena': 'Bases de datos generalidades y sistemas de gestión - SENA',
-                'cert.scrum': 'Scrum Fundamentals Certified - SCRUMstudy',
+                'nav.about':'Acerca de','nav.experience':'Experiencia','nav.education':'Educación',
+                'nav.skills':'Skills','nav.projects':'Proyectos','nav.awards':'Certificaciones',
+                'hero.last':'Alzate',
+                'about.subtitle':'Desarrollador Fullstack',
+                'about.bio':'Ingeniero Telemático con más de 5 años de experiencia en desarrollo, especializado en la creación de arquitecturas robustas y escalables para sectores de tecnología, banca, salud y educación. Experto en el ecosistema PHP (Laravel) y JavaScript (Node.js, React, Vue.js), con capacidad avanzada para integrar soluciones de IA y automatización en el flujo de desarrollo.',
+                'about.view_cv':'Ver CV','about.links':'Enlaces',
+                'status.label':'Estado Actual','status.value':'Disponible para proyectos','status.focus':'Enfoque',
+                'stat.years':'Años exp.','stat.projects':'Proyectos','stat.countries':'Países',
+                'tag.experience':'// experiencia','tag.education':'// educación','tag.skills':'// habilidades',
+                'tag.projects':'// proyectos','tag.certs':'// certificaciones',
+                'experience.title':'Experiencia',
+                'exp1.role':'Desarrollador de Software','exp1.date':'Junio 2025 – Actualidad','exp1.location':'(España)',
+                'exp1.bullet1':'Lidero el ciclo de vida completo de desarrollo de software a medida, gestionando desde la estimación técnica de presupuestos hasta la optimización y mantenimiento de aplicaciones de alto rendimiento.',
+                'exp1.bullet2':'Diseño y despliego plugins personalizados para Moodle, integrando visualizaciones dinámicas de datos (rankings y gráficos) y configurando infraestructuras desde cero según requerimientos técnicos complejos.',
+                'exp1.bullet3':'Implemento soluciones híbridas de automatización combinando código personalizado con herramientas como Make para optimizar procesos en sistemas ERP, reduciendo tiempos operativos en un 25%.',
+                'exp2.role':'Desarrollador Backend','exp2.date':'Agosto 2023 – Febrero 2025','exp2.location':'(México)',
+                'exp2.bullet1':'Desarrollé y documenté aplicaciones nuevas y mejoras integrales (Frontend/Backend), asegurando el cumplimiento de criterios de aceptación y la correcta implementación en entornos de producción.',
+                'exp2.bullet2':'Desarrollé un webhook estratégico para el Portal de Donantes, automatizando el envío de datos personales y de membresía para optimizar la gestión y seguimiento de usuarios.',
+                'exp2.bullet3':'Ejecuté la expansión técnica del aplicativo de tratamientos médicos para el mercado de Estados Unidos, mejorando la experiencia del usuario y ampliando el alcance operativo.',
+                'exp3.role':'Desarrollador de Software','exp3.date':'Noviembre 2021 – Junio 2023','exp3.location':'(Panamá)',
+                'exp3.bullet1':'Diseñé y construí endpoints y dashboards integrales utilizando Laravel, Bootstrap y MySQL, optimizando la gestión de bases de datos para sistemas de donaciones y medicamentos.',
+                'exp3.bullet2':'Desarrollé el aplicativo "Reloj Colmena", una solución de análisis de datos con diagramas dinámicos y filtrado geográfico avanzado para la visualización de estadísticas en tiempo real.',
+                'exp3.bullet3':'Creé una herramienta de búsqueda de medicamentos con integración de APIs de Google para la recuperación automatizada de imágenes de productos.',
+                'exp4.role':'Otras Experiencias Relevantes',
+                'exp4.bullet1':'Web master en Shammah, Ingeniero Telemático en Universidad Nacional de Colombia, Desarrollador Multimedia en Universidad Católica de Manizales y Desarrollador Web en Pulzo.',
+                'education.title':'Educación','education.degree':'Ingeniero Telemático',
+                'skills.title':'Skills','skills.badges_toggle':'Mostrar todos los badges',
+                'skill.cat.backend':'Backend','skill.cat.frontend':'Frontend',
+                'skill.cat.devops':'DevOps e Infraestructura','skill.cat.db':'Bases de Datos',
+                'skill.cat.tools':'Herramientas y Plataformas','skill.cat.soft':'Metodologías',
+                'projects.title':'Proyectos','projects.other':'Otros proyectos',
+                'feat1.title':'Plugins Personalizados Moodle','feat1.desc':'Visualizaciones de rankings, gráficos dinámicos y automatización ERP integrados en la arquitectura de plugins de Moodle.',
+                'feat2.title':'Webhook Portal de Donantes','feat2.desc':'Webhook estratégico que automatiza la transferencia de datos personales y de membresía, expandiendo la plataforma al mercado de EE.UU.',
+                'feat3.title':'Reloj Colmena — Analytics','feat3.desc':'Dashboard de análisis de datos con diagramas dinámicos y filtrado geográfico avanzado para visualización de estadísticas en tiempo real.',
+                'feat4.title':'Sistema de Gestión de Clientes','feat4.desc':'CRM personalizado para gestión de clientes, contratos y reportes para una firma legal y financiera panameña.',
+                'badge.live':'En Vivo','badge.prod':'Producción',
+                'metric.timesaved':'Tiempo ahorrado','metric.plugins':'Plugins','metric.status_live':'Activo',
+                'metric.automated':'Automatizado','metric.market':'Mercado','metric.data':'Datos',
+                'metric.filters':'Filtros',
+                'project.plei':'Plei · Universidad Nacional de Colombia',
+                'project.saberveritas':'Saber & Veritas','project.tumbura':'Tumbura Ecommerce',
+                'project.gifexpert':'Buscador de Gifs · React + Vite',
+                'project.reactstore':'Tienda · React + Webpack',
+                'project.hangman':'Juego Ahorcado · React + TypeScript',
+                'project.crypto':'Criptomonedas · Vue.js','project.cashflow':'Cashflow · Vue.js',
+                'project.ricknmortyjs':'Rick & Morty · Vanilla JS','project.ricknmortysvelte':'Rick & Morty · Svelte',
+                'project.batabit':'Batabit · Mobile First','project.platzifood':'Platzifood · Tailwind CSS',
+                'project.googleclone':'Clon de Google · CSS Grid','project.platziconf':'Platzi Conf · Bootstrap 5',
+                'project.pokemon':'Pokémon Game · Vue 3 + Jest',
+                'project.blogpersonal':'Blog Personal','project.blogcolombia':'Blog sobre Colombia',
+                'awards.title':'Certificaciones',
+                'cert.efset':'EFSET English Certificate 58/100 (B2 Upper Intermediate)',
+                'cert.credly':'Certificados en Credly','cert.fullstack':'Fullstack Developer Javascript – Platzi',
+                'cert.nestjs':'Nest: Desarrollo backend escalable con Node','cert.php':'PHP Backend – Platzi',
+                'cert.hubspot':'Inbound Certified – HubSpot','cert.cloudgoogle':'Cloud Computing Course – Google Certification',
+                'cert.ecommercegoogle':'Curso de E-commerce – Google Certification',
+                'cert.sena':'Bases de datos generalidades y sistemas de gestión – SENA',
+                'cert.scrum':'Scrum Fundamentals Certified – SCRUMstudy',
             }
         };
 
-        // ─── Language logic ───────────────────────────────────────────────────
+        // ── Meta content for lang swap ────────────────────────
+        const metaContent = {
+            en: {
+                title: 'Julian David Alzate Cuervo | Fullstack Developer & Telematic Engineer',
+                description: 'Telematic Engineer with 5+ years of fullstack development experience. Expert in PHP (Laravel), JavaScript (Node.js, React, Vue.js), NestJS, Docker, MySQL. Available for backend/fullstack remote roles.'
+            },
+            es: {
+                title: 'Julian David Alzate Cuervo | Desarrollador Fullstack & Ingeniero Telemático',
+                description: 'Ingeniero Telemático con más de 5 años de experiencia en desarrollo fullstack. Experto en PHP (Laravel), Node.js, React, Vue.js, NestJS, Docker y MySQL.'
+            }
+        };
+
         let currentLang = localStorage.getItem('lang') || 'en';
 
         function applyLang(lang) {
             currentLang = lang;
             localStorage.setItem('lang', lang);
-
             document.getElementById('html-root').setAttribute('lang', lang);
             document.getElementById('lang-toggle').textContent = lang === 'en' ? 'ES' : 'EN';
-
+            document.getElementById('page-title').textContent = metaContent[lang].title;
+            document.getElementById('meta-description').setAttribute('content', metaContent[lang].description);
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (i18n[lang][key] !== undefined) {
-                    el.textContent = i18n[lang][key];
-                }
+                if (i18n[lang][key] !== undefined) el.textContent = i18n[lang][key];
             });
-
-            // Update page title and meta description
-            if (lang === 'en') {
-                document.getElementById('page-title').textContent =
-                    'Julian David Alzate Cuervo | Fullstack Developer & Telematic Engineer';
-                document.getElementById('meta-description').setAttribute('content',
-                    'Telematic Engineer with 5+ years of fullstack development experience. Expert in PHP (Laravel), JavaScript (Node.js, React, Vue.js), NestJS, Docker, MySQL. Available for backend/fullstack remote roles.');
-            } else {
-                document.getElementById('page-title').textContent =
-                    'Julian David Alzate Cuervo | Desarrollador Fullstack & Ingeniero Telemático';
-                document.getElementById('meta-description').setAttribute('content',
-                    'Ingeniero Telemático con más de 5 años de experiencia en desarrollo, especializado en arquitecturas robustas y escalables. Experto en PHP (Laravel), Node.js, React, Vue.js, NestJS, Docker y MySQL.');
-            }
         }
 
-        function toggleLang() {
-            applyLang(currentLang === 'en' ? 'es' : 'en');
-        }
+        function toggleLang() { applyLang(currentLang === 'en' ? 'es' : 'en'); }
 
-        // Apply saved or default language on load
         applyLang(currentLang);
     </script>
 </body>
