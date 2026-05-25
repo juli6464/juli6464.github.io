@@ -1,32 +1,69 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en" id="html-root">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    
-    <title>Julian David Alzate Cuervo | Desarollador fullstack & Ingeniero Telemático</title>
-    <meta name="description" content="Ingeniero Telemático con más de 5 años de experiencia en desarrollo, especializado en la creación de arquitecturas robustas y escalables para sectores de tecnología, banca, salud y educación. Experto en el ecosistema PHP (Laravel) y JavaScript (Node.js, React, Vue.js), con una capacidad avanzada para integrar soluciones de IA y automatización en el flujo de desarrollo. Me destaco por transformar requerimientos de producto complejos en soluciones funcionales de alto rendimiento, gestionando el ciclo completo desde la estimación técnica hasta el despliegue de software en entornos de producción." />
-    <meta name="keywords" content="Julian David Alzate Cuervo, Backend Developer, Frontend , Ingeniero Telemático, Laravel, NestJS, Node.js, Docker, MySQL, Manizales, Colombia" />
+
+    <title id="page-title">Julian David Alzate Cuervo | Fullstack Developer & Telematic Engineer</title>
+    <meta id="meta-description" name="description" content="Telematic Engineer with 5+ years of fullstack development experience. Expert in PHP (Laravel), JavaScript (Node.js, React, Vue.js), NestJS, Docker, MySQL. Available for backend/fullstack remote roles." />
+    <meta name="keywords" content="Julian Alzate, Fullstack Developer, Backend Developer, Laravel Developer, Node.js Developer, PHP Developer, React Developer, Vue.js Developer, NestJS, Docker, MySQL, TypeScript, Telematic Engineer, Software Developer, Remote Developer, Colombia, Spain" />
     <meta name="author" content="Julian David Alzate Cuervo" />
     <meta name="robots" content="index, follow" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Julian David Alzate Cuervo | Portfolio Profesional" />
-    <meta property="og:description" content="Especialista en desarrollo fullstack escalable y arquitectura de datos." />
+    <meta property="og:title" content="Julian David Alzate Cuervo | Fullstack Developer" />
+    <meta property="og:description" content="5+ years fullstack development. PHP/Laravel, Node.js, React, Vue.js, NestJS, Docker." />
     <meta property="og:image" content="images/julian_alzate.jpg" />
 
+    <!-- ATS: Structured Data for search engines and recruiters -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Julian David Alzate Cuervo",
+      "jobTitle": "Fullstack Software Developer",
+      "email": "julianalzate046@gmail.com",
+      "url": "https://juli6464.github.io/",
+      "image": "https://juli6464.github.io/images/julian_alzate.jpg",
+      "sameAs": [
+        "https://www.linkedin.com/in/julian-david-alzate-cuervo-backend/",
+        "https://github.com/juli6464/"
+      ],
+      "knowsAbout": [
+        "PHP", "Laravel", "JavaScript", "TypeScript", "Node.js", "NestJS",
+        "React", "Vue.js", "Docker", "MySQL", "PostgreSQL", "MongoDB",
+        "REST API", "Git", "Moodle", "Scrum", "Bootstrap", "Tailwind CSS",
+        "Socket.IO", "JWT", "Swagger", "Nginx", "WordPress", "Make"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Global Snopek",
+        "addressCountry": "ES"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Universidad Católica de Manizales",
+        "addressCountry": "CO"
+      },
+      "hasCredential": [
+        { "@type": "EducationalOccupationalCredential", "name": "EFSET English Certificate B2 Upper Intermediate" },
+        { "@type": "EducationalOccupationalCredential", "name": "Fullstack Developer Javascript - Platzi" },
+        { "@type": "EducationalOccupationalCredential", "name": "NestJS Backend Developer - DevTalles" },
+        { "@type": "EducationalOccupationalCredential", "name": "Scrum Fundamentals Certified - SCRUMstudy" }
+      ]
+    }
+    </script>
+
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-    
     <link href="css/styles.css" rel="stylesheet" />
 
     <style>
         :root {
-            --primary: #2563eb; /* Azul Eléctrico 2026 */
-            --dark-bg: #0f172a; /* Slate Dark */
+            --primary: #2563eb;
+            --dark-bg: #0f172a;
             --text-main: #1e293b;
             --glass: rgba(255, 255, 255, 0.05);
         }
@@ -34,7 +71,6 @@
         body { font-family: 'Inter', sans-serif; color: var(--text-main); }
         h1, h2, h3 { font-family: 'Poppins', sans-serif; font-weight: 700; }
 
-        /* Sidebar Moderno */
         #sideNav {
             background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%) !important;
             border-right: 1px solid rgba(255,255,255,0.1);
@@ -43,7 +79,6 @@
         .text-primary { color: var(--primary) !important; }
         .bg-primary { background-color: var(--primary) !important; }
 
-        /* Cuadrícula de Proyectos Mejorada */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -88,7 +123,6 @@
             justify-content: center;
         }
 
-        /* Timeline de Experiencia */
         .experience-item {
             border-left: 3px solid #e2e8f0;
             padding-left: 20px;
@@ -131,117 +165,163 @@
         }
 
         .img-profile:hover { transform: rotate(3deg); }
+
+        /* Language toggle button */
+        #lang-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 9999;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 7px 16px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        }
+        #lang-toggle:hover { filter: brightness(1.15); transform: scale(1.06); }
+
+        /* ATS-friendly text skills */
+        .skills-summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .skill-tag {
+            background: #eff6ff;
+            color: var(--primary);
+            border: 1px solid #bfdbfe;
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body id="page-top">
+
+    <!-- Language Toggle: EN / ES -->
+    <button id="lang-toggle" onclick="toggleLang()" aria-label="Switch language">ES</button>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none">Julian David Alzate Cuervo</span>
-            <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="images/julian_alzate.jpg" alt="julian alzate" /></span>
+            <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="images/julian_alzate.jpg" alt="Julian Alzate - Fullstack Developer" /></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Acerca de</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experiencia</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Educación</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Proyectos</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Certificaciones</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about"      data-i18n="nav.about">About</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience" data-i18n="nav.experience">Experience</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education"  data-i18n="nav.education">Education</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills"     data-i18n="nav.skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects"   data-i18n="nav.projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards"     data-i18n="nav.awards">Certifications</a></li>
             </ul>
         </div>
     </nav>
 
     <div class="container-fluid p-0">
+
+        <!-- ABOUT -->
         <section class="resume-section" id="about">
             <div class="resume-section-content" data-aos="fade-up">
                 <h1 class="mb-0">Julian <span class="text-primary">David</span> Alzate <span class="text-primary">Cuervo</span></h1>
                 <div class="subheading mb-5">
-                    Desarrollador Fullstack · <a href="mailto:julianalzate046@gmail.com" class="text-primary">julianalzate046@gmail.com</a>
+                    <span data-i18n="about.subtitle">Fullstack Developer</span> · <a href="mailto:julianalzate046@gmail.com" class="text-primary">julianalzate046@gmail.com</a>
                 </div>
-                <p class="lead mb-5">    
-                    Ingeniero Telemático con más de 5 años de experiencia en desarrollo, especializado en la creación de arquitecturas robustas y escalables para sectores de tecnología, banca, salud y educación. Experto en el ecosistema PHP (Laravel) y JavaScript (Node.js, React, Vue.js), con una capacidad avanzada para integrar soluciones de IA y automatización en el flujo de desarrollo. Me destaco por transformar requerimientos de producto complejos en soluciones funcionales de alto rendimiento, gestionando el ciclo completo desde la estimación técnica hasta el despliegue de software en entornos de producción.
+                <p class="lead mb-5" data-i18n="about.bio">
+                    Telematic Engineer with 5+ years of fullstack development experience, specialized in building robust and scalable architectures for technology, banking, healthcare, and education sectors. Expert in the PHP (Laravel) and JavaScript (Node.js, React, Vue.js) ecosystems, with advanced capability to integrate AI solutions and automation into the development workflow. I excel at transforming complex product requirements into high-performance functional solutions, managing the complete cycle from technical estimation to production deployment.
                 </p>
                 <div class="social-icons mb-4">
-                    <div class="subheading mb-3">Descarga mi CV</div>
+                    <div class="subheading mb-3" data-i18n="about.download_cv">Download my CV</div>
                     <a class="btn-cv-premium" href="https://drive.google.com/file/d/1HLvBs8hxQcA48hq_s7PahQQhZ7liMWLF/view?usp=sharing" target="_blank">
-                        <i class="fas fa-file-download me-2"></i> Ver Curriculum Vitae
+                        <i class="fas fa-file-download me-2"></i> <span data-i18n="about.view_cv">View Curriculum Vitae</span>
                     </a>
                 </div>
                 <div class="social-icons">
-                    <div class="subheading mb-3">Enlaces de interés</div>
-                    <a class="social-icon" href="https://www.linkedin.com/in/julian-david-alzate-cuervo-backend/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="social-icon" href="https://github.com/juli6464/" target="_blank"><i class="fab fa-github"></i></a>
+                    <div class="subheading mb-3" data-i18n="about.links">Links of interest</div>
+                    <a class="social-icon" href="https://www.linkedin.com/in/julian-david-alzate-cuervo-backend/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="social-icon" href="https://github.com/juli6464/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 </div>
             </div>
         </section>
 
         <hr class="m-0" />
 
+        <!-- EXPERIENCE -->
         <section class="resume-section" id="experience">
             <div class="resume-section-content" data-aos="fade-up">
-                <h2 class="mb-5">Experiencia</h2>
+                <h2 class="mb-5" data-i18n="experience.title">Experience</h2>
 
                 <div class="experience-item">
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
-                        <h3 class="mb-0">Desarrollador de Software</h3>
-                        <div class="flex-shrink-0"><span class="badge bg-primary">Junio 2025 - Actualidad</span></div>
+                        <h3 class="mb-0" data-i18n="exp1.role">Software Developer</h3>
+                        <div class="flex-shrink-0"><span class="badge bg-primary" data-i18n="exp1.date">June 2025 - Present</span></div>
                     </div>
-                    <div class="subheading mb-3">Global Snopek (España)</div>
+                    <div class="subheading mb-3">Global Snopek <span data-i18n="exp1.location">(Spain)</span></div>
                     <ul>
-                        <li> Lidero el ciclo de vida completo de desarrollo de software a medida, gestionando desde la estimación técnica de presupuestos hasta la optimización y mantenimiento de aplicaciones de alto rendimiento.</li>
-                        <li> Diseño y despliego plugins personalizados para Moodle, integrando visualizaciones dinámicas de datos (rankings y gráficos) y configurando infraestructuras desde cero según requerimientos técnicos complejos.</li>
-                        <li> Implemento soluciones híbridas de automatización combinando el desarrollo de código personalizado con herramientas como Make para optimizar procesos en sistemas ERP, reduciendo tiempos operativos en un 25%.</li>
+                        <li data-i18n="exp1.bullet1">Lead the full lifecycle of custom software development, managing from technical budget estimation to optimization and maintenance of high-performance applications.</li>
+                        <li data-i18n="exp1.bullet2">Design and deploy custom Moodle plugins, integrating dynamic data visualizations (rankings and charts) and configuring infrastructures from scratch according to complex technical requirements.</li>
+                        <li data-i18n="exp1.bullet3">Implement hybrid automation solutions combining custom code with tools like Make to optimize ERP system processes, reducing operational times by 25%.</li>
                     </ul>
                 </div>
 
                 <div class="experience-item">
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
-                        <h3 class="mb-0">Desarrollador Backend</h3>
-                        <div class="flex-shrink-0"><span class="text-primary">Agosto 2023 - Febrero 2025</span></div>
+                        <h3 class="mb-0" data-i18n="exp2.role">Backend Developer</h3>
+                        <div class="flex-shrink-0"><span class="text-primary" data-i18n="exp2.date">August 2023 - February 2025</span></div>
                     </div>
-                    <div class="subheading mb-3">Ingenes (México)</div>
+                    <div class="subheading mb-3">Ingenes <span data-i18n="exp2.location">(Mexico)</span></div>
                     <ul>
-                        <li> Desarrollé y documenté aplicaciones nuevas y mejoras integrales (Frontend/Backend), asegurando el cumplimiento de criterios de aceptación y la correcta implementación en entornos de producción.</li>
-                        <li> Desarrollé un webhook estratégico para el Portal de Donantes, automatizando el envío de datos personales y de membresía para optimizar la gestión y seguimiento de usuarios.</li>
-                        <li> Ejecuté la expansión técnica del aplicativo de tratamientos médicos para el mercado de Estados Unidos, mejorando la experiencia del usuario y ampliando el alcance operativo de la empresa.</li>
+                        <li data-i18n="exp2.bullet1">Developed and documented new applications and comprehensive improvements (Frontend/Backend), ensuring compliance with acceptance criteria and proper deployment in production environments.</li>
+                        <li data-i18n="exp2.bullet2">Built a strategic webhook for the Donor Portal, automating the transfer of personal and membership data to streamline user management and tracking.</li>
+                        <li data-i18n="exp2.bullet3">Led the technical expansion of the medical treatments application for the United States market, improving UX and broadening the company's operational reach.</li>
                     </ul>
                 </div>
 
                 <div class="experience-item">
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
-                        <h3 class="mb-0">Desarrollador de Software</h3>
-                        <div class="flex-shrink-0"><span class="text-primary">Noviembre 2021 - Junio 2023</span></div>
+                        <h3 class="mb-0" data-i18n="exp3.role">Software Developer</h3>
+                        <div class="flex-shrink-0"><span class="text-primary" data-i18n="exp3.date">November 2021 - June 2023</span></div>
                     </div>
-                    <div class="subheading mb-3">Soaint (Panamá)</div>
-                        <ul>
-                            <li> Diseñé y construí endpoints y dashboards integrales utilizando Laravel, Bootstrap y MySQL, optimizando la gestión de bases de datos para sistemas de donaciones y medicamentos.</li>
-                            <li> Desarrollé el aplicativo "Reloj Colmena", una solución de análisis de datos con diagramas dinámicos y filtrado geográfico avanzado para la visualización de estadísticas en tiempo real.</br>
-                            <li> Creé una herramienta de búsqueda de medicamentos con integración de APIs de Google para la recuperación automatizada de imágenes de productos.</li>
-                        </ul>
+                    <div class="subheading mb-3">Soaint <span data-i18n="exp3.location">(Panama)</span></div>
+                    <ul>
+                        <li data-i18n="exp3.bullet1">Designed and built comprehensive endpoints and dashboards using Laravel, Bootstrap, and MySQL, optimizing database management for donation and medication systems.</li>
+                        <li data-i18n="exp3.bullet2">Developed "Reloj Colmena", a data analytics solution with dynamic diagrams and advanced geographic filtering for real-time statistics visualization.</li>
+                        <li data-i18n="exp3.bullet3">Created a medication search tool with Google APIs integration for automated product image retrieval.</li>
+                    </ul>
                 </div>
 
                 <div class="experience-item">
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
-                        <h3 class="mb-0">Otras Experiencias Relevantes</h3>
+                        <h3 class="mb-0" data-i18n="exp4.role">Other Relevant Experience</h3>
                         <div class="flex-shrink-0"><span class="text-primary">(2020 - 2021)</span></div>
                     </div>
-                        <ul>
-                            <li> Web master en Shammah, Ingeniero Telemático en Universidad Nacional de Colombia, Desarrollador Multimedia en Universidad Católica de Manizales y Desarrollador Web en Pulzo.</li>
-                        </ul>
+                    <ul>
+                        <li data-i18n="exp4.bullet1">Webmaster at Shammah, Telematic Engineer at Universidad Nacional de Colombia, Multimedia Developer at Universidad Católica de Manizales, and Web Developer at Pulzo.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <hr class="m-0" />
 
+        <!-- EDUCATION -->
         <section class="resume-section" id="education">
             <div class="resume-section-content" data-aos="fade-up">
-                <h2 class="mb-5">Educación</h2>
+                <h2 class="mb-5" data-i18n="education.title">Education</h2>
                 <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                     <div class="flex-grow-1">
                         <h3 class="mb-0">Universidad Católica de Manizales</h3>
-                        <div class="subheading mb-3">Ingeniero Telemático</div>
+                        <div class="subheading mb-3" data-i18n="education.degree">Telematic Engineer</div>
                     </div>
                     <div class="flex-shrink-0"><span class="text-primary">2010 - 2015</span></div>
                 </div>
@@ -250,9 +330,42 @@
 
         <hr class="m-0" />
 
+        <!-- SKILLS -->
         <section class="resume-section" id="skills">
             <div class="resume-section-content" data-aos="fade-up">
-                <h2 class="mb-5">Skills</h2>
+                <h2 class="mb-5" data-i18n="skills.title">Skills</h2>
+
+                <!-- ATS-friendly: text-based skill tags readable by scrapers and recruiters -->
+                <div class="subheading mb-2" data-i18n="skills.main_stack">Core Technologies</div>
+                <div class="skills-summary mb-4" aria-label="Technical skills">
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">Laravel</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">NestJS</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Vue.js</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">REST API</span>
+                    <span class="skill-tag">Git / GitHub</span>
+                    <span class="skill-tag">Moodle</span>
+                    <span class="skill-tag">Tailwind CSS</span>
+                    <span class="skill-tag">Bootstrap</span>
+                    <span class="skill-tag">Livewire</span>
+                    <span class="skill-tag">Socket.IO</span>
+                    <span class="skill-tag">JWT</span>
+                    <span class="skill-tag">Swagger</span>
+                    <span class="skill-tag">Nginx</span>
+                    <span class="skill-tag">Make</span>
+                    <span class="skill-tag">WordPress</span>
+                    <span class="skill-tag">Scrum</span>
+                    <span class="skill-tag">SEO</span>
+                </div>
+
                 <div class="subheading mb-3">Tech Stack</div>
                 <ul class="list-inline dev-icons">
                     <li class="list-inline-item"><img height="40" src="https://img.shields.io/badge/php-%23777BB4.svg?style=flat&logo=php&logoColor=white" alt="PHP"></li>
@@ -304,149 +417,150 @@
 
         <hr class="m-0" />
 
+        <!-- PROJECTS -->
         <section class="resume-section" id="projects">
             <div class="resume-section-content" data-aos="fade-up">
-                <h2 class="mb-5">Proyectos</h2>
+                <h2 class="mb-5" data-i18n="projects.title">Projects</h2>
                 <div class="projects-grid">
                     <div class="project-item">
-                        <img src="images/cedeno.PNG" alt="Gestión de Clientes">
-                        <a href="#">Software para Gestión de Clientes - Cedeño & Méndez (Panamá)</a>
+                        <img src="images/cedeno.PNG" alt="Client Management Software">
+                        <a href="#" data-i18n="project.cedeno">Client Management Software - Cedeño &amp; Méndez (Panama)</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/plei2034.jpg" alt="Plei 2034">
-                        <a href="http://plei2034.manizales.unal.edu.co/">Plei - Universidad Nacional de Colombia Sede Manizales.</a>
+                        <img src="images/plei2034.jpg" alt="Plei 2034 - Universidad Nacional">
+                        <a href="http://plei2034.manizales.unal.edu.co/" data-i18n="project.plei">Plei - Universidad Nacional de Colombia Sede Manizales</a>
                     </div>
                     <div class="project-item">
                         <img src="images/saberveritas.png" alt="Saber y Veritas">
-                        <a href="https://saberveritas.com/">Saber & Veritas</a>
+                        <a href="https://saberveritas.com/" data-i18n="project.saberveritas">Saber &amp; Veritas</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/tumbura.png" alt="Tumbura">
-                        <a href="https://tumbura.co/">Tumbura Ecommerce</a>
+                        <img src="images/tumbura.png" alt="Tumbura Ecommerce">
+                        <a href="https://tumbura.co/" data-i18n="project.tumbura">Tumbura Ecommerce</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/gifexpertapp.PNG" alt="Gif Expert App">
-                        <a href="https://juli6464.github.io/gif-expert-app/">Aplicativo para buscar Gifs con React y Vite.</a>
+                        <img src="images/gifexpertapp.PNG" alt="Gif Expert App - React Vite">
+                        <a href="https://juli6464.github.io/gif-expert-app/" data-i18n="project.gifexpert">GIF search app built with React and Vite</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/yardsale.jpg" alt="React Store">
-                        <a href="https://juli6464.github.io/my-react-store/">Tienda usando React, Scss y Webpack.</a>
+                        <img src="images/yardsale.jpg" alt="React Store - Scss Webpack">
+                        <a href="https://juli6464.github.io/my-react-store/" data-i18n="project.reactstore">E-commerce store using React, Scss and Webpack</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/ahorcado.PNG" alt="Juego Ahorcado">
-                        <a href="https://ahorcado-juego-6543.netlify.app/">Juego de ahorcado usando React and Typescript.</a>
+                        <img src="images/ahorcado.PNG" alt="Hangman Game - React TypeScript">
+                        <a href="https://ahorcado-juego-6543.netlify.app/" data-i18n="project.hangman">Hangman game built with React and TypeScript</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/platziexchange.PNG" alt="Criptomonedas Vue">
-                        <a href="https://platzi-exchange-vuejs2.netlify.app/">Aplicativo de criptomonedas con Vuejs.</a>
+                        <img src="images/platziexchange.PNG" alt="Crypto App Vue.js">
+                        <a href="https://platzi-exchange-vuejs2.netlify.app/" data-i18n="project.crypto">Cryptocurrency tracker app with Vue.js</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/cashflow.PNG" alt="Cashflow Vue">
-                        <a href="https://cashflow-vue-64.netlify.app/">Aplicativo para manejo de ingresos y gastos con Vuejs.</a>
+                        <img src="images/cashflow.PNG" alt="Cashflow Vue - Income Expenses">
+                        <a href="https://cashflow-vue-64.netlify.app/" data-i18n="project.cashflow">Income and expense manager with Vue.js</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/100tifi.jpg" alt="Rick n Morty JS">
-                        <a href="https://juli6464.github.io/spa-js-ricknmorty/">Búsqueda de personajes de Rick n Morty con vanilla JS.</a>
+                        <img src="images/100tifi.jpg" alt="Rick and Morty Vanilla JS">
+                        <a href="https://juli6464.github.io/spa-js-ricknmorty/" data-i18n="project.ricknmortyjs">Rick &amp; Morty character search with vanilla JS</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/rick-morty-svelte.jpg" alt="Rick n Morty Svelte">
-                        <a href="https://svelte-rick-morty.netlify.app/">Búsqueda de personajes Rick n Morty page usinando Svelte.</a>
+                        <img src="images/rick-morty-svelte.jpg" alt="Rick and Morty Svelte">
+                        <a href="https://svelte-rick-morty.netlify.app/" data-i18n="project.ricknmortysvelte">Rick &amp; Morty character search built with Svelte</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/batabit.PNG" alt="Página Batabit">
-                        <a href="https://juli6464.github.io/Curso-mobile-first/">Página Batabit.</a>
+                        <img src="images/batabit.PNG" alt="Batabit Landing Page">
+                        <a href="https://juli6464.github.io/Curso-mobile-first/" data-i18n="project.batabit">Batabit landing page (mobile-first)</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/blog.jpg" alt="Blog CSS">
-                        <a href="https://juli6464.github.io/blog-with-css/">Blog usando css, grid y flexbox.</a>
+                        <img src="images/blog.jpg" alt="Blog CSS Grid Flexbox">
+                        <a href="https://juli6464.github.io/blog-with-css/" data-i18n="project.blog">Blog layout using CSS Grid and Flexbox</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/platzifood.jpg" alt="Platzifood">
-                        <a href="https://juli6464.github.io/platzi-food/">Platzifood usando Tailwindcss.</a>
+                        <img src="images/platzifood.jpg" alt="Platzifood Tailwind CSS">
+                        <a href="https://juli6464.github.io/platzi-food/" data-i18n="project.platzifood">Platzifood built with Tailwind CSS</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/googleclon.PNG" alt="Google Clone">
-                        <a href="https://juli6464.github.io/google-clone/">Clon de Google usando Html, CSS flexbox y Grid.</a>
+                        <img src="images/googleclon.PNG" alt="Google Clone HTML CSS">
+                        <a href="https://juli6464.github.io/google-clone/" data-i18n="project.googleclone">Google clone using HTML, CSS Flexbox and Grid</a>
                     </div>
                     <div class="project-item">
                         <img src="images/emergia.jpg" alt="Emergia Clone">
-                        <a href="https://juli6464.github.io/pagina-emergia/">Clon de página de Emergia.</a>
+                        <a href="https://juli6464.github.io/pagina-emergia/" data-i18n="project.emergia">Emergia website clone</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/platziconf.jpg" alt="Platzi Conf">
-                        <a href="https://juli6464.github.io/bootstrap-5-theme/">Platzi conf usando Boostrap 5.</a>
+                        <img src="images/platziconf.jpg" alt="Platzi Conf Bootstrap 5">
+                        <a href="https://juli6464.github.io/bootstrap-5-theme/" data-i18n="project.platziconf">Platzi Conf theme using Bootstrap 5</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/landing.PNG" alt="Liam Landing">
-                        <a href="https://juli6464.github.io/liam-landing/">Landing Page usando API de youtube</a>
+                        <img src="images/landing.PNG" alt="Liam Landing - YouTube API">
+                        <a href="https://juli6464.github.io/liam-landing/" data-i18n="project.liam">Landing page integrating the YouTube API</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/pokemon-adivina.png" alt="Pokemon vue 3">
-                        <a href="https://vue-3-pokemon-game.netlify.app/">Pokemon Game con Vue 3, Jest y Axios</a>
+                        <img src="images/pokemon-adivina.png" alt="Pokemon Game Vue 3 Jest">
+                        <a href="https://vue-3-pokemon-game.netlify.app/" data-i18n="project.pokemon">Pokémon game with Vue 3, Jest and Axios</a>
                     </div>
                 </div>
                 <h3 class="mt-5 mb-3">Blogs</h3>
                 <div class="projects-grid">
                     <div class="project-item">
-                        <img src="images/desarrolloycreo.PNG" alt="Blog Personal">
-                        <a href="https://desarrolloycreo.blogspot.com/" target="_blank">Blog Personal</a>
+                        <img src="images/desarrolloycreo.PNG" alt="Personal Developer Blog">
+                        <a href="https://desarrolloycreo.blogspot.com/" target="_blank" data-i18n="project.blogpersonal">Personal Blog</a>
                     </div>
                     <div class="project-item">
-                        <img src="images/todalainfo.PNG" alt="Blog Colombia">
-                        <a href="https://todalainfosobrecolombia.blogspot.com/" target="_blank">Blog sobre Colombia</a>
+                        <img src="images/todalainfo.PNG" alt="Colombia Blog">
+                        <a href="https://todalainfosobrecolombia.blogspot.com/" target="_blank" data-i18n="project.blogcolombia">Blog about Colombia</a>
                     </div>
-                    
                 </div>
             </div>
         </section>
 
         <hr class="m-0" />
 
+        <!-- CERTIFICATIONS -->
         <section class="resume-section" id="awards">
             <div class="resume-section-content" data-aos="fade-up">
-                <h2 class="mb-5">Certificaciones</h2>
+                <h2 class="mb-5" data-i18n="awards.title">Certifications</h2>
                 <ul class="fa-ul mb-0">
-                        <li  class="mb-2">
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            <a href="https://cert.efset.org/en/TriC3m">EFSET English Certificate 58/100 (B2 Upper Intermediate)</a>
-                        </li>
-                        <li  class="mb-2">
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            <a href="https://www.credly.com/users/julian-alzate-cuervo/badges#credly">Credly certificates</a>
-                        </li>
-                        <li  class="mb-2">
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            <a href="https://platzi.com/p/julianalzate046/ruta/100-javascript-full-stack/diploma/detalle/">Fullstack Developer Javascript - Platzi</a>
-                        </li>
-                        <li  class="mb-2">
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                             <a href="https://cursos.devtalles.com/certificates/zenhjs8vmr">Nest: Desarrollo backend escalable con Node</a>
-                        </li>
-                        <li  class="mb-2">
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                             <a href="https://platzi.com/p/julianalzate046/ruta/10-desarrollo-php/diploma/detalle/">PHP Backend - Platzi</a>
-                        </li>
-                        <li  class="mb-2">
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            Inbound Certified - Hubspot
-                        </li>
-                        <li  class="mb-2">
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            Cloud Computing Course - Google Certification
-                        </li>
-                        <li  class="mb-2">
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            Curso de E-commerce - Google Certification
-                        </li>
-                        <li  class="mb-2">
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            Bases de datos generalidades y sistemas de gestión - SENA
-                        </li>
-                        <li  class="mb-2">
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            Scrum Fundamentals Certified - SCRUMstudy
-                        </li>  
-                    </ul>
+                    <li class="mb-2">
+                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                        <a href="https://cert.efset.org/en/TriC3m" data-i18n="cert.efset">EFSET English Certificate 58/100 (B2 Upper Intermediate)</a>
+                    </li>
+                    <li class="mb-2">
+                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                        <a href="https://www.credly.com/users/julian-alzate-cuervo/badges#credly" data-i18n="cert.credly">Credly Certificates</a>
+                    </li>
+                    <li class="mb-2">
+                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                        <a href="https://platzi.com/p/julianalzate046/ruta/100-javascript-full-stack/diploma/detalle/" data-i18n="cert.fullstack">Fullstack Developer Javascript - Platzi</a>
+                    </li>
+                    <li class="mb-2">
+                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                        <a href="https://cursos.devtalles.com/certificates/zenhjs8vmr" data-i18n="cert.nestjs">NestJS: Scalable Backend Development with Node</a>
+                    </li>
+                    <li class="mb-2">
+                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                        <a href="https://platzi.com/p/julianalzate046/ruta/10-desarrollo-php/diploma/detalle/" data-i18n="cert.php">PHP Backend - Platzi</a>
+                    </li>
+                    <li class="mb-2">
+                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                        <span data-i18n="cert.hubspot">Inbound Certified - HubSpot</span>
+                    </li>
+                    <li class="mb-2">
+                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                        <span data-i18n="cert.cloudgoogle">Cloud Computing Course - Google Certification</span>
+                    </li>
+                    <li class="mb-2">
+                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                        <span data-i18n="cert.ecommercegoogle">E-commerce Course - Google Certification</span>
+                    </li>
+                    <li class="mb-2">
+                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                        <span data-i18n="cert.sena">Database Fundamentals and Management Systems - SENA</span>
+                    </li>
+                    <li class="mb-2">
+                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                        <span data-i18n="cert.scrum">Scrum Fundamentals Certified - SCRUMstudy</span>
+                    </li>
+                </ul>
             </div>
         </section>
     </div>
@@ -455,22 +569,205 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/scripts.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
+        AOS.init({ duration: 1000, once: true });
+
+        // ─── i18n translations ────────────────────────────────────────────────
+        const i18n = {
+            en: {
+                // nav
+                'nav.about': 'About',
+                'nav.experience': 'Experience',
+                'nav.education': 'Education',
+                'nav.skills': 'Skills',
+                'nav.projects': 'Projects',
+                'nav.awards': 'Certifications',
+                // about
+                'about.subtitle': 'Fullstack Developer',
+                'about.bio': 'Telematic Engineer with 5+ years of fullstack development experience, specialized in building robust and scalable architectures for technology, banking, healthcare, and education sectors. Expert in the PHP (Laravel) and JavaScript (Node.js, React, Vue.js) ecosystems, with advanced capability to integrate AI solutions and automation into the development workflow. I excel at transforming complex product requirements into high-performance functional solutions, managing the complete cycle from technical estimation to production deployment.',
+                'about.download_cv': 'Download my CV',
+                'about.view_cv': 'View Curriculum Vitae',
+                'about.links': 'Links of interest',
+                // experience
+                'experience.title': 'Experience',
+                'exp1.role': 'Software Developer',
+                'exp1.date': 'June 2025 - Present',
+                'exp1.location': '(Spain)',
+                'exp1.bullet1': 'Lead the full lifecycle of custom software development, managing from technical budget estimation to optimization and maintenance of high-performance applications.',
+                'exp1.bullet2': 'Design and deploy custom Moodle plugins, integrating dynamic data visualizations (rankings and charts) and configuring infrastructures from scratch according to complex technical requirements.',
+                'exp1.bullet3': 'Implement hybrid automation solutions combining custom code with tools like Make to optimize ERP system processes, reducing operational times by 25%.',
+                'exp2.role': 'Backend Developer',
+                'exp2.date': 'August 2023 - February 2025',
+                'exp2.location': '(Mexico)',
+                'exp2.bullet1': 'Developed and documented new applications and comprehensive improvements (Frontend/Backend), ensuring compliance with acceptance criteria and proper deployment in production environments.',
+                'exp2.bullet2': 'Built a strategic webhook for the Donor Portal, automating the transfer of personal and membership data to streamline user management and tracking.',
+                'exp2.bullet3': 'Led the technical expansion of the medical treatments application for the United States market, improving UX and broadening the company\'s operational reach.',
+                'exp3.role': 'Software Developer',
+                'exp3.date': 'November 2021 - June 2023',
+                'exp3.location': '(Panama)',
+                'exp3.bullet1': 'Designed and built comprehensive endpoints and dashboards using Laravel, Bootstrap, and MySQL, optimizing database management for donation and medication systems.',
+                'exp3.bullet2': 'Developed "Reloj Colmena", a data analytics solution with dynamic diagrams and advanced geographic filtering for real-time statistics visualization.',
+                'exp3.bullet3': 'Created a medication search tool with Google APIs integration for automated product image retrieval.',
+                'exp4.role': 'Other Relevant Experience',
+                'exp4.bullet1': 'Webmaster at Shammah, Telematic Engineer at Universidad Nacional de Colombia, Multimedia Developer at Universidad Católica de Manizales, and Web Developer at Pulzo.',
+                // education
+                'education.title': 'Education',
+                'education.degree': 'Telematic Engineer',
+                // skills
+                'skills.title': 'Skills',
+                'skills.main_stack': 'Core Technologies',
+                // projects
+                'projects.title': 'Projects',
+                'project.cedeno': 'Client Management Software - Cedeño & Méndez (Panama)',
+                'project.plei': 'Plei - Universidad Nacional de Colombia Sede Manizales',
+                'project.saberveritas': 'Saber & Veritas',
+                'project.tumbura': 'Tumbura Ecommerce',
+                'project.gifexpert': 'GIF search app built with React and Vite',
+                'project.reactstore': 'E-commerce store using React, Scss and Webpack',
+                'project.hangman': 'Hangman game built with React and TypeScript',
+                'project.crypto': 'Cryptocurrency tracker app with Vue.js',
+                'project.cashflow': 'Income and expense manager with Vue.js',
+                'project.ricknmortyjs': 'Rick & Morty character search with vanilla JS',
+                'project.ricknmortysvelte': 'Rick & Morty character search built with Svelte',
+                'project.batabit': 'Batabit landing page (mobile-first)',
+                'project.blog': 'Blog layout using CSS Grid and Flexbox',
+                'project.platzifood': 'Platzifood built with Tailwind CSS',
+                'project.googleclone': 'Google clone using HTML, CSS Flexbox and Grid',
+                'project.emergia': 'Emergia website clone',
+                'project.platziconf': 'Platzi Conf theme using Bootstrap 5',
+                'project.liam': 'Landing page integrating the YouTube API',
+                'project.pokemon': 'Pokémon game with Vue 3, Jest and Axios',
+                'project.blogpersonal': 'Personal Blog',
+                'project.blogcolombia': 'Blog about Colombia',
+                // certifications
+                'awards.title': 'Certifications',
+                'cert.efset': 'EFSET English Certificate 58/100 (B2 Upper Intermediate)',
+                'cert.credly': 'Credly Certificates',
+                'cert.fullstack': 'Fullstack Developer Javascript - Platzi',
+                'cert.nestjs': 'NestJS: Scalable Backend Development with Node',
+                'cert.php': 'PHP Backend - Platzi',
+                'cert.hubspot': 'Inbound Certified - HubSpot',
+                'cert.cloudgoogle': 'Cloud Computing Course - Google Certification',
+                'cert.ecommercegoogle': 'E-commerce Course - Google Certification',
+                'cert.sena': 'Database Fundamentals and Management Systems - SENA',
+                'cert.scrum': 'Scrum Fundamentals Certified - SCRUMstudy',
+            },
+            es: {
+                // nav
+                'nav.about': 'Acerca de',
+                'nav.experience': 'Experiencia',
+                'nav.education': 'Educación',
+                'nav.skills': 'Skills',
+                'nav.projects': 'Proyectos',
+                'nav.awards': 'Certificaciones',
+                // about
+                'about.subtitle': 'Desarrollador Fullstack',
+                'about.bio': 'Ingeniero Telemático con más de 5 años de experiencia en desarrollo, especializado en la creación de arquitecturas robustas y escalables para sectores de tecnología, banca, salud y educación. Experto en el ecosistema PHP (Laravel) y JavaScript (Node.js, React, Vue.js), con una capacidad avanzada para integrar soluciones de IA y automatización en el flujo de desarrollo. Me destaco por transformar requerimientos de producto complejos en soluciones funcionales de alto rendimiento, gestionando el ciclo completo desde la estimación técnica hasta el despliegue de software en entornos de producción.',
+                'about.download_cv': 'Descarga mi CV',
+                'about.view_cv': 'Ver Curriculum Vitae',
+                'about.links': 'Enlaces de interés',
+                // experience
+                'experience.title': 'Experiencia',
+                'exp1.role': 'Desarrollador de Software',
+                'exp1.date': 'Junio 2025 - Actualidad',
+                'exp1.location': '(España)',
+                'exp1.bullet1': 'Lidero el ciclo de vida completo de desarrollo de software a medida, gestionando desde la estimación técnica de presupuestos hasta la optimización y mantenimiento de aplicaciones de alto rendimiento.',
+                'exp1.bullet2': 'Diseño y despliego plugins personalizados para Moodle, integrando visualizaciones dinámicas de datos (rankings y gráficos) y configurando infraestructuras desde cero según requerimientos técnicos complejos.',
+                'exp1.bullet3': 'Implemento soluciones híbridas de automatización combinando el desarrollo de código personalizado con herramientas como Make para optimizar procesos en sistemas ERP, reduciendo tiempos operativos en un 25%.',
+                'exp2.role': 'Desarrollador Backend',
+                'exp2.date': 'Agosto 2023 - Febrero 2025',
+                'exp2.location': '(México)',
+                'exp2.bullet1': 'Desarrollé y documenté aplicaciones nuevas y mejoras integrales (Frontend/Backend), asegurando el cumplimiento de criterios de aceptación y la correcta implementación en entornos de producción.',
+                'exp2.bullet2': 'Desarrollé un webhook estratégico para el Portal de Donantes, automatizando el envío de datos personales y de membresía para optimizar la gestión y seguimiento de usuarios.',
+                'exp2.bullet3': 'Ejecuté la expansión técnica del aplicativo de tratamientos médicos para el mercado de Estados Unidos, mejorando la experiencia del usuario y ampliando el alcance operativo de la empresa.',
+                'exp3.role': 'Desarrollador de Software',
+                'exp3.date': 'Noviembre 2021 - Junio 2023',
+                'exp3.location': '(Panamá)',
+                'exp3.bullet1': 'Diseñé y construí endpoints y dashboards integrales utilizando Laravel, Bootstrap y MySQL, optimizando la gestión de bases de datos para sistemas de donaciones y medicamentos.',
+                'exp3.bullet2': 'Desarrollé el aplicativo "Reloj Colmena", una solución de análisis de datos con diagramas dinámicos y filtrado geográfico avanzado para la visualización de estadísticas en tiempo real.',
+                'exp3.bullet3': 'Creé una herramienta de búsqueda de medicamentos con integración de APIs de Google para la recuperación automatizada de imágenes de productos.',
+                'exp4.role': 'Otras Experiencias Relevantes',
+                'exp4.bullet1': 'Web master en Shammah, Ingeniero Telemático en Universidad Nacional de Colombia, Desarrollador Multimedia en Universidad Católica de Manizales y Desarrollador Web en Pulzo.',
+                // education
+                'education.title': 'Educación',
+                'education.degree': 'Ingeniero Telemático',
+                // skills
+                'skills.title': 'Skills',
+                'skills.main_stack': 'Tecnologías Principales',
+                // projects
+                'projects.title': 'Proyectos',
+                'project.cedeno': 'Software para Gestión de Clientes - Cedeño & Méndez (Panamá)',
+                'project.plei': 'Plei - Universidad Nacional de Colombia Sede Manizales',
+                'project.saberveritas': 'Saber & Veritas',
+                'project.tumbura': 'Tumbura Ecommerce',
+                'project.gifexpert': 'Aplicativo para buscar Gifs con React y Vite',
+                'project.reactstore': 'Tienda usando React, Scss y Webpack',
+                'project.hangman': 'Juego de ahorcado usando React y TypeScript',
+                'project.crypto': 'Aplicativo de criptomonedas con Vue.js',
+                'project.cashflow': 'Aplicativo para manejo de ingresos y gastos con Vue.js',
+                'project.ricknmortyjs': 'Búsqueda de personajes de Rick n Morty con vanilla JS',
+                'project.ricknmortysvelte': 'Búsqueda de personajes Rick n Morty usando Svelte',
+                'project.batabit': 'Página Batabit (mobile-first)',
+                'project.blog': 'Blog usando CSS, Grid y Flexbox',
+                'project.platzifood': 'Platzifood usando Tailwindcss',
+                'project.googleclone': 'Clon de Google usando Html, CSS Flexbox y Grid',
+                'project.emergia': 'Clon de página de Emergia',
+                'project.platziconf': 'Platzi conf usando Bootstrap 5',
+                'project.liam': 'Landing Page usando API de YouTube',
+                'project.pokemon': 'Pokemon Game con Vue 3, Jest y Axios',
+                'project.blogpersonal': 'Blog Personal',
+                'project.blogcolombia': 'Blog sobre Colombia',
+                // certifications
+                'awards.title': 'Certificaciones',
+                'cert.efset': 'EFSET English Certificate 58/100 (B2 Upper Intermediate)',
+                'cert.credly': 'Certificados en Credly',
+                'cert.fullstack': 'Fullstack Developer Javascript - Platzi',
+                'cert.nestjs': 'Nest: Desarrollo backend escalable con Node',
+                'cert.php': 'PHP Backend - Platzi',
+                'cert.hubspot': 'Inbound Certified - HubSpot',
+                'cert.cloudgoogle': 'Cloud Computing Course - Google Certification',
+                'cert.ecommercegoogle': 'Curso de E-commerce - Google Certification',
+                'cert.sena': 'Bases de datos generalidades y sistemas de gestión - SENA',
+                'cert.scrum': 'Scrum Fundamentals Certified - SCRUMstudy',
+            }
+        };
+
+        // ─── Language logic ───────────────────────────────────────────────────
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        function applyLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+
+            document.getElementById('html-root').setAttribute('lang', lang);
+            document.getElementById('lang-toggle').textContent = lang === 'en' ? 'ES' : 'EN';
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang][key] !== undefined) {
+                    el.textContent = i18n[lang][key];
+                }
+            });
+
+            // Update page title and meta description
+            if (lang === 'en') {
+                document.getElementById('page-title').textContent =
+                    'Julian David Alzate Cuervo | Fullstack Developer & Telematic Engineer';
+                document.getElementById('meta-description').setAttribute('content',
+                    'Telematic Engineer with 5+ years of fullstack development experience. Expert in PHP (Laravel), JavaScript (Node.js, React, Vue.js), NestJS, Docker, MySQL. Available for backend/fullstack remote roles.');
+            } else {
+                document.getElementById('page-title').textContent =
+                    'Julian David Alzate Cuervo | Desarrollador Fullstack & Ingeniero Telemático';
+                document.getElementById('meta-description').setAttribute('content',
+                    'Ingeniero Telemático con más de 5 años de experiencia en desarrollo, especializado en arquitecturas robustas y escalables. Experto en PHP (Laravel), Node.js, React, Vue.js, NestJS, Docker y MySQL.');
+            }
+        }
+
+        function toggleLang() {
+            applyLang(currentLang === 'en' ? 'es' : 'en');
+        }
+
+        // Apply saved or default language on load
+        applyLang(currentLang);
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
