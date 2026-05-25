@@ -30,7 +30,32 @@
     }
     </script>
 
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <!-- Favicon — SVG principal + ICO fallback -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+    <link rel="icon" type="image/x-icon"  href="assets/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/img/favicon.svg" />
+
+    <!-- SEO: canonical + hreflang -->
+    <link rel="canonical" href="https://juli6464.github.io/" />
+    <link rel="alternate" hreflang="en" href="https://juli6464.github.io/" />
+    <link rel="alternate" hreflang="es" href="https://juli6464.github.io/" />
+    <link rel="alternate" hreflang="x-default" href="https://juli6464.github.io/" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="Julian David Alzate Cuervo | Fullstack Developer" />
+    <meta name="twitter:description" content="5+ years fullstack development. PHP/Laravel, Node.js, React, Vue.js, NestJS, Docker." />
+    <meta name="twitter:image"       content="https://juli6464.github.io/images/julian_alzate.jpg" />
+
+    <!-- PWA / Browser chrome -->
+    <meta name="theme-color" content="#060910" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Performance: preconnect a fuentes y CDNs críticos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://use.fontawesome.com" crossorigin />
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@700;800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
@@ -100,6 +125,46 @@
         }
         #sideNav .nav-link:hover { color: var(--accent) !important; padding-left: 2rem; }
 
+        /* ── Hamburger en la izquierda (mobile) ─────────────── */
+        @media (max-width: 991px) {
+            #sideNav {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 0.6rem 1rem;
+            }
+            #sideNav .navbar-toggler {
+                order: -1;           /* primer elemento */
+                margin-right: 0.75rem;
+                flex-shrink: 0;
+                padding: 6px 10px;
+                border-color: var(--bg-border);
+                border-radius: 8px;
+            }
+            #sideNav .navbar-toggler-icon {
+                width: 1.1em; height: 1.1em;
+            }
+            #sideNav .navbar-brand {
+                flex: 1;
+                margin: 0;
+                padding: 0;
+                font-size: 0.95rem;
+            }
+            /* El menú desplegado ocupa todo el ancho */
+            #sideNav .navbar-collapse {
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: #0d1117;
+                border-top: 1px solid var(--bg-border);
+                border-bottom: 1px solid var(--bg-border);
+                padding: 0.5rem 0;
+                z-index: 1050;
+            }
+            #sideNav .nav-link { padding: 0.75rem 1.5rem !important; }
+            #sideNav .nav-link:hover { padding-left: 2rem !important; }
+        }
+
         /* ── Language toggle ─────────────────────────────────── */
         #lang-toggle {
             position: fixed; top: 1rem; right: 1rem; z-index: 9999;
@@ -114,6 +179,18 @@
             letter-spacing: 1.5px;
         }
         #lang-toggle:hover { background: var(--accent-subtle); border-color: var(--accent); }
+
+        /* En mobile (< 992px) el botón baja bajo la navbar */
+        @media (max-width: 991px) {
+            #lang-toggle {
+                top: auto;
+                bottom: 1.25rem;
+                right: 1.25rem;
+                padding: 8px 16px;
+                font-size: 0.8rem;
+                box-shadow: 0 4px 20px rgba(0, 217, 245, 0.2);
+            }
+        }
 
         /* ── Section container ───────────────────────────────── */
         .resume-section {
@@ -545,15 +622,16 @@
 
     <!-- ── Sidebar Nav ───────────────────────────────────────── -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <!-- Hamburger PRIMERO → queda a la izquierda en mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none" style="color: var(--text-primary); font-family: 'Sora', sans-serif;">Julian Alzate</span>
             <span class="d-none d-lg-block">
                 <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="images/julian_alzate.jpg" alt="Julian Alzate - Fullstack Developer" />
             </span>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about"      data-i18n="nav.about">About</a></li>
