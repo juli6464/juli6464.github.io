@@ -471,14 +471,54 @@
         .badges-row:hover { opacity: 0.85; transition: opacity 0.3s; }
 
         /* ── PROJECT CARDS ───────────────────────────────────── */
+        /* ── Featured projects — 3 col en desktop, 1 en mobile ─ */
         .projects-bento {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             margin-bottom: 2.5rem;
         }
-        @media (max-width: 768px) {
+        .projects-bento .bento-card {
+            padding: 2rem;          /* más espacio interno que las otras cards */
+        }
+        @media (max-width: 1100px) {
+            .projects-bento { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 680px) {
             .projects-bento { grid-template-columns: 1fr; background: transparent; gap: 0.75rem; border: none; }
             .projects-bento .bento-card { border-radius: var(--radius-card); border: 1px solid var(--bg-border); }
         }
+
+        /* Etiqueta "Featured" encima del grid */
+        .featured-label {
+            display: flex; align-items: center; gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+        .featured-label span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem; color: var(--accent);
+            background: var(--accent-subtle);
+            border: 1px solid rgba(0,217,245,0.2);
+            border-radius: 6px; padding: 3px 10px;
+            letter-spacing: 0.08em; text-transform: uppercase;
+        }
+        .featured-label::after {
+            content: ''; flex: 1; height: 1px; background: var(--bg-border);
+        }
+
+        /* Link de "Ver proyecto" dentro de la card */
+        .project-visit-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            margin-top: 1rem;
+            font-size: 0.78rem; font-weight: 600;
+            color: var(--accent);
+            border: 1px solid rgba(0,217,245,0.25);
+            border-radius: 7px; padding: 6px 14px;
+            transition: background 0.2s, gap 0.2s;
+            text-decoration: none;
+        }
+        .project-visit-link:hover {
+            background: var(--accent-subtle); gap: 0.6rem; opacity: 1;
+        }
+        .project-visit-link i { font-size: 0.7rem; }
 
         .project-card-header { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1.25rem; }
         .project-card-icon {
@@ -973,27 +1013,30 @@
                 <h2 class="section-h2" data-i18n="projects.title">Projects</h2>
 
                 <!-- Featured project cards -->
+                <div class="featured-label">
+                    <span data-i18n="projects.featured">Featured</span>
+                </div>
                 <div class="bento-grid projects-bento">
 
-                    <!-- Card 1 -->
+                    <!-- Card 1 — AI Business Flow -->
                     <div class="bento-card">
                         <div class="card-glow"></div>
                         <div class="project-card-header">
-                            <div class="project-card-icon"><i class="fas fa-puzzle-piece"></i></div>
+                            <div class="project-card-icon"><i class="fas fa-robot"></i></div>
                             <div>
-                                <div class="project-card-title" data-i18n="feat1.title">Moodle Custom Plugins</div>
-                                <div class="project-card-company">Global Snopek · 2025</div>
+                                <div class="project-card-title" data-i18n="feat1.title">AI Business Flow</div>
+                                <div class="project-card-company" data-i18n="feat1.company">Personal</div>
                             </div>
                             <span class="project-card-badge" data-i18n="badge.live">Live</span>
                         </div>
                         <div class="project-metrics">
                             <div class="p-metric">
-                                <span class="p-metric__val c">25%</span>
-                                <span class="p-metric__label" data-i18n="metric.timesaved">Time saved</span>
+                                <span class="p-metric__val c">AI</span>
+                                <span class="p-metric__label" data-i18n="metric.powered">Powered</span>
                             </div>
                             <div class="p-metric">
-                                <span class="p-metric__val">3</span>
-                                <span class="p-metric__label" data-i18n="metric.plugins">Plugins</span>
+                                <span class="p-metric__val">Auto</span>
+                                <span class="p-metric__label" data-i18n="metric.flow">Flow</span>
                             </div>
                             <div class="p-metric">
                                 <span class="p-metric__val g" data-i18n="metric.status_live">Active</span>
@@ -1001,113 +1044,40 @@
                             </div>
                         </div>
                         <div class="project-chart" aria-hidden="true">
-                            <div class="p-bar" style="--h:40%"></div><div class="p-bar" style="--h:55%"></div>
-                            <div class="p-bar" style="--h:45%"></div><div class="p-bar" style="--h:70%"></div>
-                            <div class="p-bar" style="--h:65%"></div><div class="p-bar" style="--h:85%"></div>
+                            <div class="p-bar" style="--h:35%"></div><div class="p-bar" style="--h:55%"></div>
+                            <div class="p-bar" style="--h:70%"></div><div class="p-bar" style="--h:60%"></div>
+                            <div class="p-bar" style="--h:85%"></div><div class="p-bar" style="--h:75%"></div>
                             <div class="p-bar" style="--h:95%"></div>
                         </div>
                         <div class="project-stack">
-                            <span class="p-tech">PHP</span><span class="p-tech">Moodle</span>
-                            <span class="p-tech">Make</span><span class="p-tech">MySQL</span><span class="p-tech">ERP</span>
+                            <span class="p-tech">AI</span><span class="p-tech">Tailwindcss</span>
+                            <span class="p-tech">Reactjs</span><span class="p-tech">Automation</span>
                         </div>
-                        <p class="project-desc" data-i18n="feat1.desc">Custom ranking visualizations, dynamic charts and ERP automation integrated into Moodle's plugin architecture.</p>
+                        <p class="project-desc" data-i18n="feat1.desc">Business process automation platform powered by AI, enabling intelligent workflow orchestration and decision support for modern teams.</p>
+                        <a class="project-visit-link" href="https://juli6464.github.io/AI-Business-Flow/" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt"></i> <span data-i18n="project.visit">Visit project</span>
+                        </a>
                     </div>
 
-                    <!-- Card 2 -->
+                    <!-- Card 2 — Plei 2034 -->
                     <div class="bento-card">
                         <div class="card-glow"></div>
                         <div class="project-card-header">
-                            <div class="project-card-icon" style="color: var(--accent-2); background: var(--accent-2-glow); border-color: rgba(57,211,83,0.2)"><i class="fas fa-webhook" style="font-size:0.8rem">⟳</i></div>
+                            <div class="project-card-icon" style="color: #a78bfa; background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.2)"><i class="fas fa-university"></i></div>
                             <div>
-                                <div class="project-card-title" data-i18n="feat2.title">Donor Portal Webhook</div>
-                                <div class="project-card-company">Ingenes · 2024</div>
+                                <div class="project-card-title" data-i18n="feat2.title">Plei 2034</div>
+                                <div class="project-card-company" data-i18n="feat2.company">Univ. Nacional</div>
                             </div>
                             <span class="project-card-badge" data-i18n="badge.prod">Production</span>
                         </div>
                         <div class="project-metrics">
                             <div class="p-metric">
-                                <span class="p-metric__val c">100%</span>
-                                <span class="p-metric__label" data-i18n="metric.automated">Automated</span>
+                                <span class="p-metric__val c">Plan</span>
+                                <span class="p-metric__label" data-i18n="metric.strategic">Strategic</span>
                             </div>
                             <div class="p-metric">
-                                <span class="p-metric__val">US</span>
-                                <span class="p-metric__label" data-i18n="metric.market">Market</span>
-                            </div>
-                            <div class="p-metric">
-                                <span class="p-metric__val g">REST</span>
-                                <span class="p-metric__label">API</span>
-                            </div>
-                        </div>
-                        <div class="project-chart" aria-hidden="true">
-                            <div class="p-bar" style="--h:30%"></div><div class="p-bar" style="--h:50%"></div>
-                            <div class="p-bar" style="--h:75%"></div><div class="p-bar" style="--h:60%"></div>
-                            <div class="p-bar" style="--h:80%"></div><div class="p-bar" style="--h:70%"></div>
-                            <div class="p-bar" style="--h:90%"></div>
-                        </div>
-                        <div class="project-stack">
-                            <span class="p-tech">Laravel</span><span class="p-tech">Node.js</span>
-                            <span class="p-tech">Webhooks</span><span class="p-tech">PostgreSQL</span>
-                        </div>
-                        <p class="project-desc" data-i18n="feat2.desc">Strategic webhook automating personal and membership data transfer, expanding the platform to the US market.</p>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="bento-card">
-                        <div class="card-glow"></div>
-                        <div class="project-card-header">
-                            <div class="project-card-icon" style="color: #a78bfa; background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.2)"><i class="fas fa-chart-bar"></i></div>
-                            <div>
-                                <div class="project-card-title" data-i18n="feat3.title">Reloj Colmena — Analytics</div>
-                                <div class="project-card-company">Soaint · 2022</div>
-                            </div>
-                            <span class="project-card-badge" data-i18n="badge.prod">Production</span>
-                        </div>
-                        <div class="project-metrics">
-                            <div class="p-metric">
-                                <span class="p-metric__val c">Real-time</span>
-                                <span class="p-metric__label" data-i18n="metric.data">Data</span>
-                            </div>
-                            <div class="p-metric">
-                                <span class="p-metric__val">Geo</span>
-                                <span class="p-metric__label" data-i18n="metric.filters">Filters</span>
-                            </div>
-                            <div class="p-metric">
-                                <span class="p-metric__val g">SPA</span>
-                                <span class="p-metric__label">Type</span>
-                            </div>
-                        </div>
-                        <div class="project-chart" aria-hidden="true">
-                            <div class="p-bar" style="--h:60%"></div><div class="p-bar" style="--h:80%"></div>
-                            <div class="p-bar" style="--h:55%"></div><div class="p-bar" style="--h:90%"></div>
-                            <div class="p-bar" style="--h:70%"></div><div class="p-bar" style="--h:85%"></div>
-                            <div class="p-bar" style="--h:75%"></div>
-                        </div>
-                        <div class="project-stack">
-                            <span class="p-tech">Laravel</span><span class="p-tech">Vue.js</span>
-                            <span class="p-tech">MySQL</span><span class="p-tech">Bootstrap</span>
-                        </div>
-                        <p class="project-desc" data-i18n="feat3.desc">Data analytics dashboard with dynamic diagrams and advanced geographic filtering for real-time statistics visualization.</p>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="bento-card">
-                        <div class="card-glow"></div>
-                        <div class="project-card-header">
-                            <div class="project-card-icon" style="color: #f59e0b; background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2)"><i class="fas fa-users"></i></div>
-                            <div>
-                                <div class="project-card-title" data-i18n="feat4.title">Client Management System</div>
-                                <div class="project-card-company">Cedeño &amp; Méndez · Panama</div>
-                            </div>
-                            <span class="project-card-badge" data-i18n="badge.prod">Production</span>
-                        </div>
-                        <div class="project-metrics">
-                            <div class="p-metric">
-                                <span class="p-metric__val c">Full</span>
-                                <span class="p-metric__label">Stack</span>
-                            </div>
-                            <div class="p-metric">
-                                <span class="p-metric__val">CRUD</span>
-                                <span class="p-metric__label">Modules</span>
+                                <span class="p-metric__val">2034</span>
+                                <span class="p-metric__label" data-i18n="metric.horizon">Horizon</span>
                             </div>
                             <div class="p-metric">
                                 <span class="p-metric__val g">Web</span>
@@ -1116,31 +1086,69 @@
                         </div>
                         <div class="project-chart" aria-hidden="true">
                             <div class="p-bar" style="--h:50%"></div><div class="p-bar" style="--h:65%"></div>
-                            <div class="p-bar" style="--h:80%"></div><div class="p-bar" style="--h:60%"></div>
+                            <div class="p-bar" style="--h:80%"></div><div class="p-bar" style="--h:70%"></div>
                             <div class="p-bar" style="--h:90%"></div><div class="p-bar" style="--h:75%"></div>
                             <div class="p-bar" style="--h:85%"></div>
                         </div>
                         <div class="project-stack">
-                            <span class="p-tech">Laravel</span><span class="p-tech">Bootstrap</span>
-                            <span class="p-tech">MySQL</span><span class="p-tech">jQuery</span>
+                            <span class="p-tech">PHP</span><span class="p-tech">Javascript</span>
+                            <span class="p-tech">MySQL</span><span class="p-tech">Bootstrap</span>
                         </div>
-                        <p class="project-desc" data-i18n="feat4.desc">Custom CRM for managing clients, contracts and reporting for a Panamanian legal and financial firm.</p>
+                        <p class="project-desc" data-i18n="feat2.desc">Strategic planning platform for Universidad Nacional de Colombia, Manizales campus — visualizing institutional goals and milestones through 2034.</p>
+                        <a class="project-visit-link" href="http://plei2034.manizales.unal.edu.co" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt"></i> <span data-i18n="project.visit">Visit project</span>
+                        </a>
+                    </div>
+
+                    <!-- Card 3 — Depcorpcym -->
+                    <div class="bento-card">
+                        <div class="card-glow"></div>
+                        <div class="project-card-header">
+                            <div class="project-card-icon" style="color: #f59e0b; background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2)"><i class="fas fa-building"></i></div>
+                            <div>
+                                <div class="project-card-title" data-i18n="feat3.title">Depcorpcym</div>
+                                <div class="project-card-company" data-i18n="feat3.company">Cedeño &amp; Méndez · Panama</div>
+                            </div>
+                            <span class="project-card-badge" data-i18n="badge.live">Live</span>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="p-metric">
+                                <span class="p-metric__val c">Full</span>
+                                <span class="p-metric__label">Stack</span>
+                            </div>
+                            <div class="p-metric">
+                                <span class="p-metric__val">CRM</span>
+                                <span class="p-metric__label" data-i18n="metric.modules">Modules</span>
+                            </div>
+                            <div class="p-metric">
+                                <span class="p-metric__val g" data-i18n="metric.status_live">Active</span>
+                                <span class="p-metric__label">Status</span>
+                            </div>
+                        </div>
+                        <div class="project-chart" aria-hidden="true">
+                            <div class="p-bar" style="--h:45%"></div><div class="p-bar" style="--h:60%"></div>
+                            <div class="p-bar" style="--h:75%"></div><div class="p-bar" style="--h:55%"></div>
+                            <div class="p-bar" style="--h:90%"></div><div class="p-bar" style="--h:80%"></div>
+                            <div class="p-bar" style="--h:95%"></div>
+                        </div>
+                        <div class="project-stack">
+                            <span class="p-tech">PHP</span><span class="p-tech">Bootstrap</span>
+                            <span class="p-tech">MySQL</span><span class="p-tech">Javascript</span>
+                        </div>
+                        <p class="project-desc" data-i18n="feat3.desc">Corporate web platform and client management system for a Panamanian legal and financial firm, handling contracts, clients and operational reporting.</p>
+                        <a class="project-visit-link" href="https://depcorpcym.com/" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt"></i> <span data-i18n="project.visit">Visit project</span>
+                        </a>
                     </div>
 
                 </div>
 
                 <!-- Other projects — simpler grid -->
-                <h3 style="font-size: 0.82rem; color: var(--text-muted); margin: 2.5rem 0 1rem; font-family: 'JetBrains Mono', monospace; letter-spacing:0.06em;" data-i18n="projects.other">Other projects</h3>
+                <div class="featured-label" style="margin-top: 3rem;">
+                    <span data-i18n="projects.other">Other projects</span>
+                </div>
                 <div class="projects-simple-grid">
 
-                    <div class="project-simple-card">
-                        <img src="images/plei2034.jpg" alt="Plei 2034 - Universidad Nacional">
-                        <a href="http://plei2034.manizales.unal.edu.co/" target="_blank" data-i18n="project.plei">Plei · Universidad Nacional de Colombia</a>
-                    </div>
-                    <div class="project-simple-card">
-                        <img src="images/saberveritas.png" alt="Saber y Veritas">
-                        <a href="https://saberveritas.com/" target="_blank" data-i18n="project.saberveritas">Saber &amp; Veritas</a>
-                    </div>
                     <div class="project-simple-card">
                         <img src="images/tumbura.png" alt="Tumbura Ecommerce">
                         <a href="https://tumbura.co/" target="_blank" data-i18n="project.tumbura">Tumbura Ecommerce</a>
@@ -1303,15 +1311,18 @@
                 'skill.cat.backend':'Backend','skill.cat.frontend':'Frontend',
                 'skill.cat.devops':'DevOps & Infra','skill.cat.db':'Databases',
                 'skill.cat.tools':'Tools & Platforms','skill.cat.soft':'Methodologies',
-                'projects.title':'Projects','projects.other':'Other projects',
-                'feat1.title':'Moodle Custom Plugins','feat1.desc':'Custom ranking visualizations, dynamic charts and ERP automation integrated into Moodle\'s plugin architecture.',
-                'feat2.title':'Donor Portal Webhook','feat2.desc':'Strategic webhook automating personal and membership data transfer, expanding the platform to the US market.',
-                'feat3.title':'Reloj Colmena — Analytics','feat3.desc':'Data analytics dashboard with dynamic diagrams and advanced geographic filtering for real-time statistics visualization.',
-                'feat4.title':'Client Management System','feat4.desc':'Custom CRM for managing clients, contracts and reporting for a Panamanian legal and financial firm.',
+                'projects.title':'Projects','projects.featured':'Featured','projects.other':'Other projects',
+                'feat1.title':'AI Business Flow','feat1.company':'Personal',
+                'feat1.desc':'Business process automation platform powered by AI, enabling intelligent workflow orchestration and decision support for modern teams.',
+                'feat2.title':'Plei 2034','feat2.company':'Univ. Nacional',
+                'feat2.desc':'Strategic planning platform for Universidad Nacional de Colombia, Manizales campus — visualizing institutional goals and milestones through 2034.',
+                'feat3.title':'Depcorpcym','feat3.company':'Cedeño & Méndez · Panama',
+                'feat3.desc':'Corporate web platform and client management system for a Panamanian legal and financial firm, handling contracts, clients and operational reporting.',
                 'badge.live':'Live','badge.prod':'Production',
-                'metric.timesaved':'Time saved','metric.plugins':'Plugins','metric.status_live':'Active',
-                'metric.automated':'Automated','metric.market':'Market','metric.data':'Data',
-                'metric.filters':'Filters',
+                'metric.powered':'Powered','metric.flow':'Flow','metric.status_live':'Active',
+                'metric.strategic':'Strategic','metric.horizon':'Horizon',
+                'metric.modules':'Modules',
+                'project.visit':'Visit project',
                 'project.plei':'Plei · Universidad Nacional de Colombia',
                 'project.saberveritas':'Saber & Veritas','project.tumbura':'Tumbura Ecommerce',
                 'project.gifexpert':'GIF search app · React + Vite',
@@ -1363,15 +1374,18 @@
                 'skill.cat.backend':'Backend','skill.cat.frontend':'Frontend',
                 'skill.cat.devops':'DevOps e Infraestructura','skill.cat.db':'Bases de Datos',
                 'skill.cat.tools':'Herramientas y Plataformas','skill.cat.soft':'Metodologías',
-                'projects.title':'Proyectos','projects.other':'Otros proyectos',
-                'feat1.title':'Plugins Personalizados Moodle','feat1.desc':'Visualizaciones de rankings, gráficos dinámicos y automatización ERP integrados en la arquitectura de plugins de Moodle.',
-                'feat2.title':'Webhook Portal de Donantes','feat2.desc':'Webhook estratégico que automatiza la transferencia de datos personales y de membresía, expandiendo la plataforma al mercado de EE.UU.',
-                'feat3.title':'Reloj Colmena — Analytics','feat3.desc':'Dashboard de análisis de datos con diagramas dinámicos y filtrado geográfico avanzado para visualización de estadísticas en tiempo real.',
-                'feat4.title':'Sistema de Gestión de Clientes','feat4.desc':'CRM personalizado para gestión de clientes, contratos y reportes para una firma legal y financiera panameña.',
+                'projects.title':'Proyectos','projects.featured':'Destacados','projects.other':'Otros proyectos',
+                'feat1.title':'AI Business Flow','feat1.company':'Personal',
+                'feat1.desc':'Plataforma de automatización de procesos empresariales impulsada por IA, con orquestación inteligente de flujos de trabajo y soporte de decisiones para equipos modernos.',
+                'feat2.title':'Plei 2034','feat2.company':'Univ. Nacional',
+                'feat2.desc':'Plataforma de planeación estratégica para la Universidad Nacional de Colombia sede Manizales, visualizando metas y hitos institucionales hasta el año 2034.',
+                'feat3.title':'Depcorpcym','feat3.company':'Cedeño & Méndez · Panamá',
+                'feat3.desc':'Plataforma web corporativa y sistema de gestión de clientes para una firma legal y financiera panameña, gestionando contratos, clientes y reportes operativos.',
                 'badge.live':'En Vivo','badge.prod':'Producción',
-                'metric.timesaved':'Tiempo ahorrado','metric.plugins':'Plugins','metric.status_live':'Activo',
-                'metric.automated':'Automatizado','metric.market':'Mercado','metric.data':'Datos',
-                'metric.filters':'Filtros',
+                'metric.powered':'Impulsado','metric.flow':'Flujo','metric.status_live':'Activo',
+                'metric.strategic':'Estratégico','metric.horizon':'Horizonte',
+                'metric.modules':'Módulos',
+                'project.visit':'Ver proyecto',
                 'project.plei':'Plei · Universidad Nacional de Colombia',
                 'project.saberveritas':'Saber & Veritas','project.tumbura':'Tumbura Ecommerce',
                 'project.gifexpert':'Buscador de Gifs · React + Vite',
