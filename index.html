@@ -613,22 +613,82 @@
         /* ── CERTIFICATIONS ──────────────────────────────────── */
         .certs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 0.75rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--bg-border);
+            border: 1px solid var(--bg-border);
+            border-radius: 20px;
+            overflow: hidden;
         }
-        .cert-item {
-            display: flex; align-items: center; gap: 0.85rem;
-            background: var(--bg-surface); border: 1px solid var(--bg-border);
-            border-radius: var(--radius-sm); padding: 0.9rem 1.1rem;
-            transition: border-color 0.3s, background 0.3s;
+        @media (max-width: 600px) {
+            .certs-grid { grid-template-columns: 1fr; }
         }
-        .cert-item:hover { border-color: var(--accent); background: var(--bg-elevated); }
-        .cert-icon { color: #fbbf24; flex-shrink: 0; font-size: 0.85rem; }
-        .cert-item a, .cert-item span {
-            font-size: 0.82rem; color: var(--text-secondary) !important;
-            font-weight: 500; line-height: 1.4;
+
+        .cert-card {
+            background: var(--bg-surface);
+            padding: 1.35rem 1.25rem 1.25rem 1.5rem;
+            display: flex; flex-direction: column; gap: 0.5rem;
+            position: relative; overflow: hidden;
+            transition: background 0.25s;
         }
-        .cert-item:hover a, .cert-item:hover span { color: var(--text-primary) !important; }
+        .cert-card:hover { background: var(--bg-elevated); }
+
+        /* Línea de acento izquierda por proveedor */
+        .cert-card::before {
+            content: '';
+            position: absolute; left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--cert-color, var(--accent));
+            opacity: 0.5;
+            transition: opacity 0.25s;
+        }
+        .cert-card:hover::before { opacity: 1; }
+
+        /* Shimmer igual que bento-card */
+        .cert-card::after {
+            content: '';
+            position: absolute; top: -50%; left: -75%;
+            width: 50%; height: 200%;
+            background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.03) 50%, transparent 60%);
+            transform: skewX(-15deg); pointer-events: none;
+        }
+        .cert-card:hover::after { animation: shimmer-pass 0.65s ease forwards; }
+
+        .cert-provider {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--cert-color, var(--accent));
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .cert-provider-dot {
+            width: 5px; height: 5px; border-radius: 50%;
+            background: var(--cert-color, var(--accent));
+            flex-shrink: 0;
+        }
+
+        .cert-name {
+            font-size: 0.8rem; font-weight: 600;
+            color: var(--text-secondary);
+            line-height: 1.45; flex: 1;
+            transition: color 0.25s;
+        }
+        .cert-card:hover .cert-name { color: var(--text-primary); }
+
+        .cert-link {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem; font-weight: 600;
+            color: var(--cert-color, var(--accent)) !important;
+            opacity: 0.6; transition: opacity 0.2s, gap 0.2s;
+            text-decoration: none; margin-top: 0.15rem;
+        }
+        .cert-link:hover { opacity: 1; gap: 0.5rem; }
+        .cert-no-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem; color: var(--text-muted);
+            margin-top: 0.15rem;
+        }
 
         /* ── Scrollbar ───────────────────────────────────────── */
         ::-webkit-scrollbar { width: 5px; }
@@ -1216,47 +1276,109 @@
             <div data-aos="fade-up">
                 <span class="section-title-tag mono" data-i18n="tag.certs">// certifications</span>
                 <h2 class="section-h2" data-i18n="awards.title">Certifications</h2>
+
                 <div class="certs-grid">
-                    <div class="cert-item">
-                        <i class="fas fa-trophy cert-icon"></i>
-                        <a href="https://cert.efset.org/en/TriC3m" target="_blank" data-i18n="cert.efset">EFSET English Certificate 58/100 (B2 Upper Intermediate)</a>
+
+                    <!-- EFSET — #3b82f6 blue -->
+                    <div class="cert-card" style="--cert-color: #3b82f6">
+                        <div class="cert-provider">
+                            <span class="cert-provider-dot"></span> EFSET
+                        </div>
+                        <div class="cert-name" data-i18n="cert.efset">EFSET English Certificate 58/100 (B2 Upper Intermediate)</div>
+                        <a class="cert-link" href="https://cert.efset.org/en/TriC3m" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt"></i> <span data-i18n="cert.view">View credential</span>
+                        </a>
                     </div>
-                    <div class="cert-item">
-                        <i class="fas fa-trophy cert-icon"></i>
-                        <a href="https://www.credly.com/users/julian-alzate-cuervo/badges#credly" target="_blank" data-i18n="cert.credly">Credly Certificates</a>
+
+                    <!-- Credly — #f97316 orange -->
+                    <div class="cert-card" style="--cert-color: #f97316">
+                        <div class="cert-provider">
+                            <span class="cert-provider-dot"></span> Credly
+                        </div>
+                        <div class="cert-name" data-i18n="cert.credly">Credly Certificates</div>
+                        <a class="cert-link" href="https://www.credly.com/users/julian-alzate-cuervo/badges#credly" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt"></i> <span data-i18n="cert.view">View credential</span>
+                        </a>
                     </div>
-                    <div class="cert-item">
-                        <i class="fas fa-trophy cert-icon"></i>
-                        <a href="https://platzi.com/p/julianalzate046/ruta/100-javascript-full-stack/diploma/detalle/" target="_blank" data-i18n="cert.fullstack">Fullstack Developer Javascript – Platzi</a>
+
+                    <!-- Platzi Fullstack — #22c55e green -->
+                    <div class="cert-card" style="--cert-color: #22c55e">
+                        <div class="cert-provider">
+                            <span class="cert-provider-dot"></span> Platzi
+                        </div>
+                        <div class="cert-name" data-i18n="cert.fullstack">Fullstack Developer Javascript</div>
+                        <a class="cert-link" href="https://platzi.com/p/julianalzate046/ruta/100-javascript-full-stack/diploma/detalle/" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt"></i> <span data-i18n="cert.view">View credential</span>
+                        </a>
                     </div>
-                    <div class="cert-item">
-                        <i class="fas fa-trophy cert-icon"></i>
-                        <a href="https://cursos.devtalles.com/certificates/zenhjs8vmr" target="_blank" data-i18n="cert.nestjs">NestJS: Scalable Backend Development with Node</a>
+
+                    <!-- DevTalles — #00d9f5 cyan -->
+                    <div class="cert-card" style="--cert-color: var(--accent)">
+                        <div class="cert-provider">
+                            <span class="cert-provider-dot"></span> DevTalles
+                        </div>
+                        <div class="cert-name" data-i18n="cert.nestjs">NestJS: Scalable Backend Development with Node</div>
+                        <a class="cert-link" href="https://cursos.devtalles.com/certificates/zenhjs8vmr" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt"></i> <span data-i18n="cert.view">View credential</span>
+                        </a>
                     </div>
-                    <div class="cert-item">
-                        <i class="fas fa-trophy cert-icon"></i>
-                        <a href="https://platzi.com/p/julianalzate046/ruta/10-desarrollo-php/diploma/detalle/" target="_blank" data-i18n="cert.php">PHP Backend – Platzi</a>
+
+                    <!-- Platzi PHP — #22c55e green -->
+                    <div class="cert-card" style="--cert-color: #22c55e">
+                        <div class="cert-provider">
+                            <span class="cert-provider-dot"></span> Platzi
+                        </div>
+                        <div class="cert-name" data-i18n="cert.php">PHP Backend</div>
+                        <a class="cert-link" href="https://platzi.com/p/julianalzate046/ruta/10-desarrollo-php/diploma/detalle/" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt"></i> <span data-i18n="cert.view">View credential</span>
+                        </a>
                     </div>
-                    <div class="cert-item">
-                        <i class="fas fa-trophy cert-icon"></i>
-                        <span data-i18n="cert.hubspot">Inbound Certified – HubSpot</span>
+
+                    <!-- HubSpot — #ff7a59 -->
+                    <div class="cert-card" style="--cert-color: #ff7a59">
+                        <div class="cert-provider">
+                            <span class="cert-provider-dot"></span> HubSpot
+                        </div>
+                        <div class="cert-name" data-i18n="cert.hubspot">Inbound Certified</div>
+                        <span class="cert-no-link" data-i18n="cert.verified">Verified</span>
                     </div>
-                    <div class="cert-item">
-                        <i class="fas fa-trophy cert-icon"></i>
-                        <span data-i18n="cert.cloudgoogle">Cloud Computing Course – Google Certification</span>
+
+                    <!-- Google Cloud — #4285f4 -->
+                    <div class="cert-card" style="--cert-color: #4285f4">
+                        <div class="cert-provider">
+                            <span class="cert-provider-dot"></span> Google
+                        </div>
+                        <div class="cert-name" data-i18n="cert.cloudgoogle">Cloud Computing Course</div>
+                        <span class="cert-no-link" data-i18n="cert.verified">Verified</span>
                     </div>
-                    <div class="cert-item">
-                        <i class="fas fa-trophy cert-icon"></i>
-                        <span data-i18n="cert.ecommercegoogle">E-commerce Course – Google Certification</span>
+
+                    <!-- Google E-commerce — #4285f4 -->
+                    <div class="cert-card" style="--cert-color: #4285f4">
+                        <div class="cert-provider">
+                            <span class="cert-provider-dot"></span> Google
+                        </div>
+                        <div class="cert-name" data-i18n="cert.ecommercegoogle">E-commerce Course</div>
+                        <span class="cert-no-link" data-i18n="cert.verified">Verified</span>
                     </div>
-                    <div class="cert-item">
-                        <i class="fas fa-trophy cert-icon"></i>
-                        <span data-i18n="cert.sena">Database Fundamentals and Management Systems – SENA</span>
+
+                    <!-- SENA — #16a34a -->
+                    <div class="cert-card" style="--cert-color: #16a34a">
+                        <div class="cert-provider">
+                            <span class="cert-provider-dot"></span> SENA
+                        </div>
+                        <div class="cert-name" data-i18n="cert.sena">Database Fundamentals &amp; Management Systems</div>
+                        <span class="cert-no-link" data-i18n="cert.verified">Verified</span>
                     </div>
-                    <div class="cert-item">
-                        <i class="fas fa-trophy cert-icon"></i>
-                        <span data-i18n="cert.scrum">Scrum Fundamentals Certified – SCRUMstudy</span>
+
+                    <!-- SCRUMstudy — #6366f1 indigo -->
+                    <div class="cert-card" style="--cert-color: #6366f1">
+                        <div class="cert-provider">
+                            <span class="cert-provider-dot"></span> SCRUMstudy
+                        </div>
+                        <div class="cert-name" data-i18n="cert.scrum">Scrum Fundamentals Certified</div>
+                        <span class="cert-no-link" data-i18n="cert.verified">Verified</span>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -1336,12 +1458,13 @@
                 'project.blogpersonal':'Personal Blog','project.blogcolombia':'Blog about Colombia',
                 'awards.title':'Certifications',
                 'cert.efset':'EFSET English Certificate 58/100 (B2 Upper Intermediate)',
-                'cert.credly':'Credly Certificates','cert.fullstack':'Fullstack Developer Javascript – Platzi',
-                'cert.nestjs':'NestJS: Scalable Backend Development with Node','cert.php':'PHP Backend – Platzi',
-                'cert.hubspot':'Inbound Certified – HubSpot','cert.cloudgoogle':'Cloud Computing Course – Google Certification',
-                'cert.ecommercegoogle':'E-commerce Course – Google Certification',
-                'cert.sena':'Database Fundamentals and Management Systems – SENA',
-                'cert.scrum':'Scrum Fundamentals Certified – SCRUMstudy',
+                'cert.credly':'Credly Certificates','cert.fullstack':'Fullstack Developer Javascript',
+                'cert.nestjs':'NestJS: Scalable Backend Development with Node','cert.php':'PHP Backend',
+                'cert.hubspot':'Inbound Certified','cert.cloudgoogle':'Cloud Computing Course',
+                'cert.ecommercegoogle':'E-commerce Course',
+                'cert.sena':'Database Fundamentals & Management Systems',
+                'cert.scrum':'Scrum Fundamentals Certified',
+                'cert.view':'View credential','cert.verified':'Verified',
             },
             es: {
                 'nav.about':'Acerca de','nav.experience':'Experiencia','nav.education':'Educación',
@@ -1399,12 +1522,13 @@
                 'project.blogpersonal':'Blog Personal','project.blogcolombia':'Blog sobre Colombia',
                 'awards.title':'Certificaciones',
                 'cert.efset':'EFSET English Certificate 58/100 (B2 Upper Intermediate)',
-                'cert.credly':'Certificados en Credly','cert.fullstack':'Fullstack Developer Javascript – Platzi',
-                'cert.nestjs':'Nest: Desarrollo backend escalable con Node','cert.php':'PHP Backend – Platzi',
-                'cert.hubspot':'Inbound Certified – HubSpot','cert.cloudgoogle':'Cloud Computing Course – Google Certification',
-                'cert.ecommercegoogle':'Curso de E-commerce – Google Certification',
-                'cert.sena':'Bases de datos generalidades y sistemas de gestión – SENA',
-                'cert.scrum':'Scrum Fundamentals Certified – SCRUMstudy',
+                'cert.credly':'Certificados en Credly','cert.fullstack':'Desarrollador Fullstack Javascript',
+                'cert.nestjs':'NestJS: Desarrollo Backend Escalable con Node','cert.php':'PHP Backend',
+                'cert.hubspot':'Inbound Certified','cert.cloudgoogle':'Curso de Cloud Computing',
+                'cert.ecommercegoogle':'Curso de E-commerce',
+                'cert.sena':'Bases de Datos y Sistemas de Gestión',
+                'cert.scrum':'Scrum Fundamentals Certified',
+                'cert.view':'Ver credencial','cert.verified':'Verificado',
             }
         };
 
