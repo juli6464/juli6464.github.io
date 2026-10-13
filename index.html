@@ -54,14 +54,22 @@
     <!-- Performance: preconnect a fuentes y CDNs críticos -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://use.fontawesome.com" crossorigin />
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@700;800&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-    <link href="css/styles.css" rel="stylesheet" />
+    <!-- Fuentes y AOS cargados sin bloquear el render -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@700;800&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@700;800&display=swap">
+    </noscript>
+    <link href="css/styles.min.css" rel="stylesheet" />
 
     <style>
+        /* Fallback con métricas de Inter: evita saltos de layout (CLS) cuando carga la fuente web */
+        @font-face {
+            font-family: 'Inter Fallback';
+            src: local('Arial');
+            ascent-override: 90.2%; descent-override: 22.48%; line-gap-override: 0%; size-adjust: 107.4%;
+        }
         /* ── Design System ───────────────────────────────────── */
         :root {
             --bg-base:       #060910;
@@ -86,7 +94,7 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: 'Inter', 'Inter Fallback', system-ui, sans-serif;
             background: var(--bg-base);
             color: var(--text-primary);
             margin: 0;
@@ -94,7 +102,7 @@
         }
 
         h1, h2 { font-family: 'Sora', sans-serif; font-weight: 800; letter-spacing: -0.03em; margin: 0; }
-        h3      { font-family: 'Inter', sans-serif; font-weight: 600; margin: 0; }
+        h3      { font-family: 'Inter', 'Inter Fallback', sans-serif; font-weight: 600; margin: 0; }
         .mono   { font-family: 'JetBrains Mono', monospace; }
         .label  { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
 
@@ -363,13 +371,26 @@
         .status-dot {
             width: 8px; height: 8px; border-radius: 50%;
             background: var(--accent-2);
-            animation: pulse-dot 2s ease-in-out infinite;
             display: inline-block; margin-right: 0.4rem;
+            position: relative;
+        }
+        /* Halo animado con transform/opacity (animación compuesta en GPU) */
+        .status-dot::after {
+            content: '';
+            position: absolute; inset: 0;
+            border-radius: 50%;
+            background: rgba(57,211,83,0.4);
+            animation: pulse-dot 2s ease-in-out infinite;
+            will-change: transform, opacity;
         }
         @keyframes pulse-dot {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(57,211,83,0.4); }
-            50%       { box-shadow: 0 0 0 6px rgba(57,211,83,0); }
+            0%   { transform: scale(1);   opacity: 1; }
+            50%  { transform: scale(2.5); opacity: 0; }
+            100% { transform: scale(1);   opacity: 0; }
         }
+
+        /* Íconos FontAwesome en SVG inline */
+        .svg-inline--fa { display: inline-block; overflow: visible; vertical-align: -0.125em; }
         .status-title   { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.5rem; }
         .status-value   { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); line-height: 1.4; }
         .status-company { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); margin-top: 0.25rem; }
@@ -729,7 +750,7 @@
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none" style="color: var(--text-primary); font-family: 'Sora', sans-serif;">Julian Alzate</span>
             <span class="d-none d-lg-block">
-                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="images/julian_alzate.jpg" alt="Julian Alzate - Fullstack Developer" />
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="images/webp/julian_alzate.webp" alt="Julian Alzate - Fullstack Developer" width="320" height="320" decoding="async" />
             </span>
         </a>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -748,7 +769,7 @@
 
         <!-- ════ ABOUT ══════════════════════════════════════════ -->
         <section class="resume-section" id="about">
-            <div data-aos="fade-up">
+            <div>
                 <div class="bento-grid about-bento">
 
                     <!-- Hero -->
@@ -765,14 +786,14 @@
                             <span style="color: var(--accent)">Backend Specialist</span>
                         </p>
                         <p class="hero-bio" data-i18n="about.bio">
-                            Telematic Engineer with 5+ years of fullstack development experience, specialized in building robust and scalable architectures for technology, banking, healthcare, and education sectors. Expert in PHP (Laravel) and JavaScript (Node.js, React, Vue.js), with advanced capability to integrate AI solutions and automation into the development workflow.
+                            Telematics Engineer with over 5 years of experience in software development, specializing in building robust and scalable architectures for the technology, banking, healthcare, and education sectors. Experienced in programming languages and frameworks such as Python, PHP (Laravel), and JavaScript/TypeScript (Node.js, NestJS, React, Vue.js), with over 1 year of hands-on experience working with large language models (OpenAI, Claude, Gemini, and Groq). I specialize in incorporating practical AI solutions, prompt engineering, and intelligent agents into the software development workflow, transforming complex requirements into high-performance solutions throughout the entire process, from technical estimation to production.
                         </p>
                         <div class="hero-actions">
                             <a class="btn-primary-neo" href="https://drive.google.com/file/d/15wuyrILI7XqIS8lPB8j0zIm5vZdTPwjT/view?usp=sharing" target="_blank">
-                                <i class="fas fa-file-download"></i> <span data-i18n="about.view_cv">View CV</span>
+                                <i class="fas fa-file-download"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 384 512" width="0.75em" height="1em"><path fill="currentColor" d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm76.45 211.36l-96.42 95.7c-6.65 6.61-17.39 6.61-24.04 0l-96.42-95.7C73.42 337.29 80.54 320 94.82 320H160v-80c0-8.84 7.16-16 16-16h32c8.84 0 16 7.16 16 16v80h65.18c14.28 0 21.4 17.29 11.27 27.36zM377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9z"/></svg></i> <span data-i18n="about.view_cv">View CV</span>
                             </a>
                             <a class="btn-ghost-neo" href="mailto:julianalzate046@gmail.com">
-                                <i class="fas fa-envelope"></i> Contact
+                                <i class="fas fa-envelope"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg></i> Contact
                             </a>
                         </div>
                     </div>
@@ -826,16 +847,16 @@
                         <div class="contact-grid">
                             <span class="label" style="color: var(--text-muted)" data-i18n="about.links">Links</span>
                             <a class="social-link-neo" href="https://www.linkedin.com/in/julian-david-alzate-cuervo-backend/" target="_blank">
-                                <i class="fab fa-linkedin-in"></i> LinkedIn
+                                <i class="fab fa-linkedin-in"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 448 512" width="0.875em" height="1em"><path fill="currentColor" d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg></i> LinkedIn
                             </a>
                             <a class="social-link-neo" href="https://github.com/juli6464/" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
+                                <i class="fab fa-github"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 496 512" width="0.9688em" height="1em"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></i> GitHub
                             </a>
                             <a class="social-link-neo" href="mailto:julianalzate046@gmail.com">
-                                <i class="fas fa-envelope"></i> julianalzate046@gmail.com
+                                <i class="fas fa-envelope"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg></i> julianalzate046@gmail.com
                             </a>
                             <span class="social-link-neo" style="cursor:default;">
-                                <i class="fas fa-map-marker-alt" style="color: var(--accent)"></i> Manizales, Colombia
+                                <i class="fas fa-map-marker-alt" style="color: var(--accent)"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 384 512" width="0.75em" height="1em"><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"/></svg></i> Manizales, Colombia
                             </span>
                         </div>
                     </div>
@@ -937,7 +958,7 @@
 
                     <div class="bento-card">
                         <div class="card-glow"></div>
-                        <div class="skill-cat-icon"><i class="fas fa-server"></i></div>
+                        <div class="skill-cat-icon"><i class="fas fa-server"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M480 160H32c-17.673 0-32-14.327-32-32V64c0-17.673 14.327-32 32-32h448c17.673 0 32 14.327 32 32v64c0 17.673-14.327 32-32 32zm-48-88c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24zm-64 0c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24zm112 248H32c-17.673 0-32-14.327-32-32v-64c0-17.673 14.327-32 32-32h448c17.673 0 32 14.327 32 32v64c0 17.673-14.327 32-32 32zm-48-88c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24zm-64 0c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24zm112 248H32c-17.673 0-32-14.327-32-32v-64c0-17.673 14.327-32 32-32h448c17.673 0 32 14.327 32 32v64c0 17.673-14.327 32-32 32zm-48-88c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24zm-64 0c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24z"/></svg></i></div>
                         <div class="skill-cat-title" data-i18n="skill.cat.backend">Backend</div>
                         <div class="skill-pills">
                             <span class="skill-pill">PHP</span>
@@ -954,7 +975,7 @@
 
                     <div class="bento-card">
                         <div class="card-glow"></div>
-                        <div class="skill-cat-icon" style="color: var(--accent-2); background: var(--accent-2-glow); border-color: rgba(57,211,83,0.2)"><i class="fas fa-palette"></i></div>
+                        <div class="skill-cat-icon" style="color: var(--accent-2); background: var(--accent-2-glow); border-color: rgba(57,211,83,0.2)"><i class="fas fa-palette"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M204.3 5C104.9 24.4 24.8 104.3 5.2 203.4c-37 187 131.7 326.4 258.8 306.7 41.2-6.4 61.4-54.6 42.5-91.7-23.1-45.4 9.9-98.4 60.9-98.4h79.7c35.8 0 64.8-29.6 64.9-65.3C511.5 97.1 368.1-26.9 204.3 5zM96 320c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm32-128c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128-64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/></svg></i></div>
                         <div class="skill-cat-title" data-i18n="skill.cat.frontend">Frontend</div>
                         <div class="skill-pills">
                             <span class="skill-pill">Vue.js</span>
@@ -971,7 +992,7 @@
 
                     <div class="bento-card">
                         <div class="card-glow"></div>
-                        <div class="skill-cat-icon" style="color: #a78bfa; background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.2)"><i class="fab fa-docker"></i></div>
+                        <div class="skill-cat-icon" style="color: #a78bfa; background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.2)"><i class="fab fa-docker"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 640 512" width="1.25em" height="1em"><path fill="currentColor" d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg></i></div>
                         <div class="skill-cat-title" data-i18n="skill.cat.devops">DevOps &amp; Infra</div>
                         <div class="skill-pills">
                             <span class="skill-pill">Docker</span>
@@ -986,7 +1007,7 @@
 
                     <div class="bento-card">
                         <div class="card-glow"></div>
-                        <div class="skill-cat-icon" style="color: #f59e0b; background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2)"><i class="fas fa-database"></i></div>
+                        <div class="skill-cat-icon" style="color: #f59e0b; background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2)"><i class="fas fa-database"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 448 512" width="0.875em" height="1em"><path fill="currentColor" d="M448 73.143v45.714C448 159.143 347.667 192 224 192S0 159.143 0 118.857V73.143C0 32.857 100.333 0 224 0s224 32.857 224 73.143zM448 176v102.857C448 319.143 347.667 352 224 352S0 319.143 0 278.857V176c48.125 33.143 136.208 48.572 224 48.572S399.874 209.143 448 176zm0 160v102.857C448 479.143 347.667 512 224 512S0 479.143 0 438.857V336c48.125 33.143 136.208 48.572 224 48.572S399.874 369.143 448 336z"/></svg></i></div>
                         <div class="skill-cat-title" data-i18n="skill.cat.db">Databases</div>
                         <div class="skill-pills">
                             <span class="skill-pill">MySQL</span>
@@ -1000,7 +1021,7 @@
 
                     <div class="bento-card">
                         <div class="card-glow"></div>
-                        <div class="skill-cat-icon" style="color: #fb923c; background: rgba(251,146,60,0.08); border-color: rgba(251,146,60,0.2)"><i class="fas fa-tools"></i></div>
+                        <div class="skill-cat-icon" style="color: #fb923c; background: rgba(251,146,60,0.08); border-color: rgba(251,146,60,0.2)"><i class="fas fa-tools"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M501.1 395.7L384 278.6c-23.1-23.1-57.6-27.6-85.4-13.9L192 158.1V96L64 0 0 64l96 128h62.1l106.6 106.6c-13.6 27.8-9.2 62.3 13.9 85.4l117.1 117.1c14.6 14.6 38.2 14.6 52.7 0l52.7-52.7c14.5-14.6 14.5-38.2 0-52.7zM331.7 225c28.3 0 54.9 11 74.9 31l19.4 19.4c15.8-6.9 30.8-16.5 43.8-29.5 37.1-37.1 49.7-89.3 37.9-136.7-2.2-9-13.5-12.1-20.1-5.5l-74.4 74.4-67.9-11.3L334 98.9l74.4-74.4c6.6-6.6 3.4-17.9-5.7-20.2-47.4-11.7-99.6.9-136.6 37.9-28.5 28.5-41.9 66.1-41.2 103.6l82.1 82.1c8.1-1.9 16.5-2.9 24.7-2.9zm-103.9 82l-56.7-56.7L18.7 402.8c-25 25-25 65.5 0 90.5s65.5 25 90.5 0l123.6-123.6c-7.6-19.9-9.9-41.6-5-62.7zM64 472c-13.2 0-24-10.8-24-24 0-13.3 10.7-24 24-24s24 10.7 24 24c0 13.2-10.7 24-24 24z"/></svg></i></div>
                         <div class="skill-cat-title" data-i18n="skill.cat.tools">Tools &amp; Platforms</div>
                         <div class="skill-pills">
                             <span class="skill-pill">Moodle</span>
@@ -1015,7 +1036,7 @@
 
                     <div class="bento-card">
                         <div class="card-glow"></div>
-                        <div class="skill-cat-icon" style="color: #38bdf8; background: rgba(56,189,248,0.08); border-color: rgba(56,189,248,0.2)"><i class="fas fa-users-cog"></i></div>
+                        <div class="skill-cat-icon" style="color: #38bdf8; background: rgba(56,189,248,0.08); border-color: rgba(56,189,248,0.2)"><i class="fas fa-users-cog"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 640 512" width="1.25em" height="1em"><path fill="currentColor" d="M610.5 341.3c2.6-14.1 2.6-28.5 0-42.6l25.8-14.9c3-1.7 4.3-5.2 3.3-8.5-6.7-21.6-18.2-41.2-33.2-57.4-2.3-2.5-6-3.1-9-1.4l-25.8 14.9c-10.9-9.3-23.4-16.5-36.9-21.3v-29.8c0-3.4-2.4-6.4-5.7-7.1-22.3-5-45-4.8-66.2 0-3.3.7-5.7 3.7-5.7 7.1v29.8c-13.5 4.8-26 12-36.9 21.3l-25.8-14.9c-2.9-1.7-6.7-1.1-9 1.4-15 16.2-26.5 35.8-33.2 57.4-1 3.3.4 6.8 3.3 8.5l25.8 14.9c-2.6 14.1-2.6 28.5 0 42.6l-25.8 14.9c-3 1.7-4.3 5.2-3.3 8.5 6.7 21.6 18.2 41.1 33.2 57.4 2.3 2.5 6 3.1 9 1.4l25.8-14.9c10.9 9.3 23.4 16.5 36.9 21.3v29.8c0 3.4 2.4 6.4 5.7 7.1 22.3 5 45 4.8 66.2 0 3.3-.7 5.7-3.7 5.7-7.1v-29.8c13.5-4.8 26-12 36.9-21.3l25.8 14.9c2.9 1.7 6.7 1.1 9-1.4 15-16.2 26.5-35.8 33.2-57.4 1-3.3-.4-6.8-3.3-8.5l-25.8-14.9zM496 368.5c-26.8 0-48.5-21.8-48.5-48.5s21.8-48.5 48.5-48.5 48.5 21.8 48.5 48.5-21.7 48.5-48.5 48.5zM96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm224 32c1.9 0 3.7-.5 5.6-.6 8.3-21.7 20.5-42.1 36.3-59.2 7.4-8 17.9-12.6 28.9-12.6 6.9 0 13.7 1.8 19.6 5.3l7.9 4.6c.8-.5 1.6-.9 2.4-1.4 7-14.6 11.2-30.8 11.2-48 0-61.9-50.1-112-112-112S208 82.1 208 144c0 61.9 50.1 112 112 112zm105.2 194.5c-2.3-1.2-4.6-2.6-6.8-3.9-8.2 4.8-15.3 9.8-27.5 9.8-10.9 0-21.4-4.6-28.9-12.6-18.3-19.8-32.3-43.9-40.2-69.6-10.7-34.5 24.9-49.7 25.8-50.3-.1-2.6-.1-5.2 0-7.8l-7.9-4.6c-3.8-2.2-7-5-9.8-8.1-3.3.2-6.5.6-9.8.6-24.6 0-47.6-6-68.5-16h-8.3C179.6 288 128 339.6 128 403.2V432c0 26.5 21.5 48 48 48h255.4c-3.7-6-6.2-12.8-6.2-20.3v-9.2zM173.1 274.6C161.5 263.1 145.6 256 128 256H64c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h65.9c6.3-47.4 34.9-87.3 75.2-109.4z"/></svg></i></div>
                         <div class="skill-cat-title" data-i18n="skill.cat.soft">Methodologies</div>
                         <div class="skill-pills">
                             <span class="skill-pill">Scrum</span>
@@ -1032,34 +1053,34 @@
                 <details style="margin-top: 1rem;">
                     <summary style="font-size: 0.78rem; color: var(--text-muted); cursor: pointer; font-family: 'JetBrains Mono', monospace; padding: 0.5rem 0;" data-i18n="skills.badges_toggle">Show all tech badges</summary>
                     <div class="badges-row" aria-label="Full tech stack badges">
-                        <img height="32" src="https://img.shields.io/badge/php-%23777BB4.svg?style=flat&logo=php&logoColor=white" alt="PHP">
-                        <img height="32" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat&logo=html5&logoColor=white" alt="HTML5">
-                        <img height="32" src="https://img.shields.io/badge/javascript-%23323330.svg?style=flat&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript">
-                        <img height="32" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white" alt="TypeScript">
-                        <img height="32" src="https://img.shields.io/badge/css3-%231572B6.svg?style=flat&logo=css3&logoColor=white" alt="CSS3">
-                        <img height="32" src="https://img.shields.io/badge/laravel-%23FF2D20.svg?style=flat&logo=laravel&logoColor=white" alt="Laravel">
-                        <img height="32" src="https://img.shields.io/badge/livewire-%234e56a6.svg?style=flat&logo=livewire&logoColor=white" alt="Livewire">
-                        <img height="32" src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=flat&logo=nestjs&logoColor=white" alt="NestJS">
-                        <img height="32" src="https://img.shields.io/badge/node.js-6DA55F?style=flat&logo=node.js&logoColor=white" alt="Node.js">
-                        <img height="32" src="https://img.shields.io/badge/express.js-%23404d59.svg?style=flat&logo=express&logoColor=%2361DAFB" alt="Express.js">
-                        <img height="32" src="https://img.shields.io/badge/vue.js-%2335495e.svg?style=flat&logo=vuedotjs&logoColor=%234FC08D" alt="Vue.js">
-                        <img height="32" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
-                        <img height="32" src="https://img.shields.io/badge/bootstrap-%238511FA.svg?style=flat&logo=bootstrap&logoColor=white" alt="Bootstrap">
-                        <img height="32" src="https://img.shields.io/badge/vite-%23646CFF.svg?style=flat&logo=vite&logoColor=white" alt="Vite">
-                        <img height="32" src="https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white" alt="Docker">
-                        <img height="32" src="https://img.shields.io/badge/nginx-%23009639.svg?style=flat&logo=nginx&logoColor=white" alt="Nginx">
-                        <img height="32" src="https://img.shields.io/badge/mysql-4479A1.svg?style=flat&logo=mysql&logoColor=white" alt="MySQL">
-                        <img height="32" src="https://img.shields.io/badge/postgres-%23316192.svg?style=flat&logo=postgresql&logoColor=white" alt="PostgreSQL">
-                        <img height="32" src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=flat&logo=mongodb&logoColor=white" alt="MongoDB">
-                        <img height="32" src="https://img.shields.io/badge/git-%23F05033.svg?style=flat&logo=git&logoColor=white" alt="Git">
-                        <img height="32" src="https://img.shields.io/badge/Moodle-F98012?style=flat&logo=moodle&logoColor=white" alt="Moodle">
-                        <img height="32" src="https://img.shields.io/badge/Make-6D00CC?style=flat&logo=gnu&logoColor=white" alt="Make">
-                        <img height="32" src="https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=postman&logoColor=white" alt="Postman">
-                        <img height="32" src="https://img.shields.io/badge/-Swagger-%23Clojure?style=flat&logo=swagger&logoColor=white" alt="Swagger">
-                        <img height="32" src="https://img.shields.io/badge/SCRUM-009FDA?style=flat&logo=scrumalliance&logoColor=white" alt="Scrum">
-                        <img height="32" src="https://img.shields.io/badge/Socket.io-black?style=flat&logo=socket.io&badgeColor=010101" alt="Socket.IO">
-                        <img height="32" src="https://img.shields.io/badge/JWT-black?style=flat&logo=JSON%20web%20tokens" alt="JWT">
-                        <img height="32" src="https://img.shields.io/badge/WordPress-%23117AC9.svg?style=flat&logo=WordPress&logoColor=white" alt="WordPress">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/php-%23777BB4.svg?style=flat&logo=php&logoColor=white" alt="PHP">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat&logo=html5&logoColor=white" alt="HTML5">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/javascript-%23323330.svg?style=flat&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white" alt="TypeScript">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/css3-%231572B6.svg?style=flat&logo=css3&logoColor=white" alt="CSS3">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/laravel-%23FF2D20.svg?style=flat&logo=laravel&logoColor=white" alt="Laravel">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/livewire-%234e56a6.svg?style=flat&logo=livewire&logoColor=white" alt="Livewire">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=flat&logo=nestjs&logoColor=white" alt="NestJS">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/node.js-6DA55F?style=flat&logo=node.js&logoColor=white" alt="Node.js">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/express.js-%23404d59.svg?style=flat&logo=express&logoColor=%2361DAFB" alt="Express.js">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/vue.js-%2335495e.svg?style=flat&logo=vuedotjs&logoColor=%234FC08D" alt="Vue.js">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/bootstrap-%238511FA.svg?style=flat&logo=bootstrap&logoColor=white" alt="Bootstrap">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/vite-%23646CFF.svg?style=flat&logo=vite&logoColor=white" alt="Vite">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white" alt="Docker">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/nginx-%23009639.svg?style=flat&logo=nginx&logoColor=white" alt="Nginx">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/mysql-4479A1.svg?style=flat&logo=mysql&logoColor=white" alt="MySQL">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/postgres-%23316192.svg?style=flat&logo=postgresql&logoColor=white" alt="PostgreSQL">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=flat&logo=mongodb&logoColor=white" alt="MongoDB">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/git-%23F05033.svg?style=flat&logo=git&logoColor=white" alt="Git">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/Moodle-F98012?style=flat&logo=moodle&logoColor=white" alt="Moodle">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/Make-6D00CC?style=flat&logo=gnu&logoColor=white" alt="Make">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=postman&logoColor=white" alt="Postman">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/-Swagger-%23Clojure?style=flat&logo=swagger&logoColor=white" alt="Swagger">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/SCRUM-009FDA?style=flat&logo=scrumalliance&logoColor=white" alt="Scrum">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/Socket.io-black?style=flat&logo=socket.io&badgeColor=010101" alt="Socket.IO">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/JWT-black?style=flat&logo=JSON%20web%20tokens" alt="JWT">
+                        <img height="32" loading="lazy" decoding="async" src="https://img.shields.io/badge/WordPress-%23117AC9.svg?style=flat&logo=WordPress&logoColor=white" alt="WordPress">
                     </div>
                 </details>
 
@@ -1084,7 +1105,7 @@
                     <div class="bento-card">
                         <div class="card-glow"></div>
                         <div class="project-card-header">
-                            <div class="project-card-icon"><i class="fas fa-robot"></i></div>
+                            <div class="project-card-icon"><i class="fas fa-robot"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 640 512" width="1.25em" height="1em"><path fill="currentColor" d="M32,224H64V416H32A31.96166,31.96166,0,0,1,0,384V256A31.96166,31.96166,0,0,1,32,224Zm512-48V448a64.06328,64.06328,0,0,1-64,64H160a64.06328,64.06328,0,0,1-64-64V176a79.974,79.974,0,0,1,80-80H288V32a32,32,0,0,1,64,0V96H464A79.974,79.974,0,0,1,544,176ZM264,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,264,256Zm-8,128H192v32h64Zm96,0H288v32h64ZM456,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,456,256Zm-8,128H384v32h64ZM640,256V384a31.96166,31.96166,0,0,1-32,32H576V224h32A31.96166,31.96166,0,0,1,640,256Z"/></svg></i></div>
                             <div>
                                 <div class="project-card-title" data-i18n="feat1.title">AI Business Flow</div>
                                 <div class="project-card-company" data-i18n="feat1.company">Personal</div>
@@ -1117,7 +1138,7 @@
                         </div>
                         <p class="project-desc" data-i18n="feat1.desc">Business process automation platform powered by AI, enabling intelligent workflow orchestration and decision support for modern teams.</p>
                         <a class="project-visit-link" href="https://juli6464.github.io/AI-Business-Flow/" target="_blank" rel="noopener">
-                            <i class="fas fa-external-link-alt"></i> <span data-i18n="project.visit">Visit project</span>
+                            <i class="fas fa-external-link-alt"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg></i> <span data-i18n="project.visit">Visit project</span>
                         </a>
                     </div>
 
@@ -1125,7 +1146,7 @@
                     <div class="bento-card">
                         <div class="card-glow"></div>
                         <div class="project-card-header">
-                            <div class="project-card-icon" style="color: #a78bfa; background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.2)"><i class="fas fa-university"></i></div>
+                            <div class="project-card-icon" style="color: #a78bfa; background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.2)"><i class="fas fa-university"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M496 128v16a8 8 0 0 1-8 8h-24v12c0 6.627-5.373 12-12 12H60c-6.627 0-12-5.373-12-12v-12H24a8 8 0 0 1-8-8v-16a8 8 0 0 1 4.941-7.392l232-88a7.996 7.996 0 0 1 6.118 0l232 88A8 8 0 0 1 496 128zm-24 304H40c-13.255 0-24 10.745-24 24v16a8 8 0 0 0 8 8h464a8 8 0 0 0 8-8v-16c0-13.255-10.745-24-24-24zM96 192v192H60c-6.627 0-12 5.373-12 12v20h416v-20c0-6.627-5.373-12-12-12h-36V192h-64v192h-64V192h-64v192h-64V192H96z"/></svg></i></div>
                             <div>
                                 <div class="project-card-title" data-i18n="feat2.title">Fullstack Payment Flow</div>
                                 <div class="project-card-company" data-i18n="feat2.company">Personal</div>
@@ -1158,7 +1179,7 @@
                         </div>
                         <p class="project-desc" data-i18n="feat2.desc">A full-stack e-commerce checkout application that simulates a complete payment workflow using a payment gateway sandbox API.</p>
                         <a class="project-visit-link" href="https://fullstack-payment-flow.vercel.app/" target="_blank" rel="noopener">
-                            <i class="fas fa-external-link-alt"></i> <span data-i18n="project.visit">Visit project</span>
+                            <i class="fas fa-external-link-alt"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg></i> <span data-i18n="project.visit">Visit project</span>
                         </a>
                     </div>
 
@@ -1166,7 +1187,7 @@
                     <div class="bento-card">
                         <div class="card-glow"></div>
                         <div class="project-card-header">
-                            <div class="project-card-icon" style="color: #f59e0b; background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2)"><i class="fas fa-building"></i></div>
+                            <div class="project-card-icon" style="color: #f59e0b; background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2)"><i class="fas fa-building"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 448 512" width="0.875em" height="1em"><path fill="currentColor" d="M436 480h-20V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v456H12c-6.627 0-12 5.373-12 12v20h448v-20c0-6.627-5.373-12-12-12zM128 76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76zm0 96c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40zm52 148h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12zm76 160h-64v-84c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v84zm64-172c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40z"/></svg></i></div>
                             <div>
                                 <div class="project-card-title" data-i18n="feat3.title">Depcorpcym</div>
                                 <div class="project-card-company" data-i18n="feat3.company">Cedeño &amp; Méndez · Panama</div>
@@ -1199,7 +1220,7 @@
                         </div>
                         <p class="project-desc" data-i18n="feat3.desc">Corporate web platform and client management system for a Panamanian legal and financial firm, handling contracts, clients and operational reporting.</p>
                         <a class="project-visit-link" href="https://depcorpcym.com/" target="_blank" rel="noopener">
-                            <i class="fas fa-external-link-alt"></i> <span data-i18n="project.visit">Visit project</span>
+                            <i class="fas fa-external-link-alt"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg></i> <span data-i18n="project.visit">Visit project</span>
                         </a>
                     </div>
 
@@ -1212,55 +1233,55 @@
                 <div class="projects-simple-grid">
 
                     <div class="project-simple-card">
-                        <img src="images/tumbura.png" alt="Tumbura Ecommerce">
+                        <img src="images/webp/tumbura.webp" alt="Tumbura Ecommerce" width="480" height="233" loading="lazy" decoding="async">
                         <a href="https://tumbura.co/" target="_blank" data-i18n="project.tumbura">Tumbura Ecommerce</a>
                     </div>
                     <div class="project-simple-card">
-                        <img src="images/gifexpertapp.png" alt="Gif Expert App">
+                        <img src="images/webp/gifexpertapp.webp" alt="Gif Expert App" width="480" height="222" loading="lazy" decoding="async">
                         <a href="https://juli6464.github.io/gif-expert-app/" target="_blank" data-i18n="project.gifexpert">GIF search app · React + Vite</a>
                     </div>
                     <div class="project-simple-card">
-                        <img src="images/yardsale.jpg" alt="React Store">
+                        <img src="images/webp/yardsale.webp" alt="React Store" width="480" height="230" loading="lazy" decoding="async">
                         <a href="https://juli6464.github.io/my-react-store/" target="_blank" data-i18n="project.reactstore">E-commerce · React + Webpack</a>
                     </div>
                     <div class="project-simple-card">
-                        <img src="images/ahorcado.PNG" alt="Hangman Game">
+                        <img src="images/webp/ahorcado.webp" alt="Hangman Game" width="480" height="232" loading="lazy" decoding="async">
                         <a href="https://ahorcado-juego-6543.netlify.app/" target="_blank" data-i18n="project.hangman">Hangman · React + TypeScript</a>
                     </div>
                     <div class="project-simple-card">
-                        <img src="images/platziexchange.PNG" alt="Crypto Vue">
+                        <img src="images/webp/platziexchange.webp" alt="Crypto Vue" width="480" height="231" loading="lazy" decoding="async">
                         <a href="https://platzi-exchange-vuejs2.netlify.app/" target="_blank" data-i18n="project.crypto">Crypto tracker · Vue.js</a>
                     </div>
                     <div class="project-simple-card">
-                        <img src="images/cashflow.PNG" alt="Cashflow Vue">
+                        <img src="images/webp/cashflow.webp" alt="Cashflow Vue" width="480" height="230" loading="lazy" decoding="async">
                         <a href="https://cashflow-vue-64.netlify.app/" target="_blank" data-i18n="project.cashflow">Cashflow app · Vue.js</a>
                     </div>
                     <div class="project-simple-card">
-                        <img src="images/100tifi.jpg" alt="Rick n Morty JS">
+                        <img src="images/webp/100tifi.webp" alt="Rick n Morty JS" width="480" height="230" loading="lazy" decoding="async">
                         <a href="https://juli6464.github.io/spa-js-ricknmorty/" target="_blank" data-i18n="project.ricknmortyjs">Rick &amp; Morty · Vanilla JS</a>
                     </div>
                     <div class="project-simple-card">
-                        <img src="images/rick-morty-svelte.jpg" alt="Rick n Morty Svelte">
+                        <img src="images/webp/rick-morty-svelte.webp" alt="Rick n Morty Svelte" width="480" height="230" loading="lazy" decoding="async">
                         <a href="https://svelte-rick-morty.netlify.app/" target="_blank" data-i18n="project.ricknmortysvelte">Rick &amp; Morty · Svelte</a>
                     </div>
                     <div class="project-simple-card">
-                        <img src="images/batabit.PNG" alt="Batabit">
+                        <img src="images/webp/batabit.webp" alt="Batabit" width="480" height="232" loading="lazy" decoding="async">
                         <a href="https://juli6464.github.io/Curso-mobile-first/" target="_blank" data-i18n="project.batabit">Batabit · Mobile First</a>
                     </div>
                     <div class="project-simple-card">
-                        <img src="images/platzifood.jpg" alt="Platzifood">
+                        <img src="images/webp/platzifood.webp" alt="Platzifood" width="480" height="232" loading="lazy" decoding="async">
                         <a href="https://juli6464.github.io/platzi-food/" target="_blank" data-i18n="project.platzifood">Platzifood · Tailwind CSS</a>
                     </div>
                     <div class="project-simple-card">
-                        <img src="images/googleclon.PNG" alt="Google Clone">
+                        <img src="images/webp/googleclon.webp" alt="Google Clone" width="480" height="229" loading="lazy" decoding="async">
                         <a href="https://juli6464.github.io/google-clone/" target="_blank" data-i18n="project.googleclone">Google Clone · CSS Grid</a>
                     </div>
                     <div class="project-simple-card">
-                        <img src="images/platziconf.jpg" alt="Platzi Conf">
+                        <img src="images/webp/platziconf.webp" alt="Platzi Conf" width="480" height="232" loading="lazy" decoding="async">
                         <a href="https://juli6464.github.io/bootstrap-5-theme/" target="_blank" data-i18n="project.platziconf">Platzi Conf · Bootstrap 5</a>
                     </div>
                     <div class="project-simple-card">
-                        <img src="images/pokemon-adivina.png" alt="Pokemon Vue 3">
+                        <img src="images/webp/pokemon-adivina.webp" alt="Pokemon Vue 3" width="480" height="232" loading="lazy" decoding="async">
                         <a href="https://vue-3-pokemon-game.netlify.app/" target="_blank" data-i18n="project.pokemon">Pokémon Game · Vue 3 + Jest</a>
                     </div>
 
@@ -1288,7 +1309,7 @@
                         </div>
                         <div class="cert-name" data-i18n="cert.efset">EFSET English Certificate 58/100 (B2 Upper Intermediate)</div>
                         <a class="cert-link" href="https://cert.efset.org/en/TriC3m" target="_blank" rel="noopener">
-                            <i class="fas fa-external-link-alt"></i> <span data-i18n="cert.view">View credential</span>
+                            <i class="fas fa-external-link-alt"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg></i> <span data-i18n="cert.view">View credential</span>
                         </a>
                     </div>
 
@@ -1299,7 +1320,7 @@
                         </div>
                         <div class="cert-name" data-i18n="cert.credly">Credly Certificates</div>
                         <a class="cert-link" href="https://www.credly.com/users/julian-alzate-cuervo/badges#credly" target="_blank" rel="noopener">
-                            <i class="fas fa-external-link-alt"></i> <span data-i18n="cert.view">View credential</span>
+                            <i class="fas fa-external-link-alt"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg></i> <span data-i18n="cert.view">View credential</span>
                         </a>
                     </div>
 
@@ -1310,7 +1331,7 @@
                         </div>
                         <div class="cert-name" data-i18n="cert.fullstack">Fullstack Developer Javascript</div>
                         <a class="cert-link" href="https://platzi.com/p/julianalzate046/ruta/100-javascript-full-stack/diploma/detalle/" target="_blank" rel="noopener">
-                            <i class="fas fa-external-link-alt"></i> <span data-i18n="cert.view">View credential</span>
+                            <i class="fas fa-external-link-alt"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg></i> <span data-i18n="cert.view">View credential</span>
                         </a>
                     </div>
 
@@ -1321,7 +1342,7 @@
                         </div>
                         <div class="cert-name" data-i18n="cert.nestjs">NestJS: Scalable Backend Development with Node</div>
                         <a class="cert-link" href="https://cursos.devtalles.com/certificates/zenhjs8vmr" target="_blank" rel="noopener">
-                            <i class="fas fa-external-link-alt"></i> <span data-i18n="cert.view">View credential</span>
+                            <i class="fas fa-external-link-alt"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg></i> <span data-i18n="cert.view">View credential</span>
                         </a>
                     </div>
 
@@ -1332,7 +1353,7 @@
                         </div>
                         <div class="cert-name" data-i18n="cert.php">PHP Backend</div>
                         <a class="cert-link" href="https://platzi.com/p/julianalzate046/ruta/10-desarrollo-php/diploma/detalle/" target="_blank" rel="noopener">
-                            <i class="fas fa-external-link-alt"></i> <span data-i18n="cert.view">View credential</span>
+                            <i class="fas fa-external-link-alt"><svg class="svg-inline--fa" aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg></i> <span data-i18n="cert.view">View credential</span>
                         </a>
                     </div>
 
@@ -1387,11 +1408,11 @@
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="js/scripts.js" defer></script>
     <script>
-        AOS.init({ duration: 800, once: true, offset: 60 });
+        window.addEventListener('DOMContentLoaded', () => AOS.init({ duration: 800, once: true, offset: 60 }));
 
         // ── Cursor glow tracker ───────────────────────────────
         document.querySelectorAll('.bento-card').forEach(card => {
