@@ -1,6 +1,6 @@
 /*!
 * Portfolio – Julian David Alzate Cuervo
-* Custom scripts: smooth scroll, clean URL (no #), scrollspy
+* Custom scripts: smooth scroll, clean URL (no #), scrollspy, menú móvil, reveal on scroll
 */
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -42,9 +42,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => observer.observe(section));
 
-    // ── 3. Cierra el menú hamburguesa al hacer click en un link
+    // ── 3. Menú hamburguesa (reemplaza Bootstrap JS) ─────────
     const navbarToggler  = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.querySelector('#navbarResponsive');
+
+    if (navbarToggler && navbarCollapse) {
+        navbarToggler.addEventListener('click', () => {
+            const open = navbarCollapse.classList.toggle('show');
+            navbarToggler.classList.toggle('collapsed', !open);
+            navbarToggler.setAttribute('aria-expanded', open);
+        });
+    }
+
+    // Cierra el menú hamburguesa al hacer click en un link
 
     document.querySelectorAll('#navbarResponsive .nav-link').forEach(link => {
         link.addEventListener('click', () => {
@@ -54,7 +64,19 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ── 4. Limpiar # si la página carga con uno en la URL ────
+    // ── 4. Reveal on scroll (reemplaza AOS: fade-up, once) ───
+    const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('[data-aos]').forEach(el => revealObserver.observe(el));
+
+    // ── 5. Limpiar # si la página carga con uno en la URL ────
     if (window.location.hash) {
         const targetId = window.location.hash.slice(1);
         const target   = document.getElementById(targetId);
